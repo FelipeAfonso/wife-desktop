@@ -21,5 +21,11 @@ return require('packer').startup(function(use)
   use 'psliwka/vim-smoothie'
   use 'preservim/nerdtree'
   use 'Xuyuanp/nerdtree-git-plugin'
+  use 'lewis6991/gitsigns.nvim'
+  use {
+    "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+  }
+  use 'windwp/nvim-ts-autotag'
   use 'ryanoasis/vim-devicons'
 end)

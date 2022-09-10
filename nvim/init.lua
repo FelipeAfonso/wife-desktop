@@ -9,11 +9,26 @@ require'lspconfig'.tsserver.setup({
   end
 })
 
+
 require'colorizer'.setup()
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "javascript", "typescript", "css", "yaml", "html" },
+  highlight = {
+    enable = true 
+  }
+}
+
+require'gitsigns'.setup {
+  current_line_blame = true,
+}
 
 local null_ls = require("null-ls")
 
 null_ls.setup({
+  sources = {
+    null_ls.builtins.code_actions.gitsigns
+  },
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
       vim.cmd("nnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>")

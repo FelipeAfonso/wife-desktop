@@ -11,6 +11,8 @@ return require('packer').startup(function(use)
   use 'Julpikar/night-owl.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use 'norcalli/nvim-colorizer.lua'
+  use 'MunifTanjim/prettier.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
   use { 'neoclide/coc.nvim', 
         branch = 'release' }
   use { 'nvim-telescope/telescope.nvim', 

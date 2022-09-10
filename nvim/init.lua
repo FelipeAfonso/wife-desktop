@@ -2,6 +2,7 @@ require('base')
 require('plugins')
 require('remap')
 
+
 require'lspconfig'.tsserver.setup({
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
@@ -9,6 +10,13 @@ require'lspconfig'.tsserver.setup({
   end
 })
 
+
+
+require'bufferline'.setup{
+  options = {
+    numbers = 'buffer_id'
+  }
+}
 
 require'colorizer'.setup()
 

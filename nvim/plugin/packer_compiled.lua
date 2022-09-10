@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/night-owl.nvim",
     url = "https://github.com/Julpikar/night-owl.nvim"
   },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/nvim-treesitter",

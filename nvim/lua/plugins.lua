@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
       config = function() require("nvim-autopairs").setup {} end
   }
   use 'windwp/nvim-ts-autotag'
+  use 'github/copilot.vim'
   use 'ryanoasis/vim-devicons'
   use { 'akinsho/bufferline.nvim', 
         tag = "v2.*", 

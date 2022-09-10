@@ -1,4 +1,5 @@
 vim.wo.number = true
+vim.opt.encoding = 'UTF-8'
 vim.g.mapleader = ' '
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -25,3 +26,4 @@ vim.opt.scrolloff = 8
 vim.opt.path:append { '**' }
 vim.opt.wildignore:append { '*/node_modules/', '*/.next/*' }
 vim.opt.clipboard:append { 'unnamedplus' }
+vim.opt.undofile = false

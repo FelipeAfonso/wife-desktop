@@ -9,6 +9,8 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   use 'bluz71/vim-nightfly-guicolors'
   use 'Julpikar/night-owl.nvim'
+  use 'rebelot/kanagawa.nvim'
+  use 'sainnhe/gruvbox-material'
   use 'nvim-treesitter/nvim-treesitter'
   use 'norcalli/nvim-colorizer.lua'
   use 'MunifTanjim/prettier.nvim'
@@ -17,16 +19,18 @@ return require('packer').startup(function(use)
         branch = 'release' }
   use { 'nvim-telescope/telescope.nvim', 
         tag = '0.1.0', 
-        requires = { { 'nvim-lua/plenary.nvim' } }}
+        requires = { 
+          { 'nvim-lua/plenary.nvim' }, 
+          { 'nvim-telescope/telescope-live-grep-args.nvim' } 
+        },
+        config = function()
+          require("telescope").load_extension("live_grep_args")
+        end
+      }
   use 'psliwka/vim-smoothie'
   use 'preservim/nerdtree'
   use 'Xuyuanp/nerdtree-git-plugin'
   use 'lewis6991/gitsigns.nvim'
-  use {
-    "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
-  }
-  use 'windwp/nvim-ts-autotag'
   use 'github/copilot.vim'
   use 'ryanoasis/vim-devicons'
   use { 'akinsho/bufferline.nvim', 

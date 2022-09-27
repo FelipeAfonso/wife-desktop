@@ -11,7 +11,6 @@ vim.opt.hlsearch = true
 vim.opt.smartindent = true
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:hor20-Cursor-blinkwait300-blinkon200-blinkoff150,r-cr-o:hor20'
 vim.opt.relativenumber = true
-vim.opt.hlsearch = false
 vim.opt.hidden = true
 vim.opt.errorbells = false
 vim.opt.swapfile = false

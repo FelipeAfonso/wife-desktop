@@ -2,17 +2,12 @@ require('base')
 require('plugins')
 require('remap')
 
-
-
-
-require'lspconfig'.tsserver.setup({
+require'lspconfig'.tsserver.setup ({
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
 })
-
-
 
 require'bufferline'.setup{
   options = {
@@ -49,13 +44,14 @@ null_ls.setup({
 
     if client.server_capabilities.documentRangeFormattingProvider then
       vim.cmd("xnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.range_formatting({})<CR>")
-    end
-  end,
+    end  end,
 })
+
 
 local prettier = require('prettier')
 
 prettier.setup({
+  bin = 'prettier',
   filetypes = {
       "css",
       "graphql",
@@ -70,3 +66,5 @@ prettier.setup({
       "typescriptreact",
       "yaml",
     }})
+
+vim.cmd('let NERDTreeWinSize = 64')

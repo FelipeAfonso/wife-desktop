@@ -6,7 +6,14 @@ require'lspconfig'.tsserver.setup ({
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
-  end
+  end,
+  commands = {
+    OrganizeImports = {
+      function()
+        vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.api.nvim_buf_get_name(0) } })
+      end
+    }
+  }
 })
 
 require'bufferline'.setup{

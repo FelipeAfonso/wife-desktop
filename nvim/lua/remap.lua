@@ -12,6 +12,7 @@ nnoremap('<leader>tf', '<cmd>NERDTreeFocus<cr>')
 nnoremap('<leader>,', '<cmd>bp<cr>')
 nnoremap('<leader>.', '<cmd>bn<cr>')
 nnoremap('<leader>d', '<cmd>bd<cr>')
+nnoremap('<leader>o', '<cmd>OrganizeImports<cr>')
 
 nnoremap('d', '"_d')
 vnoremap('d', '"_d')

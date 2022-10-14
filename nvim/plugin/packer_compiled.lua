@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["bufferline.nvim"] = {
-    loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
-    url = "https://github.com/akinsho/bufferline.nvim"
-  },
   ["coc.nvim"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/coc.nvim",
@@ -103,6 +98,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
+  },
+  ["leap.nvim"] = {
+    loaded = true,
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
+  },
+  ["lightline-bufferline"] = {
+    loaded = true,
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/lightline-bufferline",
+    url = "https://github.com/mengelbrecht/lightline-bufferline"
+  },
+  ["lightline.vim"] = {
+    loaded = true,
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/lightline.vim",
+    url = "https://github.com/itchyny/lightline.vim"
   },
   nerdtree = {
     loaded = true,
@@ -170,6 +180,11 @@ _G.packer_plugins = {
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
   ["vim-devicons"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-devicons",
@@ -179,6 +194,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
   },
   ["vim-smoothie"] = {
     loaded = true,

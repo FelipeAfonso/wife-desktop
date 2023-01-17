@@ -40,5 +40,5 @@ return require('packer').startup(function(use)
   use 'ryanoasis/vim-devicons'
   use { 'mengelbrecht/lightline-bufferline', 
         tag = "v2.*", 
-        requires = 'kyazdani42/nvim-web-devicons'}
+        requires = { {'kyazdani42/nvim-web-devicons'}, {'itchyny/vim-gitbranch'}} }
 end)

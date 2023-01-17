@@ -190,6 +190,11 @@ _G.packer_plugins = {
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-devicons",
     url = "https://github.com/ryanoasis/vim-devicons"
   },
+  ["vim-gitbranch"] = {
+    loaded = true,
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-gitbranch",
+    url = "https://github.com/itchyny/vim-gitbranch"
+  },
   ["vim-nightfly-guicolors"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",

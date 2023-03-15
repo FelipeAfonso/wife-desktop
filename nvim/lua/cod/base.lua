@@ -22,7 +22,6 @@ vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.colorcolumn = '100'
 vim.opt.signcolumn = 'yes'
-vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.path:append { '**' }
 vim.opt.wildignore:append { '*/node_modules/', '*/.next/*' }
@@ -30,3 +29,5 @@ vim.opt.clipboard:append { 'unnamedplus' }
 vim.opt.undofile = false
 vim.opt.termguicolors = true
 vim.opt.titlestring = string.match(vim.fn.getcwd(), "^.+/(.+)$")
+vim.opt.wrap = true
+vim.opt.mouse = ''

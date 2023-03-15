@@ -1,28 +1,48 @@
 -- Learn the keybindings, see :help lsp-zero-keybindings
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
 
-lsp.setup_servers({ 'tsserver', 'eslint' })
+lsp.preset('recommended')
 
 lsp.ensure_installed({
   -- Replace these with whatever servers you want to install
+  'tailwindcss',
   'tsserver',
   'eslint',
-  'sumneko_lua',
 })
 
--- (Optional) Configure lua language server for neovim
+local cmp = require('cmp')
+
+lsp.configure('tsserver', {
+  on_attach = function(client)
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.document_range_formatting = false
+  end,
+  commands = {
+    OrganizeImports = {
+      function()
+        vim.lsp.buf.execute_command({ command = "_typescript.organizeImports",
+          arguments = { vim.api.nvim_buf_get_name(0) } })
+      end
+    }
+  }
+})
+
 lsp.nvim_workspace()
 
 local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
       vim.api.nvim_create_autocmd("BufWritePre", {
         desc = "Auto format before save",
         pattern = "<buffer>",
-        callback = vim.lsp.buf.formatting_sync,
+        callback = function() vim.lsp.buf.format({
+            bufnr = bufnr,
+            filter = function(c) return c.name == "null-ls" end
+          })
+        end,
       })
       vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
     end
@@ -35,6 +55,29 @@ null_ls.setup({
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.diagnostics.eslint,
   }
+})
+
+lsp.setup_nvim_cmp({
+  sources = {
+    -- This one provides the data from copilot.
+    { name = 'copilot' },
+
+    --- These are the default sources for lsp-zero
+    { name = 'path' },
+    { name = 'nvim_lsp', keyword_length = 3 },
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'luasnip', keyword_length = 2 },
+  },
+  mapping = lsp.defaults.cmp_mappings({
+    ['<CR>'] = cmp.mapping.confirm({
+      -- documentation says this is important.
+      -- I don't know why.
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    }),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+  })
 })
 
 lsp.setup()

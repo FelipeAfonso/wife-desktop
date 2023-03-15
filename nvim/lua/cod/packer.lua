@@ -12,9 +12,15 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+  use 'folke/tokyonight.nvim'
   use {
     "catppuccin/nvim",
     as = "catppuccin",
+  }
+  use 'windwp/nvim-ts-autotag'
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
   }
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -24,6 +30,23 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'norcalli/nvim-colorizer.lua'
+  use 'MunifTanjim/prettier.nvim'
+  use {
+    'zbirenbaum/copilot.lua',
+    event = 'VimEnter',
+    config = function()
+      vim.defer_fn(function()
+        require('copilot').setup()
+      end, 100)
+    end,
+  }
+  use {
+    'zbirenbaum/copilot-cmp',
+    after = { 'copilot.lua' },
+    config = function()
+      require('copilot_cmp').setup()
+    end
+  }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }

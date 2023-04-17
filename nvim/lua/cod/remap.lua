@@ -11,6 +11,7 @@ vim.keymap.set('n', '<leader>.', '<cmd>bn<cr>')
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>')
 vim.keymap.set('n', '<leader>r', '<Plug>RestNvim')
 vim.keymap.set('n', '<leader>o', '<cmd>OrganizeImports<cr>')
+vim.keymap.set('n', '<leader>c', '<cmd>Copilot panel<cr>')
 
 vim.keymap.set('n', '<leader>1', '<cmd>lua require("bufferline").go_to_buffer(1, true)<cr>')
 vim.keymap.set('n', '<leader>2', '<cmd>lua require("bufferline").go_to_buffer(2, true)<cr>')

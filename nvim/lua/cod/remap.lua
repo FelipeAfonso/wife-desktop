@@ -38,4 +38,5 @@ vim.keymap.set('n', 'd', '"_d')
 
 vim.keymap.set('v', 'd', '"_d')
 vim.keymap.set('v', 'x', 'x')
+vim.keymap.set('v', 'r', '<Plug>RestNvim')
 vim.keymap.set('i', '<C-x>', '<C-c>f<lt>vf>x')

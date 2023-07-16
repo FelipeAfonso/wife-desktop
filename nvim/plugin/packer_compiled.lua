@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
-  catppuccin = {
-    loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -116,30 +111,17 @@ _G.packer_plugins = {
   },
   ["copilot.lua"] = {
     commands = { "Copilot" },
-    config = { "\27LJ\2\n„\4\0\0\5\0\16\0\0216\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0005\4\v\0=\4\5\3=\3\f\0025\3\r\0=\3\14\0024\3\0\0=\3\15\2B\0\2\1K\0\1\0\26server_opts_overrides\14filetypes\1\0\t\rmarkdown\1\tyaml\1\6.\1\bcvs\1\bsvn\1\rhgcommit\1\14gitrebase\1\14gitcommit\1\thelp\1\15suggestion\1\0\6\16accept_line\1\16accept_word\1\tprev\n<C-h>\vaccept\n<C-s>\fdismiss\n<C-e>\tnext\n<C-l>\1\0\3\17auto_trigger\2\rdebounce\3K\fenabled\2\npanel\1\0\1\25copilot_node_command\tnode\vlayout\1\0\2\rposition\vbottom\nratio\4š³æÌ\t™³æþ\3\vkeymap\1\0\5\14jump_prev\a[[\vaccept\t<CR>\frefresh\agr\topen\v<M-CR>\14jump_next\a]]\1\0\2\17auto_refresh\1\fenabled\2\nsetup\fcopilot\frequire\0" },
+    config = { "\27LJ\2\n„\4\0\0\5\0\16\0\0216\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0005\4\v\0=\4\5\3=\3\f\0025\3\r\0=\3\14\0024\3\0\0=\3\15\2B\0\2\1K\0\1\0\26server_opts_overrides\14filetypes\1\0\t\14gitrebase\1\14gitcommit\1\thelp\1\rmarkdown\1\tyaml\1\6.\1\bcvs\1\bsvn\1\rhgcommit\1\15suggestion\1\0\6\fdismiss\n<C-e>\tprev\n<C-h>\16accept_line\1\16accept_word\1\vaccept\n<C-s>\tnext\n<C-l>\1\0\3\rdebounce\3K\fenabled\2\17auto_trigger\2\npanel\1\0\1\25copilot_node_command\tnode\vlayout\1\0\2\nratio\4š³æÌ\t™³æþ\3\rposition\vbottom\vkeymap\1\0\5\14jump_next\a]]\14jump_prev\a[[\topen\v<M-CR>\vaccept\t<CR>\frefresh\agr\1\0\2\17auto_refresh\1\fenabled\2\nsetup\fcopilot\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/opt/copilot.lua",
     url = "https://github.com/zbirenbaum/copilot.lua"
   },
-  ["dashboard-nvim"] = {
-    config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14dashboard\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/opt/dashboard-nvim",
-    url = "https://github.com/glepnir/dashboard-nvim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
-  },
-  ["leap.nvim"] = {
-    loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/leap.nvim",
-    url = "https://github.com/ggandor/leap.nvim"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
@@ -227,17 +209,6 @@ _G.packer_plugins = {
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
   },
-  ["rest.nvim"] = {
-    config = { "\27LJ\2\n>\0\1\5\0\4\0\0066\1\0\0009\1\1\0019\1\2\0015\3\3\0\18\4\0\0D\1\3\0\1\5\0\0\ttidy\a-i\a-q\6-\vsystem\afn\bvimî\2\1\0\6\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0005\4\a\0003\5\b\0=\5\t\4=\4\n\3=\3\v\0024\3\0\0=\3\f\2B\0\2\1K\0\1\0\29custom_dynamic_variables\vresult\15formatters\thtml\0\1\0\1\tjson\ajq\1\0\3\17show_headers\2\19show_http_info\2\rshow_url\2\14highlight\1\0\2\ftimeout\3–\1\fenabled\2\1\0\a\28result_split_horizontal\1\17yank_dry_run\2\15encode_url\2\26skip_ssl_verification\1\26result_split_in_place\1\renv_file\t.env\20jump_to_request\1\nsetup\14rest-nvim\frequire\0" },
-    loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/rest.nvim",
-    url = "https://github.com/rest-nvim/rest.nvim"
-  },
-  ["rust-tools.nvim"] = {
-    loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
-    url = "https://github.com/simrat39/rust-tools.nvim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -248,25 +219,15 @@ _G.packer_plugins = {
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  undotree = {
+  ["vim-colemak-dh"] = {
     loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/undotree",
-    url = "https://github.com/mbbill/undotree"
+    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-colemak-dh",
+    url = "https://github.com/JohanBjoerklund/vim-colemak-dh"
   },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-repeat"] = {
-    loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-repeat",
-    url = "https://github.com/tpope/vim-repeat"
-  },
-  ["vim-tmux-navigator"] = {
-    loaded = true,
-    path = "/Users/felipeafonso/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
-    url = "https://github.com/christoomey/vim-tmux-navigator"
   }
 }
 
@@ -275,10 +236,6 @@ time([[Defining packer_plugins]], false)
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: rest.nvim
-time([[Config for rest.nvim]], true)
-try_loadstring("\27LJ\2\n>\0\1\5\0\4\0\0066\1\0\0009\1\1\0019\1\2\0015\3\3\0\18\4\0\0D\1\3\0\1\5\0\0\ttidy\a-i\a-q\6-\vsystem\afn\bvimî\2\1\0\6\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0005\4\a\0003\5\b\0=\5\t\4=\4\n\3=\3\v\0024\3\0\0=\3\f\2B\0\2\1K\0\1\0\29custom_dynamic_variables\vresult\15formatters\thtml\0\1\0\1\tjson\ajq\1\0\3\17show_headers\2\19show_http_info\2\rshow_url\2\14highlight\1\0\2\ftimeout\3–\1\fenabled\2\1\0\a\28result_split_horizontal\1\17yank_dry_run\2\15encode_url\2\26skip_ssl_verification\1\26result_split_in_place\1\renv_file\t.env\20jump_to_request\1\nsetup\14rest-nvim\frequire\0", "config", "rest.nvim")
-time([[Config for rest.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -296,7 +253,6 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'copilot.lua'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'dashboard-nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

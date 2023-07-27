@@ -23,7 +23,7 @@ vim.opt.colorcolumn = '80'
 vim.opt.signcolumn = 'yes'
 vim.opt.scrolloff = 8
 vim.opt.path:append { '**' }
-vim.opt.wildignore:append { '*/node_modules/', '*/.next/*' }
+vim.opt.wildignore:append { '*/node_modules/', '*/.next/*', '*/.svelte-kit/*' }
 vim.opt.clipboard:append { 'unnamedplus' }
 vim.opt.undofile = false
 vim.opt.termguicolors = true

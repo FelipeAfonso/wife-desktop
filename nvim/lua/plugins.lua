@@ -1,9 +1,48 @@
 return {
     'tpope/vim-fugitive',
-    -- NOTE: This is where your plugins related to LSP can be installed.
-    --  The configuration is done below. Search for lspconfig to find it below.
+    {'xiyaowong/nvim-transparent',
+        config = true,
+        lazy = false,
+        priority = 1001,
+        opts = {
+            extra_groups = {
+                'NormalFloat',
+                'Lualine'
+            }
+        }
+    },
     {
-        -- LSP Configuration & Plugins
+        "aserowy/tmux.nvim",
+        config = function (_, opts)
+            require('tmux').setup(opts)
+            vim.keymap.set('n','<C-l>', '<cmd>lua require("tmux").move_left()<cr>')
+            vim.keymap.set('n','<C-n>', '<cmd>lua require("tmux").move_bottom()<cr>')
+            vim.keymap.set('n','<C-e>', '<cmd>lua require("tmux").move_top()<cr>')
+            vim.keymap.set('n','<C-y>', '<cmd>lua require("tmux").move_right()<cr>')
+
+            vim.keymap.set('n','<M-m>', '<cmd>lua require("tmux").resize_left()<cr>')
+            vim.keymap.set('n','<M-n>', '<cmd>lua require("tmux").resize_bottom()<cr>')
+            vim.keymap.set('n','<M-e>', '<cmd>lua require("tmux").resize_top()<cr>')
+            vim.keymap.set('n','<M-i>', '<cmd>lua require("tmux").resize_right()<cr>')
+        end,
+        opts = {
+            navigation = {
+                enable_default_keybindings = false
+            },
+            resize = {
+                enable_default_keybindings = false
+            }
+        }
+    },
+    {
+        'akinsho/git-conflict.nvim',
+        version = "*",
+        config = true,
+        opts = {
+            default_mappings = false
+        }
+    },
+    {
         'neovim/nvim-lspconfig',
         dependencies = {
             -- Automatically install LSPs to stdpath for neovim
@@ -19,10 +58,67 @@ return {
         },
     },
     {
+      "epwalsh/obsidian.nvim",
+      lazy = true,
+      event = { "BufReadPre ~/obsidian/**.md" },
+      -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
+      -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
+      dependencies = {
+        -- Required.
+        "nvim-lua/plenary.nvim",
+
+        -- Optional, for completion.
+        "hrsh7th/nvim-cmp",
+
+        -- Optional, for search and quick-switch functionality.
+        "nvim-telescope/telescope.nvim",
+
+        -- Optional, an alternative to telescope for search and quick-switch functionality.
+        -- "ibhagwan/fzf-lua"
+
+        -- Optional, another alternative to telescope for search and quick-switch functionality.
+        -- "junegunn/fzf",
+        -- "junegunn/fzf.vim"
+
+        -- Optional, alternative to nvim-treesitter for syntax highlighting.
+        "godlygeek/tabular",
+        "preservim/vim-markdown",
+      },
+      opts = {
+        dir = "~/obsidian",  -- no need to call 'vim.fn.expand' here
+
+        -- see below for full list of options 👇
+      },
+      config = function(_, opts)
+        require("obsidian").setup(opts)
+
+        -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
+        -- see also: 'follow_url_func' config option below.
+        vim.keymap.set("n", "gf", function()
+          if require("obsidian").util.cursor_on_markdown_link() then
+            return "<cmd>ObsidianFollowLink<CR>"
+          else
+            return "gf"
+          end
+        end, { noremap = false, expr = true })
+      end,
+    },
+    {
         'sbdchd/neoformat',
         init = function ()
             vim.g.neoformat_try_node_exe = 1
         end
+    },
+    { 's1n7ax/nvim-search-and-replace',
+        config = true
+    },
+    {
+        "ray-x/sad.nvim",
+        dependencies = { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+        config = true,
+        opts = {
+            diff = 'diff-so-fancy'
+        }
     },
     {
         -- Autocompletion
@@ -40,15 +136,28 @@ return {
 
         },
     },
-
-    { 'SidOfc/carbon.nvim' },
-
     {
         "folke/tokyonight.nvim",
-        config = function()
-            vim.cmd.colorscheme 'tokyonight-night'
+        config = function ()
+            vim.cmd'colorscheme tokyonight-night'
         end,
+        lazy = false,
+        opts = {
+            transparent = vim.g.transparent_enabled,
+            styles = {
+                floats = 'transparent',
+                sidebars = 'transparent'
+            }
+        },
         priority = 1000
+    },
+    {
+        'kevinhwang91/rnvimr',
+        init = function ()
+            vim.g.rnvimr_edit_cmd = 'drop'
+            vim.g.rnvimr_enable_picker = 1
+            vim.g.rnvimr_enable_ex = 1
+        end
     },
     {
         -- Set lualine as statusline
@@ -57,8 +166,8 @@ return {
         opts = {
             options = {
                 icons = false,
-                theme = 'horizon',
                 component_separators = '|',
+                theme = 'tokyonight',
                 section_separators = '',
             },
         },
@@ -71,7 +180,12 @@ return {
     },
 
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+
+    'nacro90/numb.nvim',
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
     -- Only load if `make` is available. Make sure you have the system
@@ -94,5 +208,59 @@ return {
         },
         build = ':TSUpdate',
     },
-    "JohanBjoerklund/vim-colemak-dh",
+    {
+        "chrisgrieser/nvim-early-retirement",
+        config = true,
+        event = "VeryLazy",
+    },
+    {
+        'altermo/ultimate-autopair.nvim',
+        event={'InsertEnter','CmdlineEnter'},
+        config=function ()
+            require('ultimate-autopair').setup({
+                    --Config goes here
+                    })
+        end,
+    },
+    { 'windwp/nvim-ts-autotag',
+        opts = {
+        enable_close_on_slash = false,
+        }
+    },
+    {
+      'abecodes/tabout.nvim',
+      opts =
+        {
+            tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+            backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+            act_as_tab = true, -- shift content if tab out is not possible
+            act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+            default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+            default_shift_tab = '<C-d>', -- reverse shift default action,
+            enable_backwards = true, -- well ...
+            completion = true, -- if the tabkey is used in a completion pum
+            tabouts = {
+              {open = "'", close = "'"},
+              {open = '"', close = '"'},
+              {open = '`', close = '`'},
+              {open = '(', close = ')'},
+              {open = '[', close = ']'},
+              {open = '{', close = '}'},
+            },
+            ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+            exclude = {} -- tabout will ignore these filetypes
+        }
+    },
+    {
+        'ThePrimeagen/harpoon',
+        lazy = false,
+        config = true
+    },
+    {
+        "max397574/better-escape.nvim",
+        opts = {
+            mapping = { 'nn' }
+        }
+    },
+    "JohanBjoerklund/vim-colemak-dh"
 }

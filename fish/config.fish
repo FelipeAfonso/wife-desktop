@@ -6,6 +6,12 @@ alias vim="nvim"
 alias sd="rg . --files | sad"
 alias note="cd ~/obsidian && nvim ./Inbox.md"
 alias tmw="tmux splitw -h -l 100 && note"
+function np
+    npm run $argv
+end
+function tr
+    turbo run dev --filter=$argv
+end
 function tms
     tmux new -s $argv "tmux splitw -h -l 100 && note"
 end

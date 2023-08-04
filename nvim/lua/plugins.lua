@@ -29,6 +29,9 @@ return {
             navigation = {
                 enable_default_keybindings = false
             },
+            copy_sync = {
+                enable = false
+            },
             resize = {
                 enable_default_keybindings = false
             }
@@ -170,22 +173,32 @@ return {
                 theme = 'tokyonight',
                 section_separators = '',
             },
+            sections = {
+                lualine_c = {
+                    {   'filename',
+                        path = 4
+                    }
+                },
+                lualine_y = {},
+                lualine_x = {'filetype'},
+            }
         },
     },
     {
         'NvChad/nvim-colorizer.lua',
-        config = function()
-            require('colorizer').setup()
-        end
+        config = true
     },
 
-    -- Fuzzy Finder (files, lsp, etc)
+    -- Fuzzy Finder ()
     { 'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
-    'nacro90/numb.nvim',
+    {
+        'nacro90/numb.nvim',
+        config = true
+    },
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
     -- Only load if `make` is available. Make sure you have the system
@@ -214,6 +227,12 @@ return {
         event = "VeryLazy",
     },
     {
+        'windwp/nvim-ts-autotag',
+        opts = {
+            enable_close_on_slash = false,
+        }
+    },
+    {
         'altermo/ultimate-autopair.nvim',
         event={'InsertEnter','CmdlineEnter'},
         config=function ()
@@ -221,11 +240,6 @@ return {
                     --Config goes here
                     })
         end,
-    },
-    { 'windwp/nvim-ts-autotag',
-        opts = {
-        enable_close_on_slash = false,
-        }
     },
     {
       'abecodes/tabout.nvim',
@@ -255,6 +269,16 @@ return {
         'ThePrimeagen/harpoon',
         lazy = false,
         config = true
+    },
+    {
+        "MaximilianLloyd/tw-values.nvim",
+        keys = {
+            { "<leader>k", "<cmd>TWValues<cr>", desc = "Show tailwind CSS values" },
+        },
+        opts = {
+            border = "rounded", -- Valid window border style,
+            show_unknown_classes = true -- Shows the unknown classes popup
+        }
     },
     {
         "max397574/better-escape.nvim",

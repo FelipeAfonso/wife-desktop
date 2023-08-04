@@ -1,13 +1,17 @@
 vim.keymap.set('n', '<leader>l', '"ayiwoconsole.log(`🚀 ~ <C-R>a:`, <C-R>a)<Esc>')
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>')
 vim.keymap.set('n', '<leader>h', '<C-6>')
-vim.keymap.set({'n', 'v'}, 'R','<cmd>Sad<cr>')
+vim.keymap.set('v', 'd', '"_d')
+vim.keymap.set('n', 'dd', '"_dd')
 
-vim.keymap.set('n', '<C-w>', '<cmd>q<cr>')
 vim.keymap.set('i', '<C-x>', '<C-c>f<lt>vf>x')
 vim.keymap.set('n', '<C-x>', 'f<lt>vf>x')
 
 vim.keymap.set('n', '<leader>t', '<cmd>RnvimrToggle<CR>')
+vim.keymap.del('n', 'j')
+vim.keymap.del('n', 'je')
+vim.keymap.del('n', 'jn')
+vim.keymap.set('n', 'j', '0w')
 
 -- harpoon
 vim.keymap.set('n', '<leader>s', '<cmd>lua require("harpoon.mark").add_file()<cr>')
@@ -46,7 +50,7 @@ vim.keymap.del({'n','x'}, '<c-w>m')
 vim.keymap.del({'n','x'}, '<c-w>n')
 vim.keymap.del({'n','x'}, '<c-w>e')
 vim.keymap.del({'n','x'}, '<c-w>i')
-
+vim.keymap.set('n', '<c-w>','<cmd>q<cr>')
 
 -- fix for fugitive/colemak colision
 vim.api.nvim_create_autocmd('User FugitiveObject', {

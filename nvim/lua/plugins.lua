@@ -1,16 +1,16 @@
 return {
     'tpope/vim-fugitive',
-    {'xiyaowong/nvim-transparent',
-        config = true,
-        lazy = false,
-        priority = 1001,
-        opts = {
-            extra_groups = {
-                'NormalFloat',
-                'Lualine'
-            }
-        }
-    },
+    --{'xiyaowong/nvim-transparent',
+    --    config = true,
+    --    lazy = false,
+    --    priority = 1001,
+    --    opts = {
+    --        extra_groups = {
+    --            'NormalFloat',
+    --            'Lualine'
+    --        }
+    --    }
+    --},
     {
         "aserowy/tmux.nvim",
         config = function (_, opts)
@@ -139,6 +139,7 @@ return {
 
         },
     },
+    "rebelot/kanagawa.nvim",
     {
         "folke/tokyonight.nvim",
         config = function ()
@@ -147,10 +148,10 @@ return {
         lazy = false,
         opts = {
             transparent = vim.g.transparent_enabled,
-            styles = {
-                floats = 'transparent',
-                sidebars = 'transparent'
-            }
+            --styles = {
+            --    floats = 'transparent',
+            --    sidebars = 'transparent'
+            --}
         },
         priority = 1000
     },
@@ -283,7 +284,8 @@ return {
     {
         "max397574/better-escape.nvim",
         opts = {
-            mapping = { 'nn' }
+            mapping = { 'nn' },
+            timeout = 200
         }
     },
     "JohanBjoerklund/vim-colemak-dh"

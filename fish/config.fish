@@ -1,16 +1,24 @@
-set -g -x PATH /Users/felipeafonso/Library/pnpm /Users/felipeafonso/.nvm/versions/node/v18.16.0/bin /Users/felipeafonso/bin /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /System/Cryptexes/App/usr/bin /usr/bin /bin /usr/sbin /sbin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin /Users/felipeafonso/Library/pnpm /Users/felipeafonso/.nvm/versions/node/v18.16.0/bin /Users/felipeafonso/bin /opt/homebrew/bin /opt/homebrew/sbin /Users/felipeafonso/.cargo/bin /Users/felipeafonso/.spicetify /Users/felipeafonso/.spicetify $PATH
+set -g -x PATH /Users/felipeafonso/Library/pnpm /Users/felipeafonso/.nvm/versions/node/v18.16.0/bin /Users/felipeafonso/bin /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /System/Cryptexes/App/usr/bin /usr/bin /bin /usr/sbin /sbin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin /Users/felipeafonso/Library/pnpm /Users/felipeafonso/.nvm/versions/node/v18.16.0/bin /Users/felipeafonso/bin /opt/homebrew/bin /opt/homebrew/sbin /Users/felipeafonso/.cargo/bin /Users/felipeafonso/.spicetify /Users/felipeafonso/.spicetify /Users/felipeafonso/Library/Android/sdk/emulator /Users/felipeafonso/Library/Android/sdk/cmdline-tools/33.0.0/bin /Users/felipeafonso/Library/Android/sdk/platform-tools $PATH
 set -g -x FZF_DEFAULT_OPTS --bind ctrl-s:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all
 set -g -x EDITOR nvim
+set -g -x ANDROID_HOME /Users/felipeafonso/Library/Android/sdk
+set -g -x JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+
+status --is-interactive; and rbenv init - fish | source
 
 alias vim="nvim"
 alias sd="rg . --files | sad"
 alias note="cd ~/obsidian && nvim ./Inbox.md"
 alias tmw="tmux splitw -h -l 100 && note"
+
 function np
     npm run $argv
 end
 function tr
     turbo run dev --filter=$argv
+end
+function trp
+    turbo run dev:prod --filter=$argv
 end
 function tms
     tmux new -s $argv "tmux splitw -h -l 100 && note"
@@ -77,3 +85,7 @@ set -g fish_pager_color_selected_background --background=$selection
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

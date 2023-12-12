@@ -21,11 +21,11 @@ local on_attach = function(_, bufnr)
     end
 
     nmap('<F2>', vim.lsp.buf.rename, '[R]e[n]ame')
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    --nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-    nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
     nmap('<leader>ps', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
     -- See `:help K` for why this keymap
@@ -50,8 +50,18 @@ local servers = {
     -- clangd = {},
     -- gopls = {},
     -- pyright = {},
-    -- rust_analyzer = {},
-    tsserver = {},
+    rust_analyzer = {
+        cmd = {'rustup', 'run', 'stable', 'rust-analyzer'},
+        trace = { server = "verbose" }
+    },
+
+    tsserver = {
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            }
+          }
+    },
 
     lua_ls = {
         Lua = {
@@ -70,6 +80,8 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
+
+--mason_lspconfig.rust_analyzer
 
 mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
@@ -103,7 +115,7 @@ cmp.setup {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
+        ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,

@@ -44,7 +44,7 @@
   "tmux.nvim": { "branch": "main", "commit": "ea67d59721eb7e12144ce2963452e869bfd60526" },
   "tokyonight.nvim": { "branch": "main", "commit": "f247ee700b569ed43f39320413a13ba9b0aef0db" },
   "tw-values.nvim": { "branch": "main", "commit": "3808621a53f6ac9c151b77d9df61b29991c12921" },
-  "ultimate-autopair.nvim": { "branch": "main", "commit": "cb17304fa8e609d5eed2ccbf975a61b68919ff3d" },
+  "ultimate-autopair.nvim": { "branch": "v0.6", "commit": "cb17304fa8e609d5eed2ccbf975a61b68919ff3d" },
   "vim-fugitive": { "branch": "master", "commit": "46eaf8918b347906789df296143117774e827616" },
   "vim-markdown": { "branch": "master", "commit": "46add6c3017d3e4035dc10ffa9cb54221d8dfe1a" },
   "vim-moonfly-colors": { "branch": "master", "commit": "5f121c0e8103181a16aa86e9f80e99204eef6c39" }

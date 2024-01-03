@@ -1,13 +1,47 @@
-live_config_reload = true
+[[colors.indexed_colors]]
+color = "0xff9e64"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xdb4b4b"
+index = 17
+
+[colors.bright]
+black = "0x414868"
+blue = "0x7aa2f7"
+cyan = "0x7dcfff"
+green = "0x9ece6a"
+magenta = "0xbb9af7"
+red = "0xf7768e"
+white = "0xc0caf5"
+yellow = "0xe0af68"
+
+[colors.normal]
+black = "0x15161e"
+blue = "0x7aa2f7"
+cyan = "0x7dcfff"
+green = "0x9ece6a"
+magenta = "0xbb9af7"
+red = "0xf7768e"
+white = "0xa9b1d6"
+yellow = "0xe0af68"
+
+[colors.primary]
+background = "0x1a1b26"
+foreground = "0xc0caf5"
 
 [font]
 size = 18.0
 
-[window]
-dynamic_title = true
-startup_mode = "Maximized"
-padding = { x = 8, y = 8 }
-opacity = 0.9
+[font.normal]
+family = "ProFontIIx Nerd Font Mono"
 
-[selection]
-save_to_clipboard = true
+[shell]
+args = ["-l", "-c", "tmux attach || tms dev"]
+program = "/usr/bin/fish"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+opacity = 1
+startup_mode = "Windowed"

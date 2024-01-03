@@ -30,9 +30,9 @@ window:
   # must be non-zero for this to take effect. The number of columns must be at
   # least `2`, while using a value of `0` for columns and lines will fall back
   # to the window manager's recommended size
-  dimensions:
-    columns: 160
-    lines: 45
+  #dimensions:
+  #  columns: 160
+  #  lines: 45
 
   # Window position (changes require restart)
   #
@@ -46,9 +46,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 6
-    y: 6
+  #padding:
+  #x: 6
+  #  y: 6
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -62,7 +62,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  decorations: buttonless
+  decorations: none
 
   # Background opacity
   #
@@ -132,11 +132,11 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: ProFontIIx Nerd Font Mono
-    family: Geist Mono
+    family: ProFontIIx Nerd Font Mono
+    # family: Geist Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    # style: Medium
 
   # Bold font face
   #bold:
@@ -172,7 +172,7 @@ font:
   #style: Bold Italic
 
   # Point size
-  size: 20.0
+  size: 18.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -343,34 +343,34 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x1a1b26'
-    foreground: '0xc0caf5'
+    background: "0x1a1b26"
+    foreground: "0xc0caf5"
 
   # Normal colors
   normal:
-    black:   '0x15161e'
-    red:     '0xf7768e'
-    green:   '0x9ece6a'
-    yellow:  '0xe0af68'
-    blue:    '0x7aa2f7'
-    magenta: '0xbb9af7'
-    cyan:    '0x7dcfff'
-    white:   '0xa9b1d6'
+    black: "0x15161e"
+    red: "0xf7768e"
+    green: "0x9ece6a"
+    yellow: "0xe0af68"
+    blue: "0x7aa2f7"
+    magenta: "0xbb9af7"
+    cyan: "0x7dcfff"
+    white: "0xa9b1d6"
 
   # Bright colors
   bright:
-    black:   '0x414868'
-    red:     '0xf7768e'
-    green:   '0x9ece6a'
-    yellow:  '0xe0af68'
-    blue:    '0x7aa2f7'
-    magenta: '0xbb9af7'
-    cyan:    '0x7dcfff'
-    white:   '0xc0caf5'
+    black: "0x414868"
+    red: "0xf7768e"
+    green: "0x9ece6a"
+    yellow: "0xe0af68"
+    blue: "0x7aa2f7"
+    magenta: "0xbb9af7"
+    cyan: "0x7dcfff"
+    white: "0xc0caf5"
 
   indexed_colors:
-    - { index: 16, color: '0xff9e64' }
-    - { index: 17, color: '0xdb4b4b' }
+    - { index: 16, color: "0xff9e64" }
+    - { index: 17, color: "0xdb4b4b" }
 
 # Transparent cell backgrounds
 #
@@ -485,7 +485,7 @@ colors:
 #   - (Linux/BSD/macOS) `$SHELL` or the user's login shell, if `$SHELL` is unset
 #   - (Windows) powershell
 shell:
-  program: /opt/homebrew/bin/fish
+  program: /usr/bin/fish
   args:
     - -l
     - -c
@@ -921,7 +921,6 @@ shell:
 
 # Keep the log file after quitting Alacritty.
 persistent_logging: true
-
 # Log level
 #
 # Values for `log_level`:

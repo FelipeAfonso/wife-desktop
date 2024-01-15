@@ -1,11 +1,18 @@
-vim.keymap.set('n', '<leader>l',
+vim.keymap.set('n', '<leader>lj',
                '"ayiwoconsole.log(`🚀 ~ <C-R>a:`, <C-R>a)<Esc>')
+vim.keymap.set('n', '<leader>ll', '"ayiwodev_log(`<C-R>a:`, <C-R>a)<Esc>')
+vim.keymap.set('n', '<leader>ls', '"ayiwostatic_log(`<C-R>a:`, <C-R>a)<Esc>')
+vim.keymap.set('n', '<leader>le', '"ayiwolog_error(`<C-R>a:`, <C-R>a)<Esc>')
+vim.keymap.set('n', '<leader>ln', '"ayiwonet_error(`<C-R>a:`, <C-R>a)<Esc>')
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>')
 vim.keymap.set('n', '<leader>h', '<C-6>')
 vim.keymap.set('v', 'd', '"_d')
 vim.keymap.set('n', 'dd', '"_dd')
 vim.keymap.set('n', '<leader>c', '<cmd>noh<cr>')
 vim.keymap.set({'n', 'v', 'i'}, '<C-W>', '<cmd>q<cr>')
+
+vim.keymap.set("v", "N", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "E", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set({'v', 'n'}, 'rr', '<Plug>RestNvim')
 vim.keymap.set({'v', 'n'}, 'rc', '<Plug>RestNvimPreview')

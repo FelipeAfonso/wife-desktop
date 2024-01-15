@@ -1,8 +1,11 @@
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', {silent = true})
 ---- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
+               {desc = 'Go to previous diagnostic message'})
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
+               {desc = 'Go to next diagnostic message'})
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float,
+               {desc = 'Open floating diagnostic message'})
 
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
@@ -13,29 +16,34 @@ local on_attach = function(_, bufnr)
     -- In this case, we create a function that lets us more easily define mappings specific
     -- for LSP related items. It sets the mode, buffer and description for us each time.
     local nmap = function(keys, func, desc)
-        if desc then
-            desc = 'LSP: ' .. desc
-        end
+        if desc then desc = 'LSP: ' .. desc end
 
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        vim.keymap.set('n', keys, func, {buffer = bufnr, desc = desc})
     end
 
     nmap('<F2>', vim.lsp.buf.rename, '[R]e[n]ame')
-    --nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-    nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-    nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+    nmap('gd', require('telescope.builtin').lsp_definitions,
+         '[G]oto [D]efinition')
+    nmap('gr', require('telescope.builtin').lsp_references,
+         '[G]oto [R]eferences')
+    nmap('gI', require('telescope.builtin').lsp_implementations,
+         '[G]oto [I]mplementation')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-    nmap('<leader>ps', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    nmap('<leader>ps',
+         require('telescope.builtin').lsp_dynamic_workspace_symbols,
+         '[W]orkspace [S]ymbols')
     -- See `:help K` for why this keymap
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-    nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+    nmap('<leader>wa', vim.lsp.buf.add_workspace_folder,
+         '[W]orkspace [A]dd Folder')
+    nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder,
+         '[W]orkspace [R]emove Folder')
     nmap('<leader>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, '[W]orkspace [L]ist Folders')
@@ -52,23 +60,17 @@ local servers = {
     -- pyright = {},
     rust_analyzer = {
         cmd = {'rustup', 'run', 'stable', 'rust-analyzer'},
-        trace = { server = "verbose" }
+        trace = {server = "verbose"}
     },
 
-    tsserver = {
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            }
-          }
-    },
+    tsserver = {settings = {completions = {completeFunctionCalls = true}}},
 
     lua_ls = {
         Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
-    },
+            workspace = {checkThirdParty = false},
+            telemetry = {enable = false}
+        }
+    }
 }
 
 -- Setup neovim lua configuration
@@ -81,20 +83,18 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
---mason_lspconfig.rust_analyzer
+-- mason_lspconfig.rust_analyzer
 
-mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
-}
+mason_lspconfig.setup {ensure_installed = vim.tbl_keys(servers)}
 
 mason_lspconfig.setup_handlers {
     function(server_name)
         require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
-            settings = servers[server_name],
+            settings = servers[server_name]
         }
-    end,
+    end
 }
 
 -- [[ Configure nvim-cmp ]]
@@ -105,11 +105,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
+    snippet = {expand = function(args) luasnip.lsp_expand(args.body) end},
     mapping = cmp.mapping.preset.insert {
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -118,7 +114,7 @@ cmp.setup {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+            select = true
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -128,7 +124,7 @@ cmp.setup {
             else
                 fallback()
             end
-        end, { 'i', 's' }),
+        end, {'i', 's'}),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -137,10 +133,7 @@ cmp.setup {
             else
                 fallback()
             end
-        end, { 'i', 's' }),
+        end, {'i', 's'})
     },
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    },
+    sources = {{name = 'nvim_lsp'}, {name = 'luasnip'}}
 }

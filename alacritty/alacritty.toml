@@ -31,7 +31,7 @@ background = "0x1a1b26"
 foreground = "0xc0caf5"
 
 [font]
-size = 18.0
+size = 15.0
 
 [font.normal]
 family = "ProFontIIx Nerd Font Mono"
@@ -45,3 +45,6 @@ decorations = "none"
 dynamic_padding = true
 opacity = 1
 startup_mode = "Windowed"
+
+[env]
+TERM = "xterm-256color"

@@ -1,5 +1,6 @@
 set -g -x FZF_DEFAULT_OPTS --bind ctrl-s:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all
 set -g -x EDITOR nvim
+set -g -x FORCE_COLOR 1
 set -g -x NVM_DIR ~/.nvm
 
 status --is-interactive

@@ -14,22 +14,13 @@ return {
         "aserowy/tmux.nvim",
         config = function(_, opts)
             require('tmux').setup(opts)
-            vim.keymap.set('n', '<C-l>',
-                           '<cmd>lua require("tmux").move_left()<cr>')
             vim.keymap.set('n', '<C-n>',
-                           '<cmd>lua require("tmux").move_bottom()<cr>')
+                           '<cmd>lua require("tmux").move_left()<cr>')
             vim.keymap.set('n', '<C-e>',
-                           '<cmd>lua require("tmux").move_top()<cr>')
-            vim.keymap.set('n', '<C-y>',
                            '<cmd>lua require("tmux").move_right()<cr>')
-
-            vim.keymap.set('n', '<M-m>',
-                           '<cmd>lua require("tmux").resize_left()<cr>')
             vim.keymap.set('n', '<M-n>',
-                           '<cmd>lua require("tmux").resize_bottom()<cr>')
+                           '<cmd>lua require("tmux").resize_left()<cr>')
             vim.keymap.set('n', '<M-e>',
-                           '<cmd>lua require("tmux").resize_top()<cr>')
-            vim.keymap.set('n', '<M-i>',
                            '<cmd>lua require("tmux").resize_right()<cr>')
         end,
         opts = {
@@ -127,7 +118,7 @@ return {
 
         }
     }, "rebelot/kanagawa.nvim", "catppuccin/nvim",
-    {'kepano/flexoki-neovim', name = 'flexoki'},
+    {'kepano/flexoki-neovim', name = 'flexoki'}, 'rose-pine/neovim',
     'nyoom-engineering/oxocarbon.nvim', "bluz71/vim-moonfly-colors", {
         "folke/tokyonight.nvim",
         config = function()
@@ -142,7 +133,7 @@ return {
         lazy = false,
         opts = {
             style = 'storm',
-            transparent = true
+            transparent = false
             -- styles = {
             --    floats = 'transparent',
             --    sidebars = 'transparent'

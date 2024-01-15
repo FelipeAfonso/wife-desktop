@@ -9,6 +9,7 @@ alias vim="nvim"
 alias sd="rg . --files | sad"
 alias tmw="tmux splitw -h -l 100 && note"
 alias svim="sudo -E -s nvim"
+alias note="cd ~/od/Apps/remotely-save/Felipe/ && nvim ./Inbox.md"
 
 function np
     npm run $argv

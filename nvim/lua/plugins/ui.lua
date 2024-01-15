@@ -2,6 +2,7 @@ return {
 	{
 		"stevearc/dressing.nvim",
 		opts = {},
+		config = true,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -13,7 +14,6 @@ return {
 				tab_char = "┊",
 			},
 			scope = { enabled = false },
-			whitespace = { highlight = { "Whitespace", "NonText" } },
 			exclude = {
 				filetypes = {
 					"help",

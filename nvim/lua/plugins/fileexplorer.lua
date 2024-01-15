@@ -1,20 +1,26 @@
 return {
-	{
-		"kelly-lin/ranger.nvim",
-		config = function()
-			require("ranger-nvim").setup({
-				replace_netrw = true,
-				ui = { height = 0.95 },
-			})
-			vim.api.nvim_set_keymap("n", "<leader>t", "", {
-				noremap = true,
-				callback = function()
-					require("ranger-nvim").open(true)
-				end,
-			})
-		end,
-	},
 	"nvim-telescope/telescope-ui-select.nvim",
+	{
+		"stevearc/oil.nvim",
+		config = true,
+		init = function()
+			vim.keymap.set("n", "<leader>t", "<cmd>Oil<cr>")
+			vim.keymap.set("n", "<leader>T", "<cmd>require('oil').discard_all_changes<cr>")
+		end,
+		opts = {
+			keymap = {
+				["<CR>"] = "actions.select",
+				["<C-p>"] = "actions.preview",
+				["<C-l>"] = "actions.refresh",
+				["Q"] = "actions.close",
+				["-"] = "actions.parent",
+				["g."] = "actions.toggle_hidden",
+			},
+			view_options = {
+				show_hidden = true,
+			},
+		},
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
@@ -31,4 +37,12 @@ return {
 	},
 	{ "ThePrimeagen/harpoon", lazy = false, config = true },
 	{ "chrisgrieser/nvim-early-retirement", config = true, event = "VeryLazy" },
+	{
+		"jiaoshijie/undotree",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = true,
+		keys = { -- load the plugin only when using it's keybinding:
+			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+		},
+	},
 }

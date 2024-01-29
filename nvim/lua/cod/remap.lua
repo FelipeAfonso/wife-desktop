@@ -19,8 +19,8 @@ vim.keymap.set({ "v", "n" }, "rc", "<Plug>RestNvimPreview")
 vim.keymap.set("i", "<C-x>", "<C-c>f<lt>vf>x")
 vim.keymap.set("n", "<C-x>", "f<lt>vf>x")
 
-vim.keymap.set("n", "J", "0")
-vim.keymap.set("n", ";", "$")
+vim.keymap.set({ "n", "v" }, "J", "0")
+vim.keymap.set({ "n", "v" }, ";", "$")
 
 -- harpoon
 vim.keymap.set("n", "<leader>s", '<cmd>lua require("harpoon.mark").add_file()<cr>')
@@ -46,6 +46,7 @@ vim.keymap.set("n", "<leader>gc", function()
 end)
 vim.keymap.set("n", "<leader>gp", "<cmd>Git push<cr>")
 vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>")
+vim.keymap.del("n", "y<C-G>")
 
 -- git conflict
 vim.keymap.set("n", "<leader>mc", "<cmd>GitConflictChooseOurs<CR>")

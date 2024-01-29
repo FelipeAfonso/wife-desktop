@@ -12,7 +12,7 @@ return {
 			if string.find(path, "obsidian") then
 				vim.cmd("colorscheme kanagawa")
 			else
-				vim.cmd("colorscheme tokyonight-night")
+				vim.cmd("colorscheme rose-pine")
 			end
 		end,
 		lazy = false,

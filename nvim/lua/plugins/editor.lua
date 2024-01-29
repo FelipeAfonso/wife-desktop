@@ -1,6 +1,29 @@
 return {
-	"RRethy/vim-illuminate",
 	"JoosepAlviste/nvim-ts-context-commentstring",
+	{
+		"gbprod/yanky.nvim",
+		config = true,
+		init = function()
+			vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+			vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+			vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+			vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+			vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+
+			vim.keymap.set("n", "[[", "<Plug>(YankyPreviousEntry)")
+			vim.keymap.set("n", "]]", "<Plug>(YankyNextEntry)")
+		end,
+		opts = {
+			system_clipboard = {
+				sync_with_ring = true,
+			},
+			highlight = {
+				on_yank = false,
+				on_paste = false,
+				timer = 0,
+			},
+		},
+	},
 	{ "echasnovski/mini.pairs", version = "*", config = true },
 	{
 		"echasnovski/mini.comment",
@@ -14,17 +37,7 @@ return {
 			},
 		},
 	},
-	{
-		"echasnovski/mini.surround",
-		version = "*",
-		opts = {
-			mappings = {
-				add = "ys", -- Add surrounding in Normal and Visual modes
-				delete = "ysd", -- Delete surrounding
-				replace = "ysr", -- Replace surrounding
-			},
-		},
-	},
+	"machakann/vim-sandwich",
 	{ "NvChad/nvim-colorizer.lua", config = true },
 	{ "max397574/better-escape.nvim", opts = { mapping = { "nn" }, timeout = 200 } },
 	{
@@ -32,14 +45,6 @@ return {
 		event = "VeryLazy",
 		opts = {},
 		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump()
-				end,
-				desc = "Flash",
-			},
 			{
 				"<c-s>",
 				mode = { "c" },
@@ -49,15 +54,5 @@ return {
 				desc = "Toggle Flash Search",
 			},
 		},
-	},
-	{
-		"folke/trouble.nvim",
-		cmd = { "TroubleToggle", "Trouble" },
-		opts = { use_diagnostic_signs = true },
-		keys = {
-			{ "<leader>xx", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-			{ "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
-		},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 }

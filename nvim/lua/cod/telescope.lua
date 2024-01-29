@@ -46,6 +46,7 @@ vim.keymap.set("n", "<leader>pd", require("telescope.builtin").diagnostics, { de
 vim.keymap.set("n", "<leader>pc", require("telescope.builtin").colorscheme)
 vim.keymap.set("n", "<leader>pk", require("telescope.builtin").keymaps)
 vim.keymap.set("n", "<leader>gb", require("telescope.builtin").git_branches)
+vim.keymap.set("n", "<leader>pi", "<cmd>DevdocsOpen<cr>")
 
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("yank_history")

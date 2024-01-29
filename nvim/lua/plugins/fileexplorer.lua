@@ -35,6 +35,27 @@ return {
 			return vim.fn.executable("make") == 1
 		end,
 	},
+	{
+		"luckasRanarison/nvim-devdocs",
+		opts = {
+			ensure_installed = {
+				"axios",
+				"cpp",
+				"css",
+				"go",
+				"html",
+				"http",
+				"javascript",
+				"react",
+				"react_native",
+				"rust",
+				"svelte",
+				"tailwindcss",
+				"typescript",
+				"vite",
+			},
+		},
+	},
 	{ "ThePrimeagen/harpoon", lazy = false, config = true },
 	{ "chrisgrieser/nvim-early-retirement", config = true, event = "VeryLazy" },
 	{

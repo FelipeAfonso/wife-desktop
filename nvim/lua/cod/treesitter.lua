@@ -7,6 +7,7 @@ require("nvim-treesitter.configs").setup({
 		"cpp",
 		"css",
 		"go",
+		"html",
 		"lua",
 		"python",
 		"rust",

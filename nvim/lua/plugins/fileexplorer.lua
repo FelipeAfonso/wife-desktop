@@ -5,7 +5,7 @@ return {
 		config = true,
 		init = function()
 			vim.keymap.set("n", "<leader>t", "<cmd>Oil<cr>")
-			vim.keymap.set("n", "<leader>T", "<cmd>require('oil').discard_all_changes<cr>")
+			-- vim.keymap.set("n", "<leader>T", "<cmd>require('oil').discard_all_changes<cr>")
 		end,
 		opts = {
 			keymap = {
@@ -66,4 +66,19 @@ return {
 			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
 		},
 	},
+    {
+        "kelly-lin/ranger.nvim",
+        config = function()
+            require("ranger-nvim").setup({
+                replace_netrw = true,
+                ui = {height = 0.95}
+            })
+            vim.api.nvim_set_keymap("n", "<leader>T", "", {
+                noremap = true,
+                callback = function()
+                    require("ranger-nvim").open(true)
+                end
+            })
+        end
+    }
 }

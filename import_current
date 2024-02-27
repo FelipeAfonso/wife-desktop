@@ -1,0 +1,3 @@
+#!/bin/fish
+rm -rf ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux
+cp -r ~/.config/alacritty ~/.config/fish ~/.config/lazygit ~/.config/nvim ~/.config/ranger ~/.config/tmux -t ./

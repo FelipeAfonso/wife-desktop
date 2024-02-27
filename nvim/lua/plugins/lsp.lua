@@ -25,6 +25,7 @@ return {
 		"stevearc/conform.nvim",
 		init = function()
 			vim.keymap.set("n", "<leader>f", '<cmd>lua require("conform").format()<cr>')
+			-- format on save
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				pattern = "*",
 				callback = function(args)

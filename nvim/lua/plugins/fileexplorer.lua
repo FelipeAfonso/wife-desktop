@@ -24,7 +24,7 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-		dependencies = { "nvim-lua/plenary.nvim", "SalOrak/whaler" },
+		dependencies = { "nvim-lua/plenary.nvim", "SalOrak/whaler", "nvim-tree/nvim-web-devicons" },
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
@@ -66,19 +66,19 @@ return {
 			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
 		},
 	},
-    {
-        "kelly-lin/ranger.nvim",
-        config = function()
-            require("ranger-nvim").setup({
-                replace_netrw = true,
-                ui = {height = 0.95}
-            })
-            vim.api.nvim_set_keymap("n", "<leader>T", "", {
-                noremap = true,
-                callback = function()
-                    require("ranger-nvim").open(true)
-                end
-            })
-        end
-    }
+	{
+		"kelly-lin/ranger.nvim",
+		config = function()
+			require("ranger-nvim").setup({
+				replace_netrw = true,
+				ui = { height = 0.95 },
+			})
+			vim.api.nvim_set_keymap("n", "<leader>T", "", {
+				noremap = true,
+				callback = function()
+					require("ranger-nvim").open(true)
+				end,
+			})
+		end,
+	},
 }

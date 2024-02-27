@@ -1,6 +1,8 @@
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
+vim.opt.runtimepath:append("~/.parsers")
 require("nvim-treesitter.configs").setup({
+	parser_install_dir = "~/.parsers",
 	-- Add languages to be installed here that you want installed for treesitter
 	ensure_installed = {
 		"c",
@@ -8,14 +10,17 @@ require("nvim-treesitter.configs").setup({
 		"css",
 		"go",
 		"html",
+		"http",
+		"javascript",
+		"json",
 		"lua",
 		"python",
 		"rust",
 		"svelte",
 		"tsx",
 		"typescript",
-		"vimdoc",
 		"vim",
+		"vimdoc",
 	},
 
 	-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -26,8 +31,8 @@ require("nvim-treesitter.configs").setup({
 	incremental_selection = {
 		enable = true,
 		keymaps = {
-			init_selection = "<CR>",
-			scope_incremental = "<CR>",
+			-- init_selection = "<CR>",
+			-- scope_incremental = "<CR>",
 			node_incremental = "<TAB>",
 			node_decremental = "<S-TAB>",
 		},

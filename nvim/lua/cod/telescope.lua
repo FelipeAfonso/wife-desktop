@@ -12,6 +12,7 @@ require("telescope").setup({
 				{ alias = "pers", path = "~/code/personal/" },
 				{ alias = "ntn", path = "~/code/ntn/" },
 				{ alias = "dotf", path = "~/.config/" },
+				{ alias = "nex-mono", path = "~/code/work/nexconnect-credit/frontend" },
 				{ alias = "liftup-mono", path = "~/code/work/liftup-monorepo/frontend" },
 				{ alias = "liftup-mono", path = "~/code/work/liftup-monorepo/backend" },
 				{ alias = "liftup-mono", path = "~/code/work/liftup-monorepo/packages" },

@@ -1,5 +1,6 @@
 set -g -x FZF_DEFAULT_OPTS --bind ctrl-s:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all
 set -g -x EDITOR nvim
+set -g -x BROWSER vivaldi
 set -g -x FORCE_COLOR 1
 set -g -x NVM_DIR ~/.nvm
 
@@ -7,7 +8,7 @@ status --is-interactive
 #source ~/.config/fish/config.fish
 
 alias vim="nvim"
-alias sd="rg . --files | sad"
+alias ls="eza -l"
 alias tmw="tmux splitw -h -l 100 && note"
 alias svim="sudo -E -s nvim"
 alias note="cd ~/od/Apps/remotely-save/Felipe/ && nvim ./Inbox.md"

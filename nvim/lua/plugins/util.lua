@@ -9,11 +9,13 @@ return {
 	},
 	{
 		"rest-nvim/rest.nvim",
-		config = true,
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			result_split_in_place = true,
-			result = { show_curl_command = true },
-		},
+		config = function()
+			require("rest-nvim").setup({
+				--- Get the same options from Packer setup
+				result_split_in_place = true,
+				result = { show_curl_command = true },
+			})
+		end,
 	},
 }

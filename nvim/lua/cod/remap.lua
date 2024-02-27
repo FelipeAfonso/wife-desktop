@@ -8,6 +8,7 @@ vim.keymap.set("n", "<leader>h", "<C-6>")
 vim.keymap.set("v", "d", '"_d')
 vim.keymap.set("n", "dd", '"_dd')
 vim.keymap.set("n", "<leader>c", "<cmd>noh<cr>")
+vim.keymap.set("n", "<C-s>", "<C-W>")
 vim.keymap.set({ "n", "v", "i" }, "<C-W>", "<cmd>q<cr>")
 
 vim.keymap.set("v", "N", ":m '>+1<CR>gv=gv")

@@ -1,12 +1,10 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/felipe/code/work/liftup-monorepo
 - /home/felipe/code/personal/arch-config
-- /lib/dwm
-- /lib/st
-- /home/felipe/code/work/nexconnect-credit
 - /usr/lib/dwm
-- /home/felipe/code/work/nexconnect-portal
+- /usr/lib/st
+- /usr/lib/slstatus
+- /home/felipe/code/work/liftup-monorepo
 - /usr/lib/dmenu
 startuppopupversion: 5
 customcommandshistory: []

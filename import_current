@@ -1,5 +1,5 @@
 #!/bin/fish
-rm -rf ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux
+sudo rm -rf ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux
 cp -r ~/.config/alacritty ~/.config/fish ~/.config/lazygit ~/.config/nvim ~/.config/ranger ~/.config/tmux -t ./
 sudo chmod -R 777 ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux
 sudo chown -R felipe ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux

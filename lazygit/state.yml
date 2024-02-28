@@ -1,8 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/felipe/code/personal/dot-files
-- /home/felipe/code/work/liftup-monorepo
 - /home/felipe/code/personal/arch-config
+- /home/felipe/code/work/liftup-monorepo
 - /lib/dwm
 - /lib/st
 - /home/felipe/code/work/nexconnect-credit
@@ -12,4 +12,4 @@ recentrepos:
 startuppopupversion: 5
 customcommandshistory: []
 hidecommandlog: false
-ignorewhitespaceindiffview: false
+ignorewhitespaceindiffview: true

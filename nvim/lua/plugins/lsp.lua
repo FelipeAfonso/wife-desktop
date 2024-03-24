@@ -36,9 +36,12 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { { "stylua" } },
+				nix = { { "rnix", "nixpkgs-fmt"} },
 				javascript = { { "prettierd", "prettier" } },
 				typescript = { { "prettierd", "prettier" } },
 				svelte = { { "prettierd", "prettier" } },
+                json = { { "fixjson", "jsonlint", "prettier", "jq" } },
+                jsonc = { { "fixjson", "jsonlint", "prettier", } },
 			},
 		},
 	},

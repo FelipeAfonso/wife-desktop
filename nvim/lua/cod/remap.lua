@@ -23,6 +23,11 @@ vim.keymap.set("n", "<C-x>", "f<lt>vf>x")
 vim.keymap.set({ "n", "v" }, "J", "0")
 vim.keymap.set({ "n", "v" }, ";", "$")
 
+vim.keymap.set("n", "<C-T>", function()
+	vim.cmd("LspRestart")
+	vim.cmd("LspStart")
+end)
+
 -- harpoon
 vim.keymap.set("n", "<leader>s", '<cmd>lua require("harpoon.mark").add_file()<cr>')
 vim.keymap.set("n", "<leader>.", '<cmd>lua require("harpoon.ui").nav_next()<cr>')

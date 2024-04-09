@@ -31,10 +31,15 @@ background = "0x1a1b26"
 foreground = "0xc0caf5"
 
 [font]
-size = 15.0
+size = 18.0
+
+[font.italic]
+family = "ZedMono NF Extended"
+style = "Extended Italic"
 
 [font.normal]
-family = "ProFontIIx Nerd Font Mono"
+family = "ZedMono NF Extended"
+style = "Extended"
 
 [shell]
 args = ["-l", "-c", "tmux attach || tms dev"]

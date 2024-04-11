@@ -103,7 +103,7 @@
     
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
-    sticky_history = yes
+    sticky_history = no
     
     # Maximum amount of notifications kept in history
     history_length = 20
@@ -145,7 +145,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
     
     # Browser for opening urls in context menu.
-    browser = palemoon
+    browser = vivaldi
 
     # Align icons left/right/off
     icon_position = left
@@ -291,11 +291,11 @@
 #    background = "#D53B84"
 #     foreground = "#FFFFFF"
 #
-#[CMUS]
-#    appname = CMUS
-#    category = cmus
-#    background = "#6C4AB7"
-#    foreground = "#FFE756"
+[Ferdium]
+   appname = Ferdium
+   category = work
+   background = "#6C4AB7"
+   foreground = "#FFFFFF"
 #
 #
 #     background = "#30AB70"

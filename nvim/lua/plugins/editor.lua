@@ -1,5 +1,6 @@
 return {
 	"JoosepAlviste/nvim-ts-context-commentstring",
+	"mg979/vim-visual-multi",
 	{
 		"gbprod/yanky.nvim",
 		config = true,

@@ -39,7 +39,8 @@ return {
 			options = {
 				icons = true,
 				component_separators = "|",
-				theme = "tokyonight",
+				-- theme = "tokyonight",
+				theme = "eldritch",
 				section_separators = "",
 			},
 			sections = {

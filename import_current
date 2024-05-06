@@ -1,6 +1,6 @@
 #!/bin/fish
-sudo rm -rf ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux
-cp -r ~/.config/alacritty ~/.config/fish ~/.config/lazygit ~/.config/nvim ~/.config/ranger ~/.config/tmux -t ./
-sudo chmod -R 777 ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux
-sudo chown -R felipe ./alacritty ./fish ./lazygit ./nvim ./ranger ./tmux
+sudo rm -rf ./alacritty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./vivaldi ./waybar ./wezterm ./wofi ./xkb
+cp -r ~/.config/alacritty ~/.config/dunst ~/.config/fish ~/.config/hypr ~/.config/nvim ~/.config/ranger ~/.config/solaar ~/.config/tmux ~/.config/vivaldi ~/.config/waybar ~/.config/wezterm ~/.config/wofi ~/.config/xkb -t ./
+sudo chmod -R 777 ./alacritty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./vivaldi ./waybar ./wezterm ./wofi ./xkb
+sudo chown -R felipe ./alacritty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./vivaldi ./waybar ./wezterm ./wofi ./xkb
 

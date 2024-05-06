@@ -26,17 +26,17 @@ font = Cantarell 14
 
 line_height = 0
 markup = full
-format = "<span size='x-large' font_desc='Cantarell 18' weight='bold' foreground='#f9f9f9'>%s</span>\n<span font_desc='Cantarell 14' weight='bold'>%b</span>"
+format = "<span size='x-large' font_desc='Cantarell 16' weight='bold' foreground='#f9f9f9'>%s</span>\n<span font_desc='Cantarell 14' weight='bold'>%b</span>"
 alignment = left
 
-idle_threshold = 120
+idle_threshold = 300
 show_age_threshold = 60
 sort = no
 word_wrap = yes
 ignore_newline = no
-stack_duplicates = false
+stack_duplicates = yes
 hide_duplicate_count = yes
-show_indicators = no
+show_indicators = yes
 sticky_history = no
 history_length = 20
 always_run_script = true
@@ -63,15 +63,9 @@ background = "#1a1b26"
 foreground = "#c0caf5"
 
 [urgency_critical]
-timeout = 0
+timeout = 20
 background = "#3a1b26"
 foreground = "#c0caf5"
-
-[Ferdium]
-   appname = Ferdium
-   category = work
-   background = "#6C4AB7"
-   foreground = "#FFFFFF"
 
 [play_sound]
     summary = "*"

@@ -4,8 +4,23 @@ return {
 		"stevearc/oil.nvim",
 		config = true,
 		init = function()
+			-- local util = require("oil.util")
+			-- local oil = require("oil")
 			vim.keymap.set("n", "<leader>t", "<cmd>Oil<cr>")
 			-- vim.keymap.set("n", "<leader>T", "<cmd>require('oil').discard_all_changes<cr>")
+			-- vim.api.nvim_create_autocmd("User", {
+			-- 	pattern = "OilEnter",
+			-- 	callback = vim.schedule_wrap(function(args)
+			-- 		if vim.api.nvim_get_current_buf() == args.data.buf and oil.get_cursor_entry() then
+			-- 			local winid = util.get_preview_win()
+			-- 			if winid then
+			-- 				vim.api.nvim_win_close(winid, true)
+			-- 				return
+			-- 			end
+			-- 			oil.open_preview({ split = "botright" })
+			-- 		end
+			-- 	end),
+			-- })
 		end,
 		opts = {
 			keymap = {

@@ -39,14 +39,7 @@ local on_attach = function(_, bufnr)
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-	-- Lesser used LSP functionality
 	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-	nmap("<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, "[W]orkspace [L]ist Folders")
 end
 
 -- Enable the following language servers
@@ -62,9 +55,8 @@ local servers = {
 		cmd = { "rustup", "run", "stable", "rust-analyzer" },
 		trace = { server = "verbose" },
 	},
-
-	tsserver = { settings = { completions = { completeFunctionCalls = true } } },
-
+	tsserver = {},
+	svelte = {},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },

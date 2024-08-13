@@ -91,3 +91,9 @@ if status is-interactive
 end
 
 nvm use node
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
+# set --export DOCKER_HOST unix://$XDG_RUNTIME_DIR/docker.sock

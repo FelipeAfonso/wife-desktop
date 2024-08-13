@@ -15,6 +15,10 @@ return {
           end
           return 'make install_jsregexp'
         end)(),
+        config = function()
+          -- load custom snippets
+          require('luasnip.loaders.from_vscode').load { paths = '~/.config/nvim/lua/kickstart/plugins/snippets' }
+        end,
         dependencies = {
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:

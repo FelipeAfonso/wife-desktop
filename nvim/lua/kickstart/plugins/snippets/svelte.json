@@ -1,0 +1,80 @@
+{
+  "svelte-script-tag": {
+    "prefix": "script",
+    "body": [
+      "<script lang=\"ts\">",
+      "\t${1:// your script goes here}",
+      "</script>"
+    ],
+    "description": "add a script to your svelte file"
+  },
+  "svelte-style-tag": {
+    "prefix": "style",
+    "body": ["<style>", "\t${1:/* your styles go here */}", "</style>"],
+    "description": "add styles to your svelte file"
+  },
+  "svelte-if-block": {
+    "prefix": "sif",
+    "body": ["{#if ${1:condition}}", "\t${2: <!-- content here -->}", "{/if}"],
+    "description": "if block"
+  },
+  "svelte-if-else-block": {
+    "prefix": "sifelse",
+    "body": [
+      "{#if ${1:condition}}",
+      "\t${2: <!-- content here -->}",
+      "{:else}",
+      "\t${3: <!-- else content here -->}",
+      "{/if}"
+    ],
+    "description": "if else block"
+  },
+  "svelte-else-block": {
+    "prefix": "selse",
+    "body": ["{:else}", "\t${1: <!-- else content here -->}"],
+    "description": "else block"
+  },
+  "svelte-else-if-block": {
+    "prefix": "selseif",
+    "body": [
+      "{:else if ${1: otherCondition}}",
+      "\t${2: <!-- else if content here -->}"
+    ],
+    "description": "else if block"
+  },
+  "svelte-each-block": {
+    "prefix": "seach",
+    "body": [
+      "{#each ${1:items} as ${2:item}}",
+      "\t${3: <!-- content here -->}",
+      "{/each}"
+    ],
+    "description": "each block"
+  },
+  "svelte-each-else-block": {
+    "prefix": "seachelse",
+    "body": [
+      "{#each ${1:items} as ${2:item}}",
+      "\t${3: <!-- content here -->}",
+      "{:else}",
+      "\t${4: <!-- empty list -->}",
+      "{/each}"
+    ],
+    "description": "each else block"
+  },
+  "svelte-on-mount": {
+    "prefix": "onmount",
+    "body": ["onMount(() => {", "\t${1:// content here}", "});"],
+    "description": "onMount lifecycle function"
+  },
+  "svelte-on-destroy": {
+    "prefix": "ondestroy",
+    "body": ["onDestroy(() => {", "\t${1:// content here}", "});"],
+    "description": "onDestroy lifecycle function"
+  },
+  "svelte-dispatch": {
+    "prefix": "dispatch",
+    "body": ["const dispatch = createEventDispatcher();"],
+    "description": "svelte dispatch"
+  }
+}

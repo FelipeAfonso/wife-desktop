@@ -3,7 +3,9 @@ return {
     'stevearc/oil.nvim',
     config = true,
     init = function()
-      vim.keymap.set('n', '<leader>t', '<cmd>Oil<cr>')
+      vim.keymap.set('n', '<leader>t', function()
+        require('oil').toggle_float()
+      end)
     end,
     opts = {
       keymap = {

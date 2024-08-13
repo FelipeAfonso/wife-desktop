@@ -1,0 +1,35 @@
+{
+  "name": "custom-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "all",
+        "path": "./global.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "javascript"
+        ],
+        "path": "./jsdoc.json"
+      },
+      {
+        "language": [
+          "svelte",
+          "typescript",
+          "javascript"
+        ],
+        "path": "./javascript.json"
+      },
+      {
+        "language": [
+          "svelte"
+        ],
+        "path": "./svelte.json"
+      }
+    ]
+  }
+}

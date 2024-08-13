@@ -31,32 +31,34 @@ return {
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
-
-      vim.api.nvim_create_autocmd('BufEnter', {
-        callback = function(args)
-          local file = args.file
-          local ft = file:match '^.+%.(.+)$'
-          if ft == 'svelte' then
-            vim.cmd.colorscheme 'spaceduck'
-          elseif ft == 'ts' then
-            vim.cmd.colorscheme 'tokyonight-night'
-          elseif ft == 'go' then
-            vim.cmd.colorscheme 'aura-soft-dark-soft-text'
-          elseif ft == 'gleam' then
-            vim.cmd.colorscheme 'catppuccin-mocha'
-          elseif ft == 'html' then
-            vim.cmd.colorscheme 'eldritch'
-          elseif ft == 'lua' then
-            vim.cmd.colorscheme 'kanagawa'
-          elseif ft == 'rs' then
-            vim.cmd.colorscheme 'flexoki-dark'
-          elseif ft == 'env' then
-            vim.cmd.colorscheme 'lackluster'
-          else
-            vim.cmd.colorscheme 'rose-pine-main'
-          end
-        end,
-      })
+      vim.cmd.colorscheme 'tokyonight-night'
+      vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+      -- vim.api.nvim_create_autocmd('BufEnter', {
+      --   callback = function(args)
+      -- local file = args.file
+      -- local ft = file:match '^.+%.(.+)$'
+      -- if ft == 'svelte' then
+      --   vim.cmd.colorscheme 'spaceduck'
+      -- elseif ft == 'ts' then
+      --   vim.cmd.colorscheme 'tokyonight-night'
+      -- elseif ft == 'go' then
+      --   vim.cmd.colorscheme 'aura-soft-dark-soft-text'
+      -- elseif ft == 'gleam' then
+      --   vim.cmd.colorscheme 'catppuccin-mocha'
+      -- elseif ft == 'html' then
+      --   vim.cmd.colorscheme 'eldritch'
+      -- elseif ft == 'lua' then
+      --   vim.cmd.colorscheme 'kanagawa'
+      -- elseif ft == 'rs' then
+      --   vim.cmd.colorscheme 'rose-pine-main'
+      -- elseif ft == 'env' then
+      --   vim.cmd.colorscheme 'lackluster'
+      -- else
+      --   vim.cmd.colorscheme 'tokyonight-night'
+      -- end
+      -- vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+      --   end,
+      -- })
     end,
   },
 }

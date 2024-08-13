@@ -1,4 +1,4 @@
-vim.opt.mouse = ''
+vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -54,8 +54,11 @@ vim.opt.signcolumn = 'yes'
 vim.opt.relativenumber = true
 vim.wo.number = true
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:hor20-Cursor-blinkwait300-blinkon200-blinkoff150,r-cr-o:hor20'
+-- vim.opt.guicursor = 'a:block'
 vim.opt.termguicolors = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.titlestring = string.match(vim.fn.getcwd(), '^.+/(.+)$')
+vim.opt.swapfile = false
+vim.opt.backup = false

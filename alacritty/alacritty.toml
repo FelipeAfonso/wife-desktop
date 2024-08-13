@@ -31,12 +31,15 @@ background = "0x1a1b26"
 foreground = "0xc0caf5"
 
 [font]
-size = 18.0
+size = 20.0
 
 
 [font.normal]
-family = "ZedMono NF Extended"
-style = "Extended"
+# family = "ZedMono NF Extended"
+# family = "BigBlueTermPlus Nerd Font"
+family = "ProFont IIx Nerd Font"
+# disable anti aliasing
+
 
 [shell]
 args = ["-l", "-c", "tmux attach || tms dev"]

@@ -46,7 +46,7 @@ max_icon_size = 80
 
 icon_path = /usr/share/icons/Papirus-Dark/48x48/actions/:/usr/share/icons/Papirus-Dark/48x48/apps/:/usr/share/icons/Papirus-Dark/48x48/devices/:/usr/share/icons/Papirus-Dark/48x48/emblems/:/usr/share/icons/Papirus-Dark/48x48/emotes/:/usr/share/icons/Papirus-Dark/48x48/mimetypes/:/usr/share/icons/Papirus-Dark/48x48/places/:/usr/share/icons/Papirus-Dark/48x48/status/
 
-browser = vivaldi
+browser = firefox-developer-edition
 
 mouse_left_click = close_current
 mouse_middle_click = do_action
@@ -59,7 +59,7 @@ foreground = "#c0caf5"
 
 [urgency_normal]
 timeout = 6
-background = "#1a1b26"
+background = "#2b2c36"
 foreground = "#c0caf5"
 
 [urgency_critical]

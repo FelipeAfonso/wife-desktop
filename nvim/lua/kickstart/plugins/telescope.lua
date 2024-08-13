@@ -28,7 +28,9 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'SalOrak/whaler' },
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font, opts = {
+        color_icons = true,
+      } },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -53,6 +55,9 @@ return {
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
+        defaults = {
+          color_devicons = true,
+        },
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         extensions = {
@@ -102,15 +107,6 @@ return {
       vim.keymap.set('n', '<leader>pk', require('telescope.builtin').keymaps)
       vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches)
       vim.keymap.set('n', '<leader>pi', '<cmd>DevdocsOpen<cr>')
-
-      -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set('n', '<leader>/', function()
-        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, { desc = '[/] Fuzzily search in current buffer' })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>pn', function()

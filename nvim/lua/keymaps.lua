@@ -60,7 +60,7 @@ vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'h', 'k')
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'k', 'j')
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'j', 'h')
 
-vim.keymap.set('n', '<C-T>', function()
+vim.keymap.set('n', '<C-T>t', function()
   vim.cmd 'LspRestart'
   vim.cmd 'LspStart'
 end)

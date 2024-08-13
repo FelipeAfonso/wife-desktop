@@ -1,0 +1,53 @@
+{
+  "import module destructured": {
+    "prefix": "import",
+    "body": "import {$2} from '${1:module}'"
+  },
+  "named function": {
+    "prefix": "fn",
+    "body": "function ${1:name} (${2:arguments}) {\n\t${0}\n}"
+  },
+  "arrow function": {
+    "prefix": "af",
+    "body": "(${1:arguments}) => ${2:statement}"
+  },
+  "console.log a variable": {
+    "prefix": "log",
+    "body": "console.log('${1}:', ${1})"
+  },
+  "JSON.stringify()": {
+    "prefix": "jsons",
+    "body": "JSON.stringify($0)"
+  },
+  "JSON.parse()": {
+    "prefix": "jsonp",
+    "body": "JSON.parse($0)"
+  },
+  "Object.keys": {
+    "prefix": "ok",
+    "body": "Object.keys(${1:obj})"
+  },
+  "Object.values": {
+    "prefix": "ov",
+    "body": "Object.values(${1:obj})"
+  },
+  "Object.entries": {
+    "prefix": "oe",
+    "body": "Object.entries(${1:obj})"
+  },
+  "For-Of Loop": {
+    "prefix": "forof",
+    "body": ["for (const ${1:iterator} of ${2:object}) {", "\t$0", "}"],
+    "description": "For-Of Loop"
+  },
+  "Function Statement": {
+    "prefix": "function",
+    "body": ["function ${1:name}(${2:params}:${3:type}) {", "\t$0", "}"],
+    "description": "Function Statement"
+  },
+  "Set Timeout Function": {
+    "prefix": "settimeout",
+    "body": ["setTimeout(() => {", "\t$0", "}, ${1:timeout});"],
+    "description": "Set Timeout Function"
+  }
+}

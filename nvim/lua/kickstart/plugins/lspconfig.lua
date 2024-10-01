@@ -6,10 +6,10 @@ return {
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      {
-        'pmizio/typescript-tools.nvim',
-        opts = {},
-      },
+      -- {
+      --   'pmizio/typescript-tools.nvim',
+      --   opts = {},
+      -- },
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
@@ -171,6 +171,7 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         --
         rust_analyzer = {},
+        ts_ls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},

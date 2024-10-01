@@ -46,6 +46,7 @@ require('lazy').setup({
   require 'kickstart/plugins/oneliners',
   require 'kickstart/plugins/peek',
   require 'kickstart/plugins/repl',
+  require 'kickstart/plugins/rest',
   require 'kickstart/plugins/telescope',
   require 'kickstart/plugins/themes',
   require 'kickstart/plugins/tmux',

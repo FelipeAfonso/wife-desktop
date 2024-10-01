@@ -13,27 +13,27 @@ return {
       require('codecompanion').setup {
         strategies = {
           chat = {
-            adapter = 'codellama',
+            adapter = 'copilot',
           },
           inline = {
-            adapter = 'codellama',
+            adapter = 'copilot',
           },
           agent = {
-            adapter = 'codellama',
+            adapter = 'copilot',
           },
         },
-        adapters = {
-          codellama = function()
-            return require('codecompanion.adapters').use('ollama', {
-              name = 'codellama', -- Ensure the model is differentiated from Ollama
-              schema = {
-                model = {
-                  default = 'codellama:7b',
-                },
-              },
-            })
-          end,
-        },
+        -- adapters = {
+        --   codellama = function()
+        --     return require('codecompanion.adapters').extend('ollama', {
+        --       name = 'codellama', -- Ensure the model is differentiated from Ollama
+        --       schema = {
+        --         model = {
+        --           default = 'codellama:70b',
+        --         },
+        --       },
+        --     })
+        --   end,
+        -- },
       }
 
       vim.api.nvim_set_keymap('n', '<C-f>', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })

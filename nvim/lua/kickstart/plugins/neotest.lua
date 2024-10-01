@@ -8,10 +8,12 @@ return {
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
     'thenbe/neotest-playwright',
+    'marilari88/neotest-vitest',
   },
   config = function()
     require('neotest').setup {
       adapters = {
+        require 'neotest-vitest',
         require('neotest-playwright').adapter {
           options = {
             -- preset = 'debug',

@@ -1,6 +1,6 @@
 set -g -x FZF_DEFAULT_OPTS --bind ctrl-s:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all
 set -g -x EDITOR nvim
-set -g -x BROWSER vivaldi
+set -g -x BROWSER zed-browser
 set -g -x PAGER less
 set -g -x FORCE_COLOR 1
 set -g -x NVM_DIR ~/.nvm
@@ -97,3 +97,10 @@ set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
 # set --export DOCKER_HOST unix://$XDG_RUNTIME_DIR/docker.sock
+
+# pnpm
+set -gx PNPM_HOME "/home/felipe/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

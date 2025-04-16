@@ -1,6 +1,12 @@
 return {
   'mg979/vim-visual-multi',
+  'JoosepAlviste/nvim-ts-context-commentstring',
   { 'NvChad/nvim-colorizer.lua', config = true },
+  { 'nvchad/volt', lazy = true },
+  {
+    'nvchad/minty',
+    cmd = { 'Shades', 'Huefy' },
+  },
   {
     -- fuck this guy
     -- |

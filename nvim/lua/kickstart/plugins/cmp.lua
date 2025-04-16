@@ -18,6 +18,14 @@ return {
         config = function()
           -- load custom snippets
           require('luasnip.loaders.from_vscode').load { paths = '~/.config/nvim/lua/kickstart/plugins/snippets' }
+          local ls = require 'luasnip'
+
+          vim.keymap.set({ 'i', 's' }, '<C-n>', function()
+            ls.jump(1)
+          end, { silent = true })
+          vim.keymap.set({ 'i', 's' }, '<C-e>', function()
+            ls.jump(-1)
+          end, { silent = true })
         end,
         dependencies = {
           -- `friendly-snippets` contains a variety of premade snippets.
@@ -38,6 +46,7 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
     },
     config = function()
       -- See `:help cmp`
@@ -106,9 +115,15 @@ return {
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
+          {
+            name = 'lazydev',
+            -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+            group_index = 0,
+          },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'nvim_lsp_signature_help' },
         },
       }
     end,

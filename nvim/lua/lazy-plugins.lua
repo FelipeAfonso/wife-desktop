@@ -17,44 +17,45 @@ require('lazy').setup({
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
   --
-  -- Use `opts = {}` to force a plugin to be loaded.
+  -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
-  --  This is equivalent to:
-  --    require('Comment').setup({})
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
 
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
-  require 'kickstart/plugins/ai',
+  require 'custom/plugins/ai',
+  require 'custom/plugins/copilot',
+  require 'custom/plugins/early-retirement',
+  require 'custom/plugins/fugitive',
+  require 'custom/plugins/harpoon',
+  require 'custom/plugins/leap',
+  require 'custom/plugins/logging',
+  require 'custom/plugins/neotest',
+  require 'custom/plugins/oil',
+  require 'custom/plugins/oneliners',
+  require 'custom/plugins/peek',
+  require 'custom/plugins/qf',
+  require 'custom/plugins/qf',
+  require 'custom/plugins/quickfix',
+  require 'custom/plugins/repl',
+  require 'custom/plugins/rest',
+  require 'custom/plugins/svelte-inspector',
+  require 'custom/plugins/themes',
+  require 'custom/plugins/tmux',
+  require 'custom/plugins/trouble',
+  require 'custom/plugins/undotree',
+  require 'custom/plugins/yanky',
+
   require 'kickstart/plugins/autopairs',
   require 'kickstart/plugins/cmp',
   require 'kickstart/plugins/conform',
-  require 'kickstart/plugins/copilot',
-  require 'kickstart/plugins/early-retirement',
-  require 'kickstart/plugins/fugitive',
   require 'kickstart/plugins/gitsigns',
-  require 'kickstart/plugins/harpoon',
-  require 'kickstart/plugins/leap',
   require 'kickstart/plugins/lint',
   require 'kickstart/plugins/lspconfig',
   require 'kickstart/plugins/mini',
-  require 'kickstart/plugins/neotest',
-  require 'kickstart/plugins/oil',
-  require 'kickstart/plugins/oneliners',
-  require 'kickstart/plugins/peek',
-  require 'kickstart/plugins/repl',
-  require 'kickstart/plugins/rest',
   require 'kickstart/plugins/telescope',
-  require 'kickstart/plugins/themes',
-  require 'kickstart/plugins/tmux',
   require 'kickstart/plugins/todo-comments',
   require 'kickstart/plugins/treesitter',
-  require 'kickstart/plugins/trouble',
-  require 'kickstart/plugins/undotree',
-  require 'kickstart/plugins/yanky',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

@@ -31,11 +31,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.keymap.set('n', '<leader>ll', '"ayiwoconsole.log(`🚀 ~ <C-R>a:`, <C-R>a)<Esc>')
-vim.keymap.set('n', '<leader>ld', '"ayiwodev_log(`<C-R>a:`, <C-R>a)<Esc>')
-vim.keymap.set('n', '<leader>ls', '"ayiwostatic_log(`<C-R>a:`, <C-R>a)<Esc>')
-vim.keymap.set('n', '<leader>le', '"ayiwolog_error(`<C-R>a:`, <C-R>a)<Esc>')
-vim.keymap.set('n', '<leader>ln', '"ayiwonet_error(`<C-R>a:`, <C-R>a)<Esc>')
+-- vim.keymap.set('n', '<leader>ll', '"ayiwoconsole.log(`🚀 ~ <C-R>a:`, <C-R>a)<Esc>')
+-- vim.keymap.set('n', '<leader>ld', '"ayiwodev_log(`<C-R>a:`, <C-R>a)<Esc>')
+-- vim.keymap.set('n', '<leader>ls', '"ayiwostatic_log(`<C-R>a:`, <C-R>a)<Esc>')
+-- vim.keymap.set('n', '<leader>le', '"ayiwolog_error(`<C-R>a:`, <C-R>a)<Esc>')
+-- vim.keymap.set('n', '<leader>ln', '"ayiwonet_error(`<C-R>a:`, <C-R>a)<Esc>')
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>')
 vim.keymap.set('n', '<leader>h', '<C-6>')
 vim.keymap.set('v', 'd', '"_d')

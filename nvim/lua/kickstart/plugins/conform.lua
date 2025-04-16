@@ -1,43 +1,53 @@
 return {
-  { -- Autoformat
+  {
     'stevearc/conform.nvim',
-    lazy = false,
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     keys = {
       {
+        -- Customize or remove this keymap to your liking
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format { async = true }
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = 'Format buffer',
       },
     },
+    -- This will provide type hinting with LuaLS
+    ---@module "conform"
+    ---@type conform.setupOpts
     opts = {
-      notify_on_error = true,
-      format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
-        return {
-          timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-        }
-      end,
+      -- Define your formatters
       formatters_by_ft = {
         lua = { 'stylua' },
-        nix = { { 'rnix', 'nixpkgs-fmt' } },
-        javascript = { { 'prettierd', 'prettier' } },
-        typescript = { { 'prettierd', 'prettier' } },
-        jsx = { { 'prettierd', 'prettier' } },
-        svelte = { { 'prettierd', 'prettier' } },
-        json = { { 'fixjson', 'jsonlint', 'prettier', 'jq' } },
-        jsonc = { { 'fixjson', 'jsonlint', 'prettier' } },
-        html = { { 'prettierd', 'prettier', 'htmlbeautifier' } },
-        yaml = { { 'yamlfmt' } },
-        md = { { 'markdownlint' } },
+        python = { 'isort', 'black' },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        lua = { 'stylua' },
+        nix = { 'rnix', 'nixpkgs-fmt', stop_after_first = true },
+        javascript = { 'prettierd' },
+        typescript = { 'prettierd' },
+        jsx = { 'prettierd' },
+        svelte = { 'prettierd' },
+        templ = { 'templ', 'prettierd' },
+        json = { 'fixjson', 'jsonlint', 'prettier', 'jq', stop_after_first = true },
+        jsonc = { 'fixjson', 'jsonlint', 'prettier', stop_after_first = true },
+        html = { 'prettierd', 'prettier', 'htmlbeautifier' },
+        yaml = { 'yamlfmt' },
+        md = { 'markdownlint' },
+      },
+      -- Set default options
+      default_format_opts = {
+        lsp_format = 'fallback',
+      },
+      -- Set up format-on-save
+      format_on_save = { timeout_ms = 500 },
+      -- Customize formatters
+      formatters = {
+        shfmt = {
+          prepend_args = { '-i', '2' },
+        },
       },
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 et

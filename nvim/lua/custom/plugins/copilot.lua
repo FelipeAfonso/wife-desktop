@@ -5,7 +5,7 @@ return {
     opts = {
       suggestion = {
         enabled = true,
-        auto_trigger = false,
+        auto_trigger = true,
         debounce = 50,
         keymap = {
           accept = '<C-f>',
@@ -16,7 +16,7 @@ return {
       },
       filetypes = {
         yaml = true,
-        ['.'] = false,
+        ['.'] = true,
       },
     },
   },

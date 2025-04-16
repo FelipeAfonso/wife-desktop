@@ -18,11 +18,36 @@
       },
       {
         "language": [
+          "go"
+        ],
+        "path": "./go.json"
+      },
+      {
+        "language": [
+          "gleam"
+        ],
+        "path": "./gleam.json"
+      },
+      {
+        "language": [
+          "rust"
+        ],
+        "path": "./rust.json"
+      },
+      {
+        "language": [
           "svelte",
           "typescript",
           "javascript"
         ],
         "path": "./javascript.json"
+      },
+      {
+        "language": [
+          "svelte",
+          "html"
+        ],
+        "path": "./html.json"
       },
       {
         "language": [

@@ -1,18 +1,22 @@
 set -g -x FZF_DEFAULT_OPTS --bind ctrl-s:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all
+set -g -x ANTHROPIC_API_KEY "ligma"
 set -g -x EDITOR nvim
 set -g -x BROWSER zed-browser
 set -g -x PAGER less
 set -g -x FORCE_COLOR 1
 set -g -x NVM_DIR ~/.nvm
+set -g -x LAUNCH_EDITOR launch_editor_script
+# set -g -x REMOTE_VIM_SOCKET /tmp/remote-vim-socket
 
 status --is-interactive
 #source ~/.config/fish/config.fish
 
 alias vim="nvim"
 alias ls="eza -l"
+alias cd="z"
 alias tmw="tmux splitw -h -l 100 && note"
 alias svim="sudo -E -s nvim"
-alias note="cd ~/od/Apps/remotely-save/Felipe/ && nvim ./Inbox.md"
+alias note="cd ~/gdrive/Documents/Obsidian/Felipe && nvim ./Inbox.md"
 
 function np
     npm run $argv
@@ -27,9 +31,6 @@ function tms
     tmux new -s $argv "tmux splitw -h -l 100 && note"
 end
 function create
-    if test "$argv" = -h
-        echo hello there
-    end
     set nodes (string split "/" $argv)
     function create_dir
         if test -n "$argv"
@@ -48,6 +49,23 @@ function create
         end
     end
     create_dir $dir
+end
+
+function fish_vi_cursor
+    switch $fish_bind_mode
+        case default
+            echo -ne '\e[1 q'
+        case insert
+            echo -ne '\e[3 q'
+        case visual
+            echo -ne '\e[2 q'
+        case '*'
+            echo -ne '\e[1 q'
+    end
+end
+function fish_mode_prompt --on-variable fish_bind_mode
+    # This function is called whenever the bind mode changes
+    fish_vi_cursor
 end
 
 # TokyoNight Color Palette
@@ -88,6 +106,7 @@ set -g fish_pager_color_selected_background --background=$selection
 if status is-interactive
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
+    echo -ne '\e[3 q'
 end
 
 nvm use node
@@ -104,3 +123,10 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+zoxide init fish | source
+
+# bit
+if not string match -q -- "/home/felipe/bin" $PATH
+  set -gx PATH $PATH "/home/felipe/bin"
+end
+# bit end

@@ -68,7 +68,8 @@ return {
             -- Whaler configuration
             auto_file_explorer = false,
             directories = {
-              { alias = 'work', path = '~/code/work/' },
+              { alias = 'work', path = '~/code/work/liftup' },
+              { alias = 'work', path = '~/code/work/contactai' },
               { alias = 'pers', path = '~/code/personal/' },
               { alias = 'dotf', path = '~/.config/' },
               { alias = 'liftup-mono', path = '~/code/work/liftup-monorepo/frontend' },

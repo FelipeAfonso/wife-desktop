@@ -36,12 +36,13 @@ size = 20.0
 
 [font.normal]
 # family = "ZedMono NF Extended"
-# family = "BigBlueTermPlus Nerd Font"
-family = "ProFont IIx Nerd Font"
+family = "CaskaydiaCove Nerd Font"
+# family = "ProFont IIx Nerd Font"
+# family = "JetBrainsMono Nerd Font"
 # disable anti aliasing
 
 
-[shell]
+[terminal.shell]
 args = ["-l", "-c", "tmux attach || tms dev"]
 program = "/usr/bin/fish"
 
@@ -53,3 +54,5 @@ startup_mode = "Windowed"
 
 [env]
 TERM = "xterm-256color"
+
+[terminal]

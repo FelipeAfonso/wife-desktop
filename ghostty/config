@@ -1,0 +1,9 @@
+window-decoration = false
+command = /usr/bin/fish -l -c "tmux attach || tmux"
+font-family = "CaskaydiaCove Nerd Font"
+font-feature = -calt
+font-size = 20
+confirm-close-surface = false
+theme = tokyonight
+link-url = true
+cursor-style = underline

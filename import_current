@@ -1,6 +1,6 @@
 #!/bin/fish
-sudo rm -rf ./alacritty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./waybar ./wezterm ./wofi ./xkb
-cp -r ~/.config/alacritty ~/.config/dunst ~/.config/fish ~/.config/hypr ~/.config/nvim ~/.config/ranger ~/.config/solaar ~/.config/tmux ~/.config/waybar ~/.config/wezterm ~/.config/wofi ~/.config/xkb -t ./
-sudo chmod -R 777 ./alacritty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./waybar ./wezterm ./wofi ./xkb
-sudo chown -R felipe ./alacritty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./waybar ./wezterm ./wofi ./xkb
+sudo rm -rf ./ghostty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./waybar ./wezterm ./wofi ./xkb
+cp -r ~/.config/ghostty ~/.config/dunst ~/.config/fish ~/.config/hypr ~/.config/nvim ~/.config/ranger ~/.config/solaar ~/.config/tmux ~/.config/waybar ~/.config/wezterm ~/.config/wofi ~/.config/xkb -t ./
+sudo chmod -R 777 ./ghostty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./waybar ./wezterm ./wofi ./xkb
+sudo chown -R felipe ./ghostty ./dunst ./fish ./hypr ./nvim ./ranger ./solaar ./tmux ./waybar ./wezterm ./wofi ./xkb
 

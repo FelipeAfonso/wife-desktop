@@ -28,3 +28,6 @@ ghostty.target = "~/.config/ghostty/themes/pywal"
 
 neopywal.template = "colors-neopywal.vim"
 neopywal.target = "~/.cache/wallust/colors_neopywal.vim"
+
+opencode.template = "opencode-pywal.json"
+opencode.target = "~/.config/opencode/themes/pywal.json"

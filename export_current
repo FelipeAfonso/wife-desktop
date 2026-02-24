@@ -1,2 +1,2 @@
 #!/bin/fish
-cp -rf ./ghostty ./dunst ./fish ./hypr ./nvim ./ranger ./rofi ./solaar ./tmux ./waybar ./wallust ./wezterm ./xkb -t ~/.config/
+cp -rf ./ghostty ./dunst ./fish ./hypr ./nvim ./opencode ./ranger ./rofi ./solaar ./tmux ./waybar ./wallust ./wezterm ./xkb -t ~/.config/

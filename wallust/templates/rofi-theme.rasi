@@ -20,3 +20,75 @@
     color14:        {{color14}};
     color15:        {{color15}};
 }
+
+window {
+    width:              900px;
+    border:             3px;
+    border-color:       @color4;
+    border-radius:      12px;
+    background-color:   @background;
+    padding:            0;
+}
+
+mainbox {
+    background-color:   transparent;
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    background-color:   @color0;
+    border-radius:      12px 12px 0 0;
+    padding:            12px;
+    spacing:            8px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @color4;
+    font:               "Geist Mono Bold 36";
+}
+
+entry {
+    background-color:   transparent;
+    text-color:         @foreground;
+    placeholder:        "Search...";
+    placeholder-color:  @color8;
+    font:               "Geist Mono 36";
+}
+
+listview {
+    background-color:   transparent;
+    columns:            1;
+    lines:              8;
+    padding:            8px 0;
+    fixed-height:       false;
+    border:             0;
+    scrollbar:          false;
+}
+
+element {
+    background-color:   transparent;
+    text-color:         @foreground;
+    padding:            8px 12px;
+    spacing:            12px;
+    border-radius:      0;
+}
+
+element selected {
+    background-color:   @color8;
+    text-color:         @foreground;
+    border-radius:      6px;
+}
+
+element-icon {
+    size:               48px;
+    background-color:   transparent;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    font:               "Geist Mono 36";
+    vertical-align:     0.5;
+}

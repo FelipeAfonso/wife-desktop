@@ -58,7 +58,7 @@ swww img "$selected" \
     --transition-type grow \
     --transition-pos "$(hyprctl cursorpos)" \
     --transition-duration 2 \
-    --transition-fps 60
+    --transition-fps 120
 
 # Generate colorscheme with wallust
 wallust run "$selected"

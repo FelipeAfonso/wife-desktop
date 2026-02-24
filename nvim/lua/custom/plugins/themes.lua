@@ -23,38 +23,38 @@ return {
     name = 'neopywal',
     lazy = false,
     priority = 1000,
-    opts = {
-      -- Use wallust-generated colors from ~/.cache/wallust/colors_neopywal.vim
-      use_wallust = true,
+    config = function()
+      require('neopywal').setup {
+        -- Use wallust-generated colors from ~/.cache/wallust/colors_neopywal.vim
+        use_palette = 'wallust',
 
-      -- Transparent background (matches ghostty opacity)
-      transparent_background = true,
+        -- Transparent background (matches ghostty opacity)
+        transparent_background = true,
 
-      -- Dim inactive windows for better focus
-      dim_inactive = true,
+        -- Dim inactive windows for better focus
+        dim_inactive = true,
 
-      -- Terminal colors from wallust palette
-      terminal_colors = true,
+        -- Terminal colors from wallust palette
+        terminal_colors = true,
 
-      -- Plugin integrations
-      default_plugins = true,
-      plugins = {
-        telescope = true,
-        gitsigns = true,
-        indent_blankline = true,
-        lazy = true,
-        nvim_cmp = true,
-        treesitter = true,
-        flash = { enabled = true, style = { 'bold', 'italic' } },
-        leap = { enabled = true, style = { 'bold', 'italic' } },
-        mini = {
-          cursorword = true,
-          files = true,
-          pick = true,
+        -- Plugin integrations
+        default_plugins = true,
+        plugins = {
+          telescope = true,
+          gitsigns = true,
+          indent_blankline = true,
+          lazy = true,
+          nvim_cmp = true,
+          treesitter = true,
+          flash = { enabled = true, style = { 'bold', 'italic' } },
+          leap = { enabled = true, style = { 'bold', 'italic' } },
+          mini = {
+            cursorword = true,
+            files = true,
+            pick = true,
+          },
         },
-      },
-    },
-    init = function()
+      }
       vim.cmd.colorscheme 'neopywal'
       vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
     end,

@@ -10,7 +10,7 @@ function codesession
     set personal_dir ~/code/personal/$project_name
     
     # Search for project in work subdirectories
-    set project_dir (find $work_base_dir -type d -name $project_name -maxdepth 2)
+    set project_dir (find $work_base_dir -maxdepth 2 -type d -name $project_name)
     
     # If not found in work subdirectories, check personal directory
     if test -z "$project_dir"

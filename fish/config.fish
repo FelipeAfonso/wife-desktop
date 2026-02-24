@@ -1,7 +1,7 @@
 set -g -x FZF_DEFAULT_OPTS --bind ctrl-s:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all
-set -g -x ANTHROPIC_API_KEY "ligma"
+set -g -x ENABLE_INCREMENTAL_TUI true
 set -g -x EDITOR nvim
-set -g -x BROWSER zed-browser
+set -g -x BROWSER zen-browser
 set -g -x PAGER less
 set -g -x FORCE_COLOR 1
 set -g -x NVM_DIR ~/.nvm
@@ -51,22 +51,22 @@ function create
     create_dir $dir
 end
 
-function fish_vi_cursor
-    switch $fish_bind_mode
-        case default
-            echo -ne '\e[1 q'
-        case insert
-            echo -ne '\e[3 q'
-        case visual
-            echo -ne '\e[2 q'
-        case '*'
-            echo -ne '\e[1 q'
-    end
-end
-function fish_mode_prompt --on-variable fish_bind_mode
-    # This function is called whenever the bind mode changes
-    fish_vi_cursor
-end
+# function fish_vi_cursor
+#     switch $fish_bind_mode
+#         case default
+#             echo -ne '\e[1 q'
+#         case insert
+#             echo -ne '\e[3 q'
+#         case visual
+#             echo -ne '\e[2 q'
+#         case '*'
+#             echo -ne '\e[1 q'
+#     end
+# end
+# function fish_mode_prompt --on-variable fish_bind_mode
+#     # This function is called whenever the bind mode changes
+#     fish_vi_cursor
+# end
 
 # TokyoNight Color Palette
 set -l foreground c0caf5
@@ -130,3 +130,5 @@ if not string match -q -- "/home/felipe/bin" $PATH
   set -gx PATH $PATH "/home/felipe/bin"
 end
 # bit end
+fish_add_path $HOME/.local/bin
+

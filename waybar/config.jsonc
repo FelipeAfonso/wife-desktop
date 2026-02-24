@@ -6,21 +6,23 @@
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "tray",
-    "mpd",
+    // "mpd",
+    "mpris",
     "custom/media",
     "hyprland/submap",
     "pulseaudio/slider",
     "pulseaudio",
     "cpu",
     "memory",
+    "custom/temps",
     "clock",
   ],
   "hyprland/workspaces": {
     "disable-scroll": true,
     "format": "{name} {icon}",
     "format-icons": {
-      "active": " ",
-      "default": " ",
+      "active": " ",
+      "default": " ",
     },
     "persistent-workspaces": {
       "1": [],
@@ -43,57 +45,69 @@
     "max": 100,
     "orientation": "horizontal",
   },
-  "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-    "format-disconnected": "Disconnected ",
-    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-    "unknown-tag": "N/A",
-    "interval": 5,
-    "consume-icons": {
-      "on": " ",
+  // "mpd": {
+  //   "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+  //   "format-disconnected": "Disconnected ",
+  //   "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+  //   "unknown-tag": "N/A",
+  //   "interval": 5,
+  //   "consume-icons": {
+  //     "on": " ",
+  //   },
+  //   "random-icons": {
+  //     "off": "<span color=\"#f53c3c\"></span> ",
+  //     "on": " ",
+  //   },
+  //   "repeat-icons": {
+  //     "on": " ",
+  //   },
+  //   "single-icons": {
+  //     "on": "1 ",
+  //   },
+  //   "state-icons": {
+  //     "paused": "",
+  //     "playing": "",
+  //   },
+  //   "tooltip-format": "MPD (connected)",
+  //   "tooltip-format-disconnected": "MPD (disconnected)",
+  // },
+  "mpris": {
+    "format": "{status_icon}  {artist} - {title}",
+    "format-paused": "{status_icon}  <i>{artist} - {title}</i>",
+    "format-stopped": "",
+    "status-icons": {
+      "paused": "",
+      "playing": "",
+      "stopped": "",
     },
-    "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " ",
-    },
-    "repeat-icons": {
-      "on": " ",
-    },
-    "single-icons": {
-      "on": "1 ",
-    },
-    "state-icons": {
-      "paused": "",
-      "playing": "",
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)",
+    "max-length": 50,
   },
   "clock": {
     "timezone": "America/Sao_Paulo",
     "tooltip-format": "<big>{:%Y-%m-%d %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%H:%M:%S %d/%m/%Y}",
-    "interval": 5,
+    "format": "{:%H:%M %d/%m}",
+    "interval": 10,
   },
   "cpu": {
     "format": "{usage}% ",
     "tooltip": false,
   },
   "memory": {
-    "format": "{}% ",
+    "format": "{}% ",
   },
-  "temperature": {
-    "critical-threshold": 80,
-    "format": "{temperatureC}°C {icon}",
-    "format-icons": ["", "", ""],
+  "custom/temps": {
+    "exec": "$HOME/.config/waybar/temps.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 5,
   },
   "hyprland/window": {
     "separate-outputs": true,
   },
   "pulseaudio": {
     "format": "{volume}%  {icon}  {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
     "format-source": "{volume}% ",
     "format-source-muted": "",

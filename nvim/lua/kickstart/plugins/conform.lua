@@ -21,19 +21,14 @@ return {
       -- Define your formatters
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'isort', 'black' },
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        lua = { 'stylua' },
-        nix = { 'rnix', 'nixpkgs-fmt', stop_after_first = true },
-        javascript = { 'prettierd' },
-        typescript = { 'prettierd' },
-        jsx = { 'prettierd' },
-        svelte = { 'prettierd' },
-        templ = { 'templ', 'prettierd' },
-        json = { 'fixjson', 'jsonlint', 'prettier', 'jq', stop_after_first = true },
-        jsonc = { 'fixjson', 'jsonlint', 'prettier', stop_after_first = true },
-        html = { 'prettierd', 'prettier', 'htmlbeautifier' },
-        yaml = { 'yamlfmt' },
+        javascript = { 'prettierd', 'eslint_d', lsp_format = 'never' },
+        typescript = { 'prettierd', 'eslint_d', lsp_format = 'never' },
+        javascriptreact = { 'prettierd', 'eslint_d', lsp_format = 'never' },
+        typescriptreact = { 'prettierd', 'eslint_d', lsp_format = 'never' },
+        svelte = { 'prettierd', 'prettier', stop_after_first = true, lsp_format = 'never' },
+        templ = { 'templ', 'prettier' },
+        json = { 'prettier', 'jq', stop_after_first = true },
+        jsonc = { 'prettier', stop_after_first = true },
         md = { 'markdownlint' },
       },
       -- Set default options
@@ -42,12 +37,7 @@ return {
       },
       -- Set up format-on-save
       format_on_save = { timeout_ms = 500 },
-      -- Customize formatters
-      formatters = {
-        shfmt = {
-          prepend_args = { '-i', '2' },
-        },
-      },
+      log_level = vim.log.levels.DEBUG,
     },
   },
 }

@@ -31,3 +31,6 @@ neopywal.target = "~/.cache/wallust/colors_neopywal.vim"
 
 opencode.template = "opencode-pywal.json"
 opencode.target = "~/.config/opencode/themes/pywal.json"
+
+tmux.template = "tmux-colors.conf"
+tmux.target = "~/.config/tmux/tmux-colors.conf"

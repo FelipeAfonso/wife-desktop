@@ -26,6 +26,10 @@ disown
 # The template writes directly to ~/.config/ghostty/themes/pywal
 # Ghostty auto-reloads when it detects the theme file changed
 
+# --- Tmux ---
+# Reload tmux colors in all running servers
+tmux source-file ~/.config/tmux/tmux-colors.conf 2>/dev/null
+
 # --- Neovim ---
 # neopywal.nvim reads from ~/.cache/wallust/colors_neopywal.vim
 # Send a command to all running neovim instances to reload colorscheme

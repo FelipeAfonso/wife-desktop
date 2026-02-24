@@ -1,0 +1,30 @@
+# wallust configuration
+# See: https://codeberg.org/explosion-mental/wallust
+
+backend = "kmeans"
+color_space = "labmixed"
+palette = "dark16"
+check_contrast = true
+alpha = 100
+
+[templates]
+hyprland.template = "hyprland-colors.conf"
+hyprland.target = "~/.config/hypr/hyprland-colors.conf"
+
+hyprlock.template = "hyprlock-colors.conf"
+hyprlock.target = "~/.config/hypr/hyprlock-colors.conf"
+
+waybar.template = "waybar-colors.css"
+waybar.target = "~/.config/waybar/colors.css"
+
+dunst.template = "dunstrc"
+dunst.target = "~/.config/dunst/dunstrc"
+
+rofi.template = "rofi-theme.rasi"
+rofi.target = "~/.config/rofi/theme.rasi"
+
+ghostty.template = "ghostty-pywal"
+ghostty.target = "~/.config/ghostty/themes/pywal"
+
+neopywal.template = "colors-neopywal.vim"
+neopywal.target = "~/.cache/wallust/colors_neopywal.vim"

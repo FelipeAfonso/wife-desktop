@@ -1,0 +1,59 @@
+/* Rofi theme for the wallpaper picker — image grid layout */
+/* Imports colors from the wallust-generated theme.rasi     */
+
+@import "theme"
+
+window {
+    width:              900px;
+}
+
+mainbox {
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    padding:            12px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    text-color:         @color4;
+    font:               "Geist Mono Bold 18";
+}
+
+entry {
+    placeholder:        "Pick a wallpaper...";
+}
+
+listview {
+    columns:            3;
+    lines:              3;
+    spacing:            8px;
+    padding:            8px;
+    fixed-height:       false;
+}
+
+element {
+    orientation:        vertical;
+    padding:            8px;
+    border-radius:      8px;
+}
+
+element selected {
+    background-color:   @color8;
+}
+
+element-icon {
+    size:               240px;
+    border-radius:      6px;
+    background-color:   transparent;
+    horizontal-align:   0.5;
+}
+
+element-text {
+    horizontal-align:   0.5;
+    font:               "Geist Mono 12";
+    background-color:   transparent;
+    text-color:         inherit;
+    padding:            4px 0 0 0;
+}

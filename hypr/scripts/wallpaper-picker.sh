@@ -3,6 +3,7 @@
 
 WALLPAPER_DIR="$HOME/Documents/wallpapers"
 CACHE_FILE="$HOME/.cache/current-wallpaper-path"
+RANDOM_LABEL="Random"
 
 # Ensure the wallpapers directory exists
 if [ ! -d "$WALLPAPER_DIR" ]; then
@@ -20,9 +21,8 @@ if [ ${#images[@]} -eq 0 ]; then
     exit 1
 fi
 
-# Build rofi input: filename\0icon\x1fpath
-# rofi can display icons from file paths when using -show-icons
-input=""
+# Build rofi input — random option first, then all images with previews
+input="${RANDOM_LABEL}\0icon\x1fdice\n"
 for img in "${images[@]}"; do
     filename=$(basename "$img")
     input+="${filename}\0icon\x1f${img}\n"
@@ -38,8 +38,12 @@ chosen=$(echo -en "$input" | rofi -dmenu \
 # Exit if nothing was selected
 [ -z "$chosen" ] && exit 0
 
-# Resolve full path
-selected="$WALLPAPER_DIR/$chosen"
+# Handle random selection
+if [ "$chosen" = "$RANDOM_LABEL" ]; then
+    selected="${images[RANDOM % ${#images[@]}]}"
+else
+    selected="$WALLPAPER_DIR/$chosen"
+fi
 
 if [ ! -f "$selected" ]; then
     notify-send "Wallpaper Picker" "File not found: $selected" -u critical

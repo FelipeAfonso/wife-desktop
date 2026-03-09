@@ -1,0 +1,10 @@
+grimblast-git
+insync
+opencode-bin
+plex-media-server
+rose-pine-hyprcursor
+spotify
+wowup-cf-bin
+yay-bin
+yay-bin-debug
+zen-browser-bin

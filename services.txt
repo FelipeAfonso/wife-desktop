@@ -1,0 +1,27 @@
+# System services (sudo systemctl enable <service>)
+getty@.service
+ly.service
+mpd.service
+ollama.service
+OpenLinkHub.service
+plexmediaserver.service
+sshd.service
+systemd-network-generator.service
+systemd-networkd-wait-online.service
+systemd-networkd.service
+systemd-resolved.service
+systemd-timesyncd.service
+mpd.socket
+systemd-networkd.socket
+systemd-userdbd.socket
+remote-fs.target
+fstrim.timer
+
+# User services (systemctl --user enable <service>)
+pipewire-pulse.service
+wireplumber.service
+xdg-user-dirs.service
+p11-kit-server.socket
+pipewire-pulse.socket
+pipewire.socket
+watchman.socket

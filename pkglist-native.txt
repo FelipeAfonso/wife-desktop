@@ -1,0 +1,108 @@
+# Hyprland desktop
+hyprland
+hypridle
+hyprlock
+hyprpicker
+hyprland-guiutils
+waybar
+dunst
+rofi
+swww
+cliphist
+wl-clipboard
+xdg-desktop-portal-gtk
+xdg-desktop-portal-hyprland
+udiskie
+
+# Terminal & shell
+fish
+ghostty
+kitty
+tmux
+eza
+fzf
+zoxide
+ripgrep
+yazi
+htop
+lazygit
+lazydocker
+tree
+wget
+man-db
+
+# Editor
+neovim
+python-pynvim
+luarocks
+
+# Dev tools
+git
+github-cli
+docker
+docker-buildx
+docker-compose
+go
+gleam
+rustup
+deno
+nvm
+yarn
+python-pip
+watchexec
+inotify-tools
+jwt-cli
+
+# Audio
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+wireplumber
+easyeffects
+mpd
+mpc
+rmpc
+kew
+
+# Apps
+discord
+libreoffice-fresh
+gimp
+inkscape
+obs-studio
+qbittorrent
+mpv
+steam
+lutris
+wine
+wine-mono
+winetricks
+reaper
+thunar
+solaar
+qutebrowser
+tiled
+love
+audacity
+
+# Screen capture
+wf-recorder
+
+# Theming & fonts
+papirus-icon-theme
+cantarell-fonts
+adobe-source-code-pro-fonts
+ttf-jetbrains-mono
+ttf-roboto
+
+# Gaming
+rainfrog
+
+# System
+cups
+samba
+smartmontools
+zram-generator
+ly
+pastel

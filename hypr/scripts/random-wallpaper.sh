@@ -2,6 +2,9 @@
 # Pick a random wallpaper and apply it with swww + wallust
 # Used on startup by hyprland.conf
 
+# Seed RANDOM from /dev/urandom so startup doesn't repeat the same pick
+RANDOM=$(od -An -tu4 -N4 /dev/urandom | tr -d ' ')
+
 WALLPAPER_DIR="$HOME/Documents/wallpapers"
 CACHE_FILE="$HOME/.cache/current-wallpaper-path"
 

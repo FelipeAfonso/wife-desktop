@@ -1,7 +1,7 @@
 # wallust configuration
 # See: https://codeberg.org/explosion-mental/wallust
 
-backend = "kmeans"
+backend = "fastresize"
 color_space = "labmixed"
 palette = "dark16"
 check_contrast = true

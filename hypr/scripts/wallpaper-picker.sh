@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Wallpaper picker — browse ~/Documents/wallpapers/ in rofi, apply with swww + wallust
 
+# Seed RANDOM from /dev/urandom for true randomness
+RANDOM=$(od -An -tu4 -N4 /dev/urandom | tr -d ' ')
+
 WALLPAPER_DIR="$HOME/Documents/wallpapers"
 CACHE_FILE="$HOME/.cache/current-wallpaper-path"
 RANDOM_LABEL="Random"

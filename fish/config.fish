@@ -107,6 +107,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
     echo -ne '\e[3 q'
+
+    if not set -q SSH_AGENT_PID; or not kill -0 $SSH_AGENT_PID 2>/dev/null
+        eval (ssh-agent -c)
+    end
 end
 
 if test -d /usr/share/nvm/versions/node

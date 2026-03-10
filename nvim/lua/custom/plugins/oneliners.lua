@@ -19,9 +19,9 @@ return {
       timeout = 200,
       mappings = {
         i = {
-          n = {
+          j = {
             -- These can all also be functions
-            n = '<Esc>',
+            j = '<Esc>',
           },
         },
       },

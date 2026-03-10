@@ -60,6 +60,6 @@ xkb_symbols "basic" {
     key <AC11> { [apostrophe,        quotedbl, dead_acute, dead_grave  ] };
     key <AB03> { [	   c,          C,     ccedilla,             Ccedilla ] };
 
-    include "level3(ralt_switch)"
+    include "level3(lalt_switch)"
 };
 

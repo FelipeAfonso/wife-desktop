@@ -6,8 +6,8 @@ function codesession
     end
 
     set project_name $argv[1]
-    set work_base_dir ~/code/work
-    set personal_dir ~/code/personal/$project_name
+    set work_base_dir ~/media/code/work
+    set personal_dir ~/media/code/personal/$project_name
     
     # Search for project in work subdirectories
     set project_dir (find $work_base_dir -maxdepth 2 -type d -name $project_name)
@@ -17,7 +17,7 @@ function codesession
         if test -d $personal_dir
             set project_dir $personal_dir
         else
-            echo "Project not found in ~/code/work or ~/code/personal/"
+            echo "Project not found in ~/media/code/work or ~/media/code/personal/"
             return 1
         end
     end

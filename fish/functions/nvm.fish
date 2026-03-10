@@ -22,7 +22,7 @@ function nvm-fast
 
 		set -l matched_version (bash -c "source $NVM_DIR/nvm.sh --no-use; nvm_version $target_version")
 
-		if test -z $matched_version -o $matched_version = 'N/A'
+		if test -z "$matched_version" -o "$matched_version" = 'N/A'
 			echo "No version installed for $target_version, run nvm install $target_version"
 			echo "Installed versions: "
 			for file in $brigand_nvm_fish_path/v*
@@ -30,7 +30,7 @@ function nvm-fast
 			end
 		else
 			set -l new_path (string match -ev "$brigand_nvm_fish_path" $PATH)
-			if test $matched_version != 'system'
+			if test "$matched_version" != 'system'
 				set new_path $brigand_nvm_fish_path/$matched_version/bin $new_path
 			end
 			set -gx PATH $new_path

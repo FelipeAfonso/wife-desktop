@@ -6,19 +6,19 @@ function multicode
     end
 
     set session_name "vibes"
-    set work_base_dir ~/code/work
+    set work_base_dir ~/media/code/work
 
     # Resolve all project directories first, bail early on any failure
     set project_dirs
     for project_name in $argv
-        set personal_dir ~/code/personal/$project_name
+        set personal_dir ~/media/code/personal/$project_name
         set project_dir (find $work_base_dir -maxdepth 2 -type d -name $project_name)
 
         if test -z "$project_dir"
             if test -d $personal_dir
                 set project_dir $personal_dir
             else
-                echo "Project '$project_name' not found in ~/code/work or ~/code/personal/"
+                echo "Project '$project_name' not found in ~/media/code/work or ~/media/code/personal/"
                 return 1
             end
         end

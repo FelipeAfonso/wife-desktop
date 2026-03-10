@@ -67,13 +67,13 @@ return {
             -- Whaler configuration
             auto_file_explorer = false,
             directories = {
-              { alias = 'work', path = '~/code/work/liftup' },
-              { alias = 'work', path = '~/code/work/contactai' },
-              { alias = 'pers', path = '~/code/personal/' },
+              { alias = 'work', path = '~/media/code/work/liftup' },
+              { alias = 'work', path = '~/media/code/work/contactai' },
+              { alias = 'pers', path = '~/media/code/personal/' },
               { alias = 'dotf', path = '~/.config/' },
-              { alias = 'liftup-mono', path = '~/code/work/liftup-monorepo/frontend' },
-              { alias = 'liftup-mono', path = '~/code/work/liftup-monorepo/backend' },
-              { alias = 'liftup-mono', path = '~/code/work/liftup-monorepo/packages' },
+              { alias = 'liftup-mono', path = '~/media/code/work/liftup-monorepo/frontend' },
+              { alias = 'liftup-mono', path = '~/media/code/work/liftup-monorepo/backend' },
+              { alias = 'liftup-mono', path = '~/media/code/work/liftup-monorepo/packages' },
             },
             -- You may also add directories that will not be searched for subdirectories
             oneoff_directories = {

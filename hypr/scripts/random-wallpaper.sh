@@ -5,7 +5,7 @@
 # Seed RANDOM from /dev/urandom so startup doesn't repeat the same pick
 RANDOM=$(od -An -tu4 -N4 /dev/urandom | tr -d ' ')
 
-WALLPAPER_DIR="$HOME/Documents/wallpapers"
+WALLPAPER_DIR="$HOME/media/wallpapers"
 CACHE_FILE="$HOME/.cache/current-wallpaper-path"
 
 # Collect image files
@@ -15,7 +15,7 @@ shopt -u nullglob
 
 # Fall back to a default if the directory is empty or missing
 if [ ${#images[@]} -eq 0 ]; then
-    selected="/home/felipe/Documents/autumn.jpg"
+    selected="/home/felipe/media/wallpapers/autumn.jpg"
 else
     selected="${images[RANDOM % ${#images[@]}]}"
 fi

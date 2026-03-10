@@ -4,7 +4,7 @@ set -g -x EDITOR nvim
 set -g -x BROWSER zen-browser
 set -g -x PAGER less
 set -g -x FORCE_COLOR 1
-set -g -x NVM_DIR ~/.nvm
+set -g -x NVM_DIR /usr/share/nvm
 set -g -x LAUNCH_EDITOR launch_editor_script
 # set -g -x REMOTE_VIM_SOCKET /tmp/remote-vim-socket
 
@@ -109,7 +109,9 @@ if status is-interactive
     echo -ne '\e[3 q'
 end
 
-nvm use node
+if test -d /usr/share/nvm/versions/node
+    nvm use node
+end
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"

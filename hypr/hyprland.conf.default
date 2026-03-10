@@ -159,10 +159,10 @@ bind = $mainMod SHIFT, bracketleft, exec, wpctl status | grep -A10 'Sinks:' | gr
 bind = $mainMod SHIFT, bracketright, exec, wpctl status | grep -A10 'Sinks:' | grep -m1 'HDMI/DP' | tr -d \[:punct:\]\[:alpha:\] | awk '{print $2}' | xargs -I % wpctl set-default %
 
 # Move focus with mainMod + arrow keys
-bind = $mainMod, M, movefocus, l
-bind = $mainMod, I, movefocus, r
-bind = $mainMod, E, movefocus, u
-bind = $mainMod, N, movefocus, d
+bind = $mainMod, H, movefocus, l
+bind = $mainMod, L, movefocus, r
+bind = $mainMod, K, movefocus, u
+bind = $mainMod, J, movefocus, d
 
 bind = ALT, down, workspace, -1
 bind = ALT, up, workspace, +1
@@ -170,10 +170,10 @@ bind = ALT, left, movetoworkspace, -1
 bind = ALT, right, movetoworkspace, +1
 
 # Move window across workspace
-bind = $mainMod SHIFT, M, swapwindow, l
-bind = $mainMod SHIFT, I, swapwindow, r
-bind = $mainMod SHIFT, E, swapwindow, u
-bind = $mainMod SHIFT, N, swapwindow, d
+bind = $mainMod SHIFT, H, swapwindow, l
+bind = $mainMod SHIFT, L, swapwindow, r
+bind = $mainMod SHIFT, K, swapwindow, u
+bind = $mainMod SHIFT, J, swapwindow, d
 
 # Switch workspaces with mainMod + [0-9]
 bind = $mainMod, 1, workspace, 1
@@ -215,6 +215,6 @@ exec-once=solaar -w hide
 exec-once=swww-daemon
 exec-once=hypridle
 exec-once=waybar
-exec-once=swww img /home/felipe/Documents/wallpaper.png
+exec-once=swww img /home/felipe/media/wallpapers/wallpaper.png
 exec-once = wl-paste --type text --watch cliphist store #Stores only text data
 exec-once = wl-paste --type image --watch cliphist store #Stores only image data

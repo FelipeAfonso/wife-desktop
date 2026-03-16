@@ -76,6 +76,7 @@ button:hover {
 #cpu,
 #memory,
 #custom-temps,
+#custom-health,
 #pulseaudio,
 #wireplumber,
 #custom-media,
@@ -186,6 +187,16 @@ label:focus {
 
 #mpris.paused,
 #mpris.stopped {
+    background-color: alpha(@background, 0.45);
+    color: @foreground;
+}
+
+#custom-health.active {
+    background-color: @color2;
+    color: @background;
+}
+
+#custom-health.inactive {
     background-color: alpha(@background, 0.45);
     color: @foreground;
 }

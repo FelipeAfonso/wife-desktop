@@ -97,6 +97,7 @@ ttf-jetbrains-mono
 ttf-roboto
 
 # Gaming
+xclip
 rainfrog
 
 # System

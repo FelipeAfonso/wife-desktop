@@ -212,9 +212,9 @@ bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
 exec-once=solaar -w hide
-exec-once=swww-daemon
+exec-once=awww-daemon
 exec-once=hypridle
 exec-once=waybar
-exec-once=swww img /home/felipe/media/wallpapers/wallpaper.png
+exec-once=awww img /home/felipe/media/wallpapers/wallpaper.png
 exec-once = wl-paste --type text --watch cliphist store #Stores only text data
 exec-once = wl-paste --type image --watch cliphist store #Stores only image data

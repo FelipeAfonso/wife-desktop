@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Wallpaper picker — browse ~/media/wallpapers/ in rofi, apply with swww + wallust
+# Wallpaper picker — browse ~/media/wallpapers/ in rofi, apply with awww + wallust
 
 # Seed RANDOM from /dev/urandom for true randomness
 RANDOM=$(od -An -tu4 -N4 /dev/urandom | tr -d ' ')
@@ -56,8 +56,8 @@ fi
 # Save selected wallpaper path for persistence
 echo "$selected" > "$CACHE_FILE"
 
-# Apply wallpaper with swww (smooth transition)
-swww img "$selected" \
+# Apply wallpaper with awww (smooth transition)
+awww img "$selected" \
     --transition-type grow \
     --transition-pos "$(hyprctl cursorpos)" \
     --transition-duration 2 \

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pick a random wallpaper and apply it with swww + wallust
+# Pick a random wallpaper and apply it with awww + wallust
 # Used on startup by hyprland.conf
 
 # Seed RANDOM from /dev/urandom so startup doesn't repeat the same pick
@@ -24,7 +24,7 @@ fi
 echo "$selected" > "$CACHE_FILE"
 
 # Apply wallpaper
-swww img "$selected" \
+awww img "$selected" \
     --transition-type grow \
     --transition-pos "0.5 0.5" \
     --transition-duration 2 \

@@ -12,6 +12,7 @@ status --is-interactive
 #source ~/.config/fish/config.fish
 
 alias vim="nvim"
+alias orchid="tmux-orchid"
 alias ls="eza -l"
 alias cd="z"
 alias tmw="tmux splitw -h -l 100 && note"

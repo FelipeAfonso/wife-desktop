@@ -18,14 +18,14 @@ separator_height = 2
 padding = 8
 horizontal_padding = 11
 frame_width = 6
-frame_color = "#171619"
-separator_color = "#F0E9D4"
+frame_color = "#0D0F11"
+separator_color = "#ECEDED"
 
 font = Cantarell 14
 
 line_height = 0
 markup = full
-format = "<span size='x-large' font_desc='Cantarell 16' weight='bold' foreground='#F0E9D4'>%s</span>\n<span font_desc='Cantarell 14' weight='bold'>%b</span>"
+format = "<span size='x-large' font_desc='Cantarell 16' weight='bold' foreground='#ECEDED'>%s</span>\n<span font_desc='Cantarell 14' weight='bold'>%b</span>"
 alignment = left
 
 idle_threshold = 300
@@ -53,18 +53,18 @@ mouse_right_click = close_all
 
 [urgency_low]
 timeout = 3
-background = "#171619"
-foreground = "#F0E9D4"
+background = "#0D0F11"
+foreground = "#ECEDED"
 
 [urgency_normal]
 timeout = 6
-background = "#414044"
-foreground = "#F0E9D4"
+background = "#373A3C"
+foreground = "#ECEDED"
 
 [urgency_critical]
 timeout = 20
-background = "#6E7252"
-foreground = "#F0E9D4"
+background = "#7A6A5F"
+foreground = "#ECEDED"
 
 [play_sound]
     summary = "*"

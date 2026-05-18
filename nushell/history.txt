@@ -1,0 +1,4 @@
+chsh nu
+chsh nushell
+chsh 
+vim

@@ -34,3 +34,6 @@ opencode.target = "~/.config/opencode/themes/pywal.json"
 
 tmux.template = "tmux-colors.conf"
 tmux.target = "~/.config/tmux/tmux-colors.conf"
+
+zsh.template = "zsh-colors.sh"
+zsh.target = "~/.config/zsh/zsh-colors.sh"

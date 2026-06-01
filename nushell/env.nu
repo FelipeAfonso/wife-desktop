@@ -1,18 +1,22 @@
-# env.nu
-#
-# Installed by:
-# version = "0.112.2"
-#
-# Previously, environment variables were typically configured in `env.nu`.
-# In general, most configuration can and should be performed in `config.nu`
-# or one of the autoload directories.
-#
-# This file is generated for backwards compatibility for now.
-# It is loaded before config.nu and login.nu
-#
-# See https://www.nushell.sh/book/configuration.html
-#
-# Also see `help config env` for more options.
-#
-# You can remove these comments if you want or leave
-# them for future reference.
+$env.FZF_DEFAULT_OPTS = "--bind ctrl-s:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"
+$env.ENABLE_INCREMENTAL_TUI = "true"
+$env.EDITOR = "nvim"
+$env.BROWSER = "zen-browser"
+$env.PAGER = "less"
+$env.FORCE_COLOR = "1"
+$env.LAUNCH_EDITOR = "launch_editor_script"
+
+$env.BUN_INSTALL = $"($env.HOME)/.bun"
+$env.PNPM_HOME = $"($env.HOME)/.local/share/pnpm"
+
+$env.PATH = (
+    $env.PATH
+    | prepend $"($env.HOME)/.local/bin"
+    | prepend $env.PNPM_HOME
+    | prepend $"($env.BUN_INSTALL)/bin"
+    | append $"($env.HOME)/bin"
+    | append $"($env.HOME)/.turso"
+    | append $"($env.HOME)/go/bin/"
+    | append $"($env.HOME)/.fly/bin"
+    | uniq
+)

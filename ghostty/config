@@ -1,5 +1,5 @@
 window-decoration = false
-command = /usr/bin/nu -l -c "tmux attach || tmux"
+command = /usr/bin/nu -l -c "tmux new-session -A -s main"
 font-family = "CaskaydiaCove Nerd Font"
 font-feature = -calt
 font-size = 20

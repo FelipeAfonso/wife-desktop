@@ -38,17 +38,22 @@ codesession() {
     dev_command="npm run dev"
   fi
 
-  tmux new-session -d -s "$project_name" -c "$project_dir" -n vim
-  tmux send-keys -t "$project_name:vim" "nvim" Enter
+  # Run programs as the pane's startup command instead of send-keys: zsh's
+  # startup (starship, plugins, vi-mode) isn't ready when send-keys fires, so
+  # the keystrokes get dropped. `exec $SHELL` keeps an interactive shell after
+  # the program exits, preserving the old behavior.
+  local shell="${SHELL:-zsh}"
+
+  tmux new-session -d -s "$project_name" -c "$project_dir" -n vim "nvim; exec $shell"
 
   tmux new-window -t "$project_name" -c "$project_dir" -n term
 
-  tmux new-window -t "$project_name" -c "$project_dir" -n lazygit
-  tmux send-keys -t "$project_name:lazygit" "lazygit" Enter
+  tmux new-window -t "$project_name" -c "$project_dir" -n lazygit "lazygit; exec $shell"
 
-  tmux new-window -t "$project_name" -c "$project_dir" -n console
   if [[ -n "$dev_command" ]]; then
-    tmux send-keys -t "$project_name:console" "$dev_command" Enter
+    tmux new-window -t "$project_name" -c "$project_dir" -n console "$dev_command; exec $shell"
+  else
+    tmux new-window -t "$project_name" -c "$project_dir" -n console
   fi
 
   tmux select-window -t "$project_name:vim"

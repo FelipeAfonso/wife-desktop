@@ -46,18 +46,19 @@ tur() { turbo run dev --filter="$1" }
 turp() { turbo run dev:prod --filter="$1" }
 tms() { tmux new -s "$1" "tmux splitw -h -l 100 && note" }
 
-# lazygit that follows repo/worktree switches: on exit, lazygit writes its
-# final directory to LAZYGIT_NEW_DIR_FILE and we cd there. lazygit won't
-# create the parent dir itself, hence the mkdir.
-lg() {
+# Shadow lazygit so the shell follows repo/worktree switches: on exit,
+# lazygit writes its final directory to LAZYGIT_NEW_DIR_FILE and we cd
+# there. lazygit won't create the parent dir itself, hence the mkdir.
+lazygit() {
   export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
   mkdir -p ~/.lazygit
-  lazygit "$@"
+  command lazygit "$@"
   if [ -f "$LAZYGIT_NEW_DIR_FILE" ]; then
     cd "$(cat "$LAZYGIT_NEW_DIR_FILE")" || return
     rm -f "$LAZYGIT_NEW_DIR_FILE" > /dev/null
   fi
 }
+alias lg="lazygit"
 
 # --- Autoloaded functions ---
 fpath=("$ZDOTDIR/functions" $fpath)

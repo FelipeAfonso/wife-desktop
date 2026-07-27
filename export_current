@@ -1,3 +1,6 @@
 #!/bin/fish
-cp -rf ./ghostty ./dunst ./fish ./hypr ./nvim ./opencode ./ranger ./rofi ./solaar ./tmux ./waybar ./wallust ./wezterm ./xkb ./zsh ./starship -t ~/.config/
+cp -rf ./ghostty ./dunst ./fish ./hypr ./nvim ./opencode ./ranger ./rofi ./solaar ./tmux ./waybar ./wallust ./wezterm ./xkb ./zsh ./starship ./lazygit -t ~/.config/
 cp -f ./zsh/.zshenv ~/.zshenv
+mkdir -p ~/.local/bin
+cp -f ./bin/* ~/.local/bin/
+chmod +x ~/.local/bin/review ~/.local/bin/unreview

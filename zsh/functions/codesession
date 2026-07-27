@@ -48,7 +48,11 @@ codesession() {
 
   tmux new-window -t "$project_name" -c "$project_dir" -n term
 
-  tmux new-window -t "$project_name" -c "$project_dir" -n lazygit "lazygit; exec $shell"
+  # Same cd-on-exit trick as the lg() function in .zshrc, inlined because tmux
+  # runs window commands via `sh -c` where shell functions aren't available.
+  # The exec'd shell inherits the cwd lazygit ended up in (repo/worktree).
+  local lg_cmd='export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir; mkdir -p ~/.lazygit; lazygit; if [ -f "$LAZYGIT_NEW_DIR_FILE" ]; then cd "$(cat "$LAZYGIT_NEW_DIR_FILE")"; rm -f "$LAZYGIT_NEW_DIR_FILE"; fi; exec '"$shell"
+  tmux new-window -t "$project_name" -c "$project_dir" -n lazygit "$lg_cmd"
 
   if [[ -n "$dev_command" ]]; then
     tmux new-window -t "$project_name" -c "$project_dir" -n console "$dev_command; exec $shell"

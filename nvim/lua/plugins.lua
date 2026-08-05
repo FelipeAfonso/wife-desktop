@@ -155,7 +155,7 @@ map('n', '<leader>pn', function() pick.files(nil, { source = { cwd = vim.fn.stdp
 
 -- ── treesitter (main branch) ────────────────────────────────────────────────
 require('nvim-treesitter').install {
-  'c', 'cpp', 'css', 'go', 'html', 'http', 'javascript', 'json', 'lua',
+  'astro', 'c', 'cpp', 'css', 'go', 'html', 'http', 'javascript', 'json', 'lua',
   'markdown', 'markdown_inline', 'odin', 'python', 'rust', 'svelte', 'tsx',
   'typescript', 'vim', 'vimdoc',
 }
@@ -252,6 +252,7 @@ require('conform').setup {
     javascriptreact = { 'prettierd', 'eslint_d', lsp_format = 'never' },
     typescriptreact = { 'prettierd', 'eslint_d', lsp_format = 'never' },
     svelte = { 'prettierd', 'prettier', stop_after_first = true, lsp_format = 'never' },
+    odin = { 'odinfmt' },
     templ = { 'templ', 'prettier' },
     json = { 'prettier', 'jq', stop_after_first = true },
     jsonc = { 'prettier', stop_after_first = true },

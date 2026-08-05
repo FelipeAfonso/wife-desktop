@@ -19,7 +19,7 @@ vim.lsp.config('ts_ls', {
   },
 })
 
-vim.lsp.enable { 'lua_ls', 'gopls', 'rust_analyzer', 'ts_ls' }
+vim.lsp.enable { 'lua_ls', 'gopls', 'rust_analyzer', 'ts_ls', 'svelte', 'astro', 'ols', 'pyright' }
 
 vim.diagnostic.config {
   severity_sort = true,

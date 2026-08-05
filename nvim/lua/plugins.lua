@@ -27,6 +27,70 @@ require('mini.extra').setup()
 require('mini.pick').setup()
 vim.ui.select = MiniPick.ui_select
 
+-- Auto preview beside the picker while navigating, when there's enough room.
+-- mini.pick emits no event on item navigation, so a timer polls the current
+-- match; rendering reuses MiniPick.default_preview into a side float.
+local pick_preview = {}
+
+local function pick_preview_close()
+  if pick_preview.timer then
+    pick_preview.timer:stop()
+    pick_preview.timer:close()
+  end
+  if pick_preview.win and vim.api.nvim_win_is_valid(pick_preview.win) then
+    vim.api.nvim_win_close(pick_preview.win, true)
+  end
+  if pick_preview.buf and vim.api.nvim_buf_is_valid(pick_preview.buf) then
+    vim.api.nvim_buf_delete(pick_preview.buf, { force = true })
+  end
+  pick_preview = {}
+end
+
+local function pick_preview_win_config()
+  local main_win = MiniPick.get_picker_state().windows.main
+  if not vim.api.nvim_win_is_valid(main_win) then return nil end
+  local pos = vim.api.nvim_win_get_position(main_win)
+  local col = pos[2] + vim.api.nvim_win_get_width(main_win) + 2
+  local width = vim.o.columns - col - 1
+  if width < 40 then return nil end -- not enough space, keep <Tab> toggle only
+  return {
+    relative = 'editor',
+    anchor = 'NW',
+    row = pos[1],
+    col = col,
+    width = width,
+    height = vim.api.nvim_win_get_height(main_win),
+    border = 'single',
+    style = 'minimal',
+    focusable = false,
+  }
+end
+
+local function pick_preview_update()
+  local ok, matches = pcall(MiniPick.get_picker_matches)
+  if not ok or matches == nil or matches.current == nil then return end
+  if matches.current == pick_preview.last then return end
+  if pick_preview.win == nil or not vim.api.nvim_win_is_valid(pick_preview.win) then
+    local win_config = pick_preview_win_config()
+    if win_config == nil then return end
+    pick_preview.buf = pick_preview.buf or vim.api.nvim_create_buf(false, true)
+    pick_preview.win = vim.api.nvim_open_win(pick_preview.buf, false, win_config)
+    vim.wo[pick_preview.win].winhighlight = 'NormalFloat:MiniPickNormal,FloatBorder:MiniPickBorder'
+  end
+  pick_preview.last = matches.current
+  pcall(MiniPick.default_preview, pick_preview.buf, matches.current)
+end
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'MiniPickStart',
+  group = vim.api.nvim_create_augroup('pick-auto-preview', { clear = true }),
+  callback = function()
+    pick_preview.timer = vim.uv.new_timer()
+    pick_preview.timer:start(50, 80, vim.schedule_wrap(pick_preview_update))
+  end,
+})
+vim.api.nvim_create_autocmd('User', { pattern = 'MiniPickStop', group = 'pick-auto-preview', callback = pick_preview_close })
+
 local pick = MiniPick.builtin
 local extra = MiniExtra.pickers
 

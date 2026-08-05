@@ -125,6 +125,9 @@ require('oil').setup {
     ['-'] = 'actions.parent',
     ['g.'] = 'actions.toggle_hidden',
   },
+  -- oil ≥ 0.11 defers to vim.o.winborder (unset here), which loses the border;
+  -- with a transparent background that leaves no division from the buffer below
+  float = { border = 'rounded' },
   view_options = { show_hidden = true },
 }
 map('n', '<leader>t', function() require('oil').toggle_float() end)

@@ -1,64 +1,59 @@
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<leader>c', '<cmd>noh<cr>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+-- Diagnostics ([d / ]d navigation are defaults since 0.11)
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic quickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-j>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-h>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- Terminal
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
 })
 
--- vim.keymap.set('n', '<leader>ll', '"ayiwoconsole.log(`🚀 ~ <C-R>a:`, <C-R>a)<Esc>')
--- vim.keymap.set('n', '<leader>ld', '"ayiwodev_log(`<C-R>a:`, <C-R>a)<Esc>')
--- vim.keymap.set('n', '<leader>ls', '"ayiwostatic_log(`<C-R>a:`, <C-R>a)<Esc>')
--- vim.keymap.set('n', '<leader>le', '"ayiwolog_error(`<C-R>a:`, <C-R>a)<Esc>')
--- vim.keymap.set('n', '<leader>ln', '"ayiwonet_error(`<C-R>a:`, <C-R>a)<Esc>')
+-- Buffers
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>')
 vim.keymap.set('n', '<leader>h', '<C-6>')
+
+-- Black-hole deletes
 vim.keymap.set('v', 'd', '"_d')
 vim.keymap.set('n', 'dd', '"_dd')
-vim.keymap.set('n', '<leader>c', '<cmd>noh<cr>')
+
+-- Ctrl-S is the window prefix; Ctrl-W closes
 vim.keymap.set('n', '<C-s>', '<C-W>')
 vim.keymap.set({ 'n', 'v' }, '<C-W>', '<cmd>q<cr>')
+
+-- Increment (tmux.nvim overrides <C-l> in normal mode for pane navigation,
+-- so this effectively lives in v/x/o — same as the old config)
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, '<C-l>', '<C-a>')
 vim.keymap.set({ 'n', 'v' }, 'g<C-l>', 'g<C-a>')
 
+-- Move visual selection
 vim.keymap.set('v', 'j', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'k', ":m '<-2<CR>gv=gv")
 
+-- Strip surrounding tag chars
 vim.keymap.set('i', '<C-x>', '<C-c>f<lt>vf>x')
 vim.keymap.set('n', '<C-x>', 'f<lt>vf>x')
 
+-- Motions
 vim.keymap.set({ 'n', 'v' }, 'J', '0')
 vim.keymap.set({ 'n', 'v' }, ';', '$')
 
+-- jj to escape (replaces better-escape.nvim)
+vim.keymap.set('i', 'jj', '<Esc>')
+
 vim.keymap.set('n', '<C-T>t', function()
   vim.cmd 'LspRestart'
-  vim.cmd 'LspStart'
 end)
 
-vim.keymap.del('n', '<C-W><C-D>')
-vim.keymap.del('n', '<C-W>d')
+-- Drop 0.11+ default diagnostic window maps that collide with the <C-W> habit
+pcall(vim.keymap.del, 'n', '<C-W><C-D>')
+pcall(vim.keymap.del, 'n', '<C-W>d')
+
+-- vim: ts=2 sts=2 sw=2 et

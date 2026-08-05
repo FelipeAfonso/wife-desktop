@@ -11,6 +11,10 @@ alpha = 100
 hyprland.template = "hyprland-colors.conf"
 hyprland.target = "~/.config/hypr/hyprland-colors.conf"
 
+# Lua variant for the new (0.55+) hyprland.lua config format
+hyprland_lua.template = "hyprland-colors.lua"
+hyprland_lua.target = "~/.config/hypr/hyprland-colors.lua"
+
 hyprlock.template = "hyprlock-colors.conf"
 hyprlock.target = "~/.config/hypr/hyprlock-colors.conf"
 

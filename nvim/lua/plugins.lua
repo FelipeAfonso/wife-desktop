@@ -90,6 +90,17 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 vim.api.nvim_create_autocmd('User', { pattern = 'MiniPickStop', group = 'pick-auto-preview', callback = pick_preview_close })
+vim.api.nvim_create_autocmd('VimResized', {
+  group = 'pick-auto-preview',
+  callback = function()
+    -- drop the stale float; the timer recreates it with fresh geometry (or
+    -- not at all, if the resize left too little room)
+    if pick_preview.win and vim.api.nvim_win_is_valid(pick_preview.win) then
+      vim.api.nvim_win_close(pick_preview.win, true)
+    end
+    pick_preview.win, pick_preview.last = nil, nil
+  end,
+})
 
 local pick = MiniPick.builtin
 local extra = MiniExtra.pickers
@@ -154,19 +165,33 @@ map('n', '<leader>gb', function() extra.git_branches() end, { desc = 'Git branch
 map('n', '<leader>pn', function() pick.files(nil, { source = { cwd = vim.fn.stdpath 'config' } }) end, { desc = 'Search neovim config' })
 
 -- ── treesitter (main branch) ────────────────────────────────────────────────
-require('nvim-treesitter').install {
-  'astro', 'c', 'cpp', 'css', 'go', 'html', 'http', 'javascript', 'json', 'lua',
-  'markdown', 'markdown_inline', 'odin', 'python', 'rust', 'svelte', 'tsx',
-  'typescript', 'vim', 'vimdoc',
-}
+local function ts_try_start(buf)
+  local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+  if lang and vim.treesitter.language.add(lang) then
+    vim.treesitter.start(buf, lang)
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end
+end
+
+require('nvim-treesitter')
+  .install({
+    'astro', 'c', 'cpp', 'css', 'go', 'html', 'http', 'javascript', 'json', 'lua',
+    'markdown', 'markdown_inline', 'odin', 'python', 'rust', 'svelte', 'tsx',
+    'typescript', 'vim', 'vimdoc',
+  })
+  :await(function()
+    -- catch buffers whose FileType fired before the async install finished
+    vim.schedule(function()
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) then pcall(ts_try_start, buf) end
+      end
+    end)
+  end)
+
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('treesitter-start', { clear = true }),
   callback = function(args)
-    local lang = vim.treesitter.language.get_lang(args.match)
-    if lang and vim.treesitter.language.add(lang) then
-      vim.treesitter.start(args.buf, lang)
-      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-    end
+    ts_try_start(args.buf)
   end,
 })
 

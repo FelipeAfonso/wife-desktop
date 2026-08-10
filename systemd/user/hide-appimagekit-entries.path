@@ -1,5 +1,5 @@
 [Unit]
-Description=Watch for regenerated T3 Code desktop entries
+Description=Watch for regenerated AppImage desktop entries
 
 [Path]
 PathModified=%h/.local/share/applications

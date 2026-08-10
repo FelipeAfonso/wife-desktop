@@ -1,0 +1,6 @@
+[Unit]
+Description=Hide AppImageLauncher-generated desktop entries
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/hide-appimagekit-entries

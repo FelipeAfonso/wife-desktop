@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# AppImageLauncher regenerates its T3 Code desktop entry on every nightly
-# update, without the --password-store flag that sign-in needs. Hide those
-# entries so launchers (rofi drun) only show the t3code-keyring entry.
+# AppImageLauncher regenerates desktop entries on every app update, without
+# the custom flags our stable entries carry (t3code-keyring.desktop,
+# awakened-poe-trade.desktop). Hide the generated entries so launchers
+# (rofi drun) only show the stable ones.
 # NoDisplay must live in the [Desktop Entry] section, so insert it right
 # after that header — appending would land it in the trailing
 # [Desktop Action ...] section where it has no effect.
 shopt -s nullglob
-for f in "$HOME"/.local/share/applications/appimagekit_*T3_Code*.desktop; do
+for f in "$HOME"/.local/share/applications/appimagekit_*{T3_Code,Awakened_PoE_Trade}*.desktop; do
   sed -n '/^\[Desktop Entry\]/,/^\[/p' "$f" | grep -q '^NoDisplay=true' ||
     sed -i '/^\[Desktop Entry\]/a NoDisplay=true' "$f"
 done

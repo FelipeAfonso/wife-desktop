@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Launch the newest Awakened PoE Trade AppImage without the in-game overlay.
+# AppImageLauncher's generated desktop entry is regenerated on every update
+# (dropping any custom flags), so the stable awakened-poe-trade.desktop entry
+# points here instead.
+set -euo pipefail
+
+appimage="$(ls -t "$HOME"/Applications/Awakened-PoE-Trade-*.AppImage 2>/dev/null | head -n1)"
+if [[ -z "${appimage}" ]]; then
+  notify-send "Awakened PoE Trade" "No Awakened-PoE-Trade AppImage found in ~/Applications" 2>/dev/null || true
+  echo "No Awakened-PoE-Trade AppImage found in ~/Applications" >&2
+  exit 1
+fi
+
+exec "${appimage}" --no-overlay "$@"

@@ -1,6 +1,0 @@
-[Unit]
-Description=Hide AppImageLauncher-generated T3 Code desktop entries
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/t3code-hide-appimagekit-entry

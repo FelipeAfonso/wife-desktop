@@ -1,6 +1,4 @@
 -- Hyprland Lua config (new format, Hyprland >= 0.55)
--- Converted from hyprland.conf; that file is kept as a fallback but is
--- ignored while this one exists.
 -- Refer to https://wiki.hypr.land/Configuring/Start/
 
 ------------------
@@ -124,7 +122,6 @@ hl.animation({ leaf = "workspaces",  enabled = true, speed = 6,  bezier = "defau
 
 local mainMod = "SUPER"
 
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exit())
@@ -206,7 +203,6 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("solaar -w hide")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("waybar")
     hl.exec_cmd("dunst")
@@ -216,7 +212,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 15 && wpctl status | grep -A10 'Sources:' | grep -m1 'Volt' | tr -d '[:punct:][:alpha:]' | awk '{print $2}' | xargs -I % wpctl set-volume % 2")
     -- Pick a random wallpaper on startup and apply full theme
     hl.exec_cmd("sleep 15 && ~/.config/hypr/scripts/random-wallpaper.sh")
-    hl.exec_cmd("hypridle")
 end)
 
 -- NOTE: openwhispr-binds.conf (hyprlang, managed by OpenWhispr) is no longer

@@ -1,0 +1,20 @@
+[Unit]
+Description=T3 Code server
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=%h
+Environment=T3CODE_HOME=%h/.t3
+Environment=T3_BOOT_SERVICE_UNIT=t3code.service
+# bunx resolves t3 itself — a hardcoded /tmp/bunx-* cache path dies on reboot
+# because /tmp is a tmpfs.
+ExecStart=/usr/bin/bunx t3@latest serve
+Restart=always
+RestartSec=5
+StandardOutput=append:%h/.t3/userdata/logs/boot-service.log
+StandardError=append:%h/.t3/userdata/logs/boot-service.log
+
+[Install]
+WantedBy=default.target

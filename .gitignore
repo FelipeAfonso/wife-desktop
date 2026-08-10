@@ -4,8 +4,8 @@ nvim/doc/
 # Machine state — never commit
 zsh/.zsh_history
 zsh/.zcompdump*
+zsh/.secrets.env
 *.zwc
 .DS_Store
 dunst/notification.log
 hypr/*.mkv
-fish/

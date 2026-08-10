@@ -1,6 +1,14 @@
 #!/bin/bash
-cpu=$(awk '{printf "%d", $1/1000}' /sys/class/hwmon/hwmon2/temp1_input)
-gpu=$(awk '{printf "%d", $1/1000}' /sys/class/hwmon/hwmon5/temp1_input)
+# hwmon indices shuffle across boots — resolve them by chip name.
+for h in /sys/class/hwmon/hwmon*; do
+  case "$(cat "$h/name")" in
+    k10temp) cpu_hwmon=$h ;;
+    amdgpu) gpu_hwmon=$h ;;
+  esac
+done
+
+cpu=$(awk '{printf "%d", $1/1000}' "$cpu_hwmon/temp1_input")
+gpu=$(awk '{printf "%d", $1/1000}' "$gpu_hwmon/temp1_input")
 
 if [ "$cpu" -gt 90 ] || [ "$gpu" -gt 90 ]; then
   cls="critical"
@@ -8,4 +16,4 @@ else
   cls="normal"
 fi
 
-echo '{"text":" CPU '$cpu'°C GPU '$gpu'°C","tooltip":"CPU (Tctl): '$cpu'°C\rGPU (edge): '$gpu'°C","class":"'$cls'"}'
+echo '{"text":" CPU '$cpu'°C GPU '$gpu'°C","tooltip":"CPU (Tctl): '$cpu'°C\rGPU (edge): '$gpu'°C","class":"'$cls'"}'

@@ -1,15 +1,26 @@
 #!/bin/sh
-# Apply this repo's configs to the machine.
+# Apply this repo's configs to the machine. /etc files and services are not
+# touched — see README for those steps.
 set -eu
 
-dirs="ghostty dunst hypr nvim opencode rofi tmux waybar wallust xkb zsh starship lazygit"
+dirs="ghostty dunst hypr nvim opencode rofi tmux waybar wallust xkb zsh starship lazygit btop MangoHud git gtk-3.0 gtk-4.0"
+files="mimeapps.list user-dirs.dirs"
 
 for d in $dirs; do
   cp -rf "./$d" "$HOME/.config/"
+done
+
+for f in $files; do
+  cp -f "./$f" "$HOME/.config/"
 done
 
 cp -f ./zsh/.zshenv "$HOME/.zshenv"
 
 mkdir -p "$HOME/.local/bin"
 cp -f ./bin/* "$HOME/.local/bin/"
-chmod +x "$HOME/.local/bin/review" "$HOME/.local/bin/unreview"
+for s in ./bin/*; do
+  chmod +x "$HOME/.local/bin/$(basename "$s")"
+done
+
+mkdir -p "$HOME/.config/systemd/user"
+cp -f ./systemd/user/* "$HOME/.config/systemd/user/"

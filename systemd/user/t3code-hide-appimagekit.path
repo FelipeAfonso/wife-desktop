@@ -1,0 +1,8 @@
+[Unit]
+Description=Watch for regenerated T3 Code desktop entries
+
+[Path]
+PathModified=%h/.local/share/applications
+
+[Install]
+WantedBy=default.target

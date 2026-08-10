@@ -6,7 +6,6 @@ export BROWSER=zen-browser
 export PAGER=less
 export FORCE_COLOR=1
 export NVM_DIR=/usr/share/nvm
-export LAUNCH_EDITOR=launch_editor_script
 export BUN_INSTALL="$HOME/.bun"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 
@@ -34,7 +33,6 @@ setopt HIST_IGNORE_SPACE
 
 # --- Aliases ---
 alias vim="nvim"
-alias orchid="tmux-orchid"
 alias ls="eza -l"
 alias tmw="tmux splitw -h -l 100 && note"
 alias svim="sudo -E -s nvim"
@@ -105,13 +103,17 @@ eval "$(fzf --zsh)"
 alias cd="z"
 
 # --- Plugins ---
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] && \
-  source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+for p in zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search; do
+  [[ -f "/usr/share/zsh/plugins/$p/$p.zsh" ]] && source "/usr/share/zsh/plugins/$p/$p.zsh"
+done
 
 # --- Wallust colors (dynamic theming) ---
 [[ -f "$ZDOTDIR/zsh-colors.sh" ]] && source "$ZDOTDIR/zsh-colors.sh"
+
+# --- Secrets (written by secrets-pull from the private secrets repo) ---
+if [[ -f "$ZDOTDIR/.secrets.env" ]]; then
+  set -a; source "$ZDOTDIR/.secrets.env"; set +a
+fi
 
 # --- Prompt ---
 eval "$(starship init zsh)"

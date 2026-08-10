@@ -1,4 +1,4 @@
-# dot-files
+# personal-desktop
 
 Config for **miskatonic** — the CachyOS (Arch) desktop. Arch is imperative,
 so this repo can't *be* the machine the way [personal-server](https://github.com/FelipeAfonso/personal-server)
@@ -54,8 +54,8 @@ MangoHud/ xkb/                    custom XKB layout "cust"
    carry it):
 
    ```sh
-   git clone https://github.com/FelipeAfonso/dot-files ~/code/personal/dot-files
-   cd ~/code/personal/dot-files
+   git clone https://github.com/FelipeAfonso/personal-desktop ~/code/personal/personal-desktop
+   cd ~/code/personal/personal-desktop
    sudo pacman -S --needed - < pkglist-native.txt
    paru -S --needed - < pkglist-aur.txt
    ```

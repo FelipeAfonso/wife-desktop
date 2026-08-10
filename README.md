@@ -95,6 +95,7 @@ decrypts every host file in the secrets repo. Generate it once
 not a git repo, and restore it on any machine that needs to read secrets.
 
 ```sh
+go install github.com/Mic92/ssh-to-age/cmd/ssh-to-age@latest  # not packaged for Arch
 git clone git@github.com:FelipeAfonso/secrets.git ~/code/personal/secrets
 sops ~/code/personal/secrets/miskatonic.yaml   # create/edit (encrypts on save)
 secrets-pull                                   # → ~/.config/zsh/.secrets.env

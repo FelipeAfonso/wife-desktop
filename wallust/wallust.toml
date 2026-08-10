@@ -15,9 +15,6 @@ hyprland.target = "~/.config/hypr/hyprland-colors.conf"
 hyprland_lua.template = "hyprland-colors.lua"
 hyprland_lua.target = "~/.config/hypr/hyprland-colors.lua"
 
-hyprlock.template = "hyprlock-colors.conf"
-hyprlock.target = "~/.config/hypr/hyprlock-colors.conf"
-
 waybar.template = "waybar-colors.css"
 waybar.target = "~/.config/waybar/colors.css"
 

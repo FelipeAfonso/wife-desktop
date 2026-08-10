@@ -1,6 +1,15 @@
-#!/bin/fish
-cp -rf ./ghostty ./dunst ./fish ./hypr ./nvim ./opencode ./ranger ./rofi ./solaar ./tmux ./waybar ./wallust ./wezterm ./xkb ./zsh ./starship ./lazygit -t ~/.config/
-cp -f ./zsh/.zshenv ~/.zshenv
-mkdir -p ~/.local/bin
-cp -f ./bin/* ~/.local/bin/
-chmod +x ~/.local/bin/review ~/.local/bin/unreview
+#!/bin/sh
+# Apply this repo's configs to the machine.
+set -eu
+
+dirs="ghostty dunst hypr nvim opencode rofi tmux waybar wallust xkb zsh starship lazygit"
+
+for d in $dirs; do
+  cp -rf "./$d" "$HOME/.config/"
+done
+
+cp -f ./zsh/.zshenv "$HOME/.zshenv"
+
+mkdir -p "$HOME/.local/bin"
+cp -f ./bin/* "$HOME/.local/bin/"
+chmod +x "$HOME/.local/bin/review" "$HOME/.local/bin/unreview"

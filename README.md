@@ -7,7 +7,8 @@ packages, enabled services) and replays it: the deploy commands are
 `./export_current` and the install runbook below.
 
 Fleet canon: `rlyeh` (server, [personal-server](https://github.com/FelipeAfonso/personal-server)) ·
-`miskatonic` (this desktop) · MacBook TBD.
+`miskatonic` (this desktop) ·
+`yuggoth` (MacBook, [personal-laptop](https://github.com/FelipeAfonso/personal-laptop)).
 
 ```
 import_current / export_current   copy-based sync: machine → repo / repo → machine

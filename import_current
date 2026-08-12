@@ -4,7 +4,7 @@ set -eu
 
 dirs="ghostty dunst hypr nvim opencode rofi tmux waybar wallust xkb zsh starship lazygit btop MangoHud git gtk-3.0 gtk-4.0"
 files="mimeapps.list user-dirs.dirs"
-scripts="review unreview secrets-pull t3code t3code-hide-appimagekit-entry t3-vi"
+scripts="review unreview secrets-pull t3code t3code-hide-appimagekit-entry t3-rebuild-node-pty.sh t3-vi"
 
 for d in $dirs; do
   rm -rf "./$d"
@@ -40,6 +40,13 @@ done
 # Custom user units only — enable-state symlinks (*.wants) stay out
 mkdir -p ./systemd/user
 cp -f "$HOME"/.config/systemd/user/*.service "$HOME"/.config/systemd/user/*.path ./systemd/user/
+# Unit drop-in dirs (*.service.d) too — t3code relies on them for node-pty
+# rebuilds and the provider PATH
+for d in "$HOME"/.config/systemd/user/*.service.d; do
+  [ -d "$d" ] || continue
+  rm -rf "./systemd/user/$(basename "$d")"
+  cp -r "$d" ./systemd/user/
+done
 
 # Package + service reality
 pacman -Qqen > pkglist-native.txt

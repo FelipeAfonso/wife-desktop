@@ -23,4 +23,5 @@ for s in ./bin/*; do
 done
 
 mkdir -p "$HOME/.config/systemd/user"
-cp -f ./systemd/user/* "$HOME/.config/systemd/user/"
+# -r: unit drop-in dirs (*.service.d) ship alongside the flat unit files
+cp -rf ./systemd/user/* "$HOME/.config/systemd/user/"

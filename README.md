@@ -17,7 +17,7 @@ services.txt                      enabled systemd units, system + user (regenera
 setup-storage.sh                  fstab entry + ~/media symlink for the 4 TB NTFS drive
 etc/                              hand-edits under /etc: sddm autologin+theme, swappiness, paru
 bin/                              ~/.local/bin: review, unreview, secrets-pull, t3code launchers
-systemd/user/                     custom user units: t3code server, appimagekit entry hider
+systemd/user/                     custom user units: t3code server (+ its .service.d drop-ins), appimagekit entry hider
 hypr/ waybar/ dunst/ rofi/        Hyprland desktop (hyprland.lua — native Lua config, ≥0.55)
 wallust/                          theming hub: wallpaper → wallust → every app's colors
 ghostty/ tmux/ zsh/ starship/     terminal stack (ghostty auto-attaches tmux session "main")
@@ -71,17 +71,26 @@ MangoHud/ xkb/                    custom XKB layout "cust"
    sudo cp etc/paru.conf /etc/paru.conf
    ```
 
-4. Storage: plug the 4 TB NTFS drive, `sudo ./setup-storage.sh` (verify the
+4. Agent CLIs — bun globals, not pacman, so the app.t3.codes update button
+   can update them without root (t3 only knows npm/bun/pnpm/brew/native
+   installs; `systemd/user/t3code.service.d/20-provider-path.conf` puts
+   `~/.bun/bin` on the service's PATH):
+
+   ```sh
+   bun i -g @anthropic-ai/claude-code @openai/codex opencode-ai
+   ```
+
+5. Storage: plug the 4 TB NTFS drive, `sudo ./setup-storage.sh` (verify the
    UUID at the top of the script against `lsblk -f` first). Wallpapers live
    at `~/media/wallpapers`, so theming half-works until this is done.
-5. tmux plugins: `git clone https://github.com/tmux-plugins/tpm
+6. tmux plugins: `git clone https://github.com/tmux-plugins/tpm
    ~/.config/tmux/plugins/tpm`, then `prefix + I` inside tmux.
    Editor toolchain: `./nvim/bootstrap.sh` (LSPs via paru + bun).
-6. Secrets: restore the age key, then decrypt (see below).
-7. Sign-ins: `gh auth login` (git credentials ride gh, see `git/config`),
+7. Secrets: restore the age key, then decrypt (see below).
+8. Sign-ins: `gh auth login` (git credentials ride gh, see `git/config`),
    `sudo tailscale up`, `claude`, Insync, Steam. Device-code flows all work
    the same way: run, open URL, approve.
-8. Reboot — SDDM autologs into Hyprland.
+9. Reboot — SDDM autologs into Hyprland.
 
 Known manual gaps (not in any list): the SDDM "silent" theme
 (`/usr/share/sddm/themes/silent`, no package owns it), ckb-next + OpenLinkHub

@@ -17,6 +17,9 @@ services.txt                      enabled systemd units, system + user (regenera
 setup-storage.sh                  fstab entry + ~/media symlink for the 4 TB NTFS drive
 etc/                              hand-edits under /etc: sddm autologin+theme, swappiness, paru
 bin/                              ~/.local/bin: review, unreview, secrets-pull, t3code launchers
+agents/                           global agent prompts (one per CLI + miskatonic notes; export
+                                  generates ~/.claude/CLAUDE.md, ~/.codex/AGENTS.md,
+                                  ~/.config/opencode/AGENTS.md), vendored skills, unslop hooks
 systemd/user/                     custom user units: t3code server (+ its .service.d drop-ins), appimagekit entry hider
 hypr/ waybar/ dunst/ rofi/        Hyprland desktop (hyprland.lua — native Lua config, ≥0.55)
 wallust/                          theming hub: wallpaper → wallust → every app's colors
@@ -41,6 +44,26 @@ MangoHud/ xkb/                    custom XKB layout "cust"
   zsh/opencode/nvim pick up the palette → `hypr/scripts/apply-theme.sh`
   reloads everything. The generated color files are committed on purpose:
   current wallpaper state is part of the machine.
+- **Agent config is generated, shared with the fleet.** `export_current`
+  concatenates `agents/<cli>-global.md` (the section shared with rlyeh — kept
+  in sync by hand with personal-server's `home/felipe/agents/*.md`) with
+  `agents/miskatonic-agents.md` (this machine, the tailnet, how to operate
+  the fleet) into each CLI's global prompt file. Edit the repo files and
+  re-export; never the generated ones. Skills (`agents/skills/`) and the
+  unslop hook scripts (`agents/hooks/`) are vendored and installed the same
+  way. The unslop hooks *block* in `~/.claude/settings.json` is the one
+  by-hand piece (Claude Code rewrites that file at runtime — same deal as on
+  rlyeh):
+
+  ```json
+  "hooks": {
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command",
+      "command": "bash ~/.claude/hooks/unslop-reminder.sh", "timeout": 10 }] }],
+    "Stop": [{ "hooks": [{ "type": "command",
+      "command": "python3 ~/.claude/hooks/unslop-stop-gate.py", "timeout": 15,
+      "statusMessage": "Checking unslop compliance" }] }]
+  }
+  ```
 - **Secrets** live in the private, sops/age-encrypted
   [secrets](https://github.com/FelipeAfonso/secrets) repo, one file per host.
   `bin/secrets-pull` decrypts `miskatonic.yaml` into
@@ -79,6 +102,10 @@ MangoHud/ xkb/                    custom XKB layout "cust"
    ```sh
    bun i -g @anthropic-ai/claude-code @openai/codex opencode-ai
    ```
+
+   Global prompts, skills, and hook scripts were installed by
+   `./export_current` in step 3; add the unslop hooks block to
+   `~/.claude/settings.json` by hand (snippet under Design decisions).
 
 5. Storage: plug the 4 TB NTFS drive, `sudo ./setup-storage.sh` (verify the
    UUID at the top of the script against `lsblk -f` first). Wallpapers live
@@ -120,8 +147,8 @@ and re-running `secrets-pull`.
 ## Day-to-day
 
 - Machine changed → `./import_current`, review the diff, commit. Repo
-  changed → `./export_current` (nvim note: the live config is a plain copy,
-  so edit here and export — not the other way).
+  changed → `./export_current` (nvim and agents/ note: the live copies are
+  generated/plain copies, so edit here and export — not the other way).
 - `./import_current` regenerates pkglists/services.txt, so package installs
   and `systemctl enable` show up in the diff for free.
 

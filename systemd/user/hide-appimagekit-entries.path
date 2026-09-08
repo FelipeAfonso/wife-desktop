@@ -1,8 +1,0 @@
-[Unit]
-Description=Watch for regenerated AppImage desktop entries
-
-[Path]
-PathModified=%h/.local/share/applications
-
-[Install]
-WantedBy=default.target

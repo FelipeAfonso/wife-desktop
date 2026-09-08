@@ -9,8 +9,6 @@ application/x-extension-shtml=zen.desktop
 application/xhtml+xml=zen.desktop
 application/x-extension-xhtml=zen.desktop
 application/x-extension-xht=zen.desktop
-x-scheme-handler/claude-cli=claude-code-url-handler.desktop
-x-scheme-handler/t3code=t3code-url-handler.desktop
 x-scheme-handler/wowup=WowUpCf.desktop
 
 [Added Associations]

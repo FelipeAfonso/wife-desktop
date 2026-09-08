@@ -1,10 +1,9 @@
 window-decoration = false
-command = /usr/bin/zsh -l -c "tmux new-session -A -s main"
 font-family = "CaskaydiaCove Nerd Font"
 font-feature = -calt
-font-size = 20
+font-size = 14
 confirm-close-surface = false
 theme = pywal
 link-url = true
 cursor-style = underline
-background-opacity = 0.65
+background-opacity = 0.85

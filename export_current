@@ -1,9 +1,9 @@
 #!/bin/sh
 # Apply this repo's configs to the machine. /etc files and services are not
-# touched — see README for those steps.
+# touched; see README for those steps.
 set -eu
 
-dirs="ghostty dunst hypr nvim opencode rofi tmux waybar wallust xkb zsh starship lazygit btop MangoHud git gtk-3.0 gtk-4.0"
+dirs="ghostty dunst hypr rofi waybar wallust zsh btop MangoHud gtk-3.0 gtk-4.0"
 files="mimeapps.list user-dirs.dirs"
 
 for d in $dirs; do
@@ -27,18 +27,16 @@ mkdir -p "$HOME/.config/systemd/user"
 cp -rf ./systemd/user/* "$HOME/.config/systemd/user/"
 
 # Global agent prompts, one generated file per CLI: the per-CLI section,
-# the shared model table (models.md), then the miskatonic operating notes.
-# The first two are kept in sync by hand with personal-server's
-# home/felipe/agents/*.md and personal-laptop's agents/*.md. Edit agents/*.md and re-run; never
-# edit the generated files in place.
+# the shared model table (models.md), then this machine's operating notes.
+# The first two are copies of personal-desktop's agents/*.md; sync by hand.
+# Edit agents/*.md and re-run; never edit the generated files in place.
 mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.config/opencode"
-{ cat ./agents/claude-global.md; echo; cat ./agents/models.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.claude/CLAUDE.md"
-{ cat ./agents/codex-global.md; echo; cat ./agents/models.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.codex/AGENTS.md"
-{ cat ./agents/opencode-global.md; echo; cat ./agents/models.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.config/opencode/AGENTS.md"
+{ cat ./agents/claude-global.md; echo; cat ./agents/models.md; echo; cat ./agents/kingsport-agents.md; } > "$HOME/.claude/CLAUDE.md"
+{ cat ./agents/codex-global.md; echo; cat ./agents/models.md; echo; cat ./agents/kingsport-agents.md; } > "$HOME/.codex/AGENTS.md"
+{ cat ./agents/opencode-global.md; echo; cat ./agents/models.md; echo; cat ./agents/kingsport-agents.md; } > "$HOME/.config/opencode/AGENTS.md"
 
 # Skills vendored in the repo so a fresh install has them. Claude Code reads
-# ~/.claude/skills; codex and opencode both read ~/.agents/skills. Other
-# entries in those dirs (installed with `npx skills add ...`) are left alone.
+# ~/.claude/skills; codex and opencode both read ~/.agents/skills.
 mkdir -p "$HOME/.claude/skills" "$HOME/.agents/skills"
 cp -rf ./agents/skills/plan-html-workflow "$HOME/.claude/skills/"
 cp -rf ./agents/skills/unslop "$HOME/.claude/skills/"
@@ -46,7 +44,7 @@ cp -rf ./agents/skills/unslop "$HOME/.agents/skills/"
 
 # Hook scripts referenced by ~/.claude/settings.json. That file stays mutable
 # (Claude Code writes to it at runtime), so the hooks block in it is set by
-# hand — see README; only the scripts are repo-managed.
+# hand; see README. Only the scripts are repo-managed.
 mkdir -p "$HOME/.claude/hooks"
 cp -f ./agents/hooks/* "$HOME/.claude/hooks/"
 for s in ./agents/hooks/*; do

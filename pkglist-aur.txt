@@ -1,17 +1,5 @@
-appimagelauncher
-archon-appimage
-insync
-opencode-bin
-plex-media-server
-qnapi
 raiderio-client
-redis
 rose-pine-hyprcursor
-rusty-path-of-building
 spotify
-subliminal
-ttf-geist-mono
-turso-cli-bin
 wallust
 wowup-cf-bin
-youtube-dl

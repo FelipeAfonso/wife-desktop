@@ -1,25 +1,28 @@
--- Hyprland Lua config (new format, Hyprland >= 0.55)
--- Refer to https://wiki.hypr.land/Configuring/Start/
+-- Hyprland Lua config (Hyprland >= 0.55)
+-- https://wiki.hypr.land/Configuring/Start/
+--
+-- kingsport: a browser-and-WoW box for a Windows user. The point of a tiling
+-- WM here is not tiling; it's that fullscreen games get a real fullscreen and
+-- nothing (no panel, no compositor effect) fights them. Keep the keybinds few
+-- and mouse-first: waybar has a start button, Super alone opens the launcher.
 
 ------------------
 ---- MONITORS ----
 ------------------
 
-hl.monitor({ output = "DP-3", mode = "3840x2160@120", position = "0x0", scale = 1 })
--- hl.monitor({ output = "DP-3", mode = "3840x2160@120", position = "0x0", scale = 2 })
--- hl.monitor({ output = "DP-3", mode = "1920x1080@120", position = "0x0", scale = 1 })
--- hl.monitor({ output = "DP-1", mode = "3840x2160@60",  position = "0x0", scale = 1 })
-
-hl.workspace_rule({ workspace = "special:magic", gaps_out = 240 })
+-- Auto-detect. Replace with the real output once the machine exists, e.g.
+-- hl.monitor({ output = "DP-1", mode = "2560x1440@165", position = "0x0", scale = 1 })
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
 
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal = "ghostty"
-local editor   = "nvim" ---@diagnostic disable-line: unused-local
-local browser  = "zen-browser"
+local terminal    = "ghostty"
+local browser     = "zen-browser"
+local fileManager = "dolphin"
+local launcher    = "rofi -show drun"
 
 
 ------------------
@@ -34,9 +37,9 @@ require("hyprland-colors")
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
 
-hl.env("HYPRCURSOR_SIZE", "36")
+hl.env("HYPRCURSOR_SIZE", "28")
 hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
-hl.env("XCURSOR_SIZE", "36")
+hl.env("XCURSOR_SIZE", "28")
 hl.env("XCURSOR_THEME", "BreezeX-RosePine-Linux")
 hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("GDK_CORE_DEVICE_EVENTS", "1")
@@ -48,13 +51,13 @@ hl.env("GDK_CORE_DEVICE_EVENTS", "1")
 
 hl.config({
     input = {
-        kb_layout  = "cust",
-        kb_variant = "basic",
-        kb_options = "ctrl:nocaps",
+        -- TODO: her layout. "us" with intl variant, or "br" for ABNT2.
+        kb_layout  = "us",
+        kb_variant = "",
+        kb_options = "",
 
         follow_mouse = 1,
-
-        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+        sensitivity  = 0,
 
         touchpad = {
             natural_scroll = false,
@@ -62,33 +65,34 @@ hl.config({
     },
 
     general = {
-        gaps_in     = 5,
-        gaps_out    = 20,
-        border_size = 4,
+        gaps_in     = 6,
+        gaps_out    = 16,
+        border_size = 3,
         -- Border colors come from hyprland-colors.lua (wallust)
 
         layout = "dwindle",
 
-        -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
-        allow_tearing = false,
+        -- Games get tearing per window via the `immediate` rule below;
+        -- this only permits it globally.
+        allow_tearing = true,
     },
 
     decoration = {
-        rounding = 7,
+        rounding = 12,
 
         blur = {
             enabled           = true,
             new_optimizations = true,
-            size              = 6,
-            passes            = 1,
+            size              = 8,
+            passes            = 2,
             special           = true,
         },
 
         shadow = {
             enabled      = true,
-            range        = 4,
+            range        = 12,
             render_power = 3,
-            color        = 0xee1a1a1a,
+            color        = 0x66000000,
         },
     },
 
@@ -97,23 +101,82 @@ hl.config({
     },
 
     dwindle = {
-        preserve_split = true, -- you probably want this
+        preserve_split = true,
         smart_split    = true,
     },
 
     misc = {
-        force_default_wallpaper = 0, -- Set to 0 to disable the anime mascot wallpapers
+        force_default_wallpaper = 0,
+        -- VRR only for fullscreen windows (games); desktop stays fixed-rate.
+        vrr = 2,
     },
 })
 
-hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
+hl.curve("cozy", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 
-hl.animation({ leaf = "windows",     enabled = true, speed = 7,  bezier = "myBezier" })
-hl.animation({ leaf = "windowsOut",  enabled = true, speed = 7,  bezier = "default", style = "popin 80%" })
-hl.animation({ leaf = "border",      enabled = true, speed = 10, bezier = "default" })
-hl.animation({ leaf = "borderangle", enabled = true, speed = 8,  bezier = "default" })
-hl.animation({ leaf = "fade",        enabled = true, speed = 7,  bezier = "default" })
-hl.animation({ leaf = "workspaces",  enabled = true, speed = 6,  bezier = "default" })
+hl.animation({ leaf = "windows",    enabled = true, speed = 6,  bezier = "cozy" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 6,  bezier = "default", style = "popin 80%" })
+hl.animation({ leaf = "border",     enabled = true, speed = 10, bezier = "default" })
+hl.animation({ leaf = "fade",       enabled = true, speed = 6,  bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 5,  bezier = "default" })
+
+
+----------------------
+---- WINDOW RULES ----
+----------------------
+
+-- Everything Steam launches (Proton, native) gets real fullscreen, tearing,
+-- and keeps the screen awake. WoW under Proton is a steam_app_* class too.
+hl.window_rule({
+    name  = "steam-games",
+    match = { class = "^(steam_app_.*)$" },
+    fullscreen   = true,
+    immediate    = true,
+    idle_inhibit = "always",
+})
+
+-- WoW outside Steam (Battle.net via Lutris/Wine). Wine reports the exe name.
+hl.window_rule({
+    name  = "wow-wine",
+    match = { class = "^(wow\\.exe|Wow\\.exe|WowClassic\\.exe)$" },
+    fullscreen   = true,
+    immediate    = true,
+    idle_inhibit = "always",
+})
+
+-- Launchers float: Battle.net, Steam's small windows, Lutris.
+hl.window_rule({
+    name  = "launchers-float",
+    match = { class = "^(battle\\.net\\.exe|Battle\\.net|lutris|net\\.lutris\\.Lutris)$" },
+    float = true,
+})
+hl.window_rule({
+    name  = "steam-dialogs-float",
+    match = { class = "^(steam)$", title = "^(Friends List|Steam Settings|Screenshot Manager|Special Offers)$" },
+    float = true,
+})
+
+-- Browser picture-in-picture stays on top, floating.
+hl.window_rule({
+    name  = "pip",
+    match = { title = "^(Picture-in-Picture|Picture in picture)$" },
+    float = true,
+    pin   = true,
+})
+
+-- Ignore maximize requests; the layout owns window size.
+hl.window_rule({
+    name  = "suppress-maximize",
+    match = { class = ".*" },
+    suppress_event = "maximize",
+})
+
+-- Fix some dragging issues with XWayland (from the default config).
+hl.window_rule({
+    name  = "fix-xwayland-drags",
+    match = { class = "^$", title = "^$", xwayland = true, float = true, fullscreen = false, pin = false },
+    no_focus = true,
+})
 
 
 ---------------------
@@ -122,80 +185,72 @@ hl.animation({ leaf = "workspaces",  enabled = true, speed = 6,  bezier = "defau
 
 local mainMod = "SUPER"
 
-hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exit())
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit"))
-hl.bind(mainMod .. " + Z", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("rofi -show drun"))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"))
-hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("~/.config/hypr/scripts/gamescope-paste.sh"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/wallpaper-picker.sh"))
-hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.window.pin())
+-- Super alone = start menu, like Windows. `release` fires on key-up.
+hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("pkill rofi || " .. launcher), { release = true })
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(launcher))
 
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("hyprpicker -a"))
-hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd("hyprpicker -a --format=rgb"))
-hl.bind(mainMod .. " + CONTROL + G", hl.dsp.exec_cmd("hyprpicker -a --format=hsl"))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("grimblast copy area"))
-hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot.sh"))
-hl.bind(mainMod .. " + ALT + A", hl.dsp.exec_cmd("grimblast --freeze copy area"))
+-- Alt+Tab cycles windows on the current workspace.
+hl.bind("ALT + TAB", hl.dsp.window.cycle_next())
+hl.bind("ALT + SHIFT + TAB", hl.dsp.window.cycle_next({ prev = true }))
+
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + Q", hl.dsp.window.close())
+hl.bind("ALT + F4", hl.dsp.window.close())
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + Z", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exit())
+
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/wallpaper-picker.sh"))
+
+-- Screenshots: PrintScreen = area to clipboard; Shift+Print = area to ~/Pictures
+hl.bind("Print", hl.dsp.exec_cmd("grimblast --freeze copy area"))
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot.sh"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("grimblast --freeze copy area"))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("~/.config/hypr/scripts/record.sh"))
 
-hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
-hl.bind(mainMod .. " + bracketleft", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
-hl.bind(mainMod .. " + SHIFT + bracketleft",
-    hl.dsp.exec_cmd("wpctl status | grep -A10 'Sinks:' | grep -m1 'Volt' | tr -d '[:punct:][:alpha:]' | awk '{print $2}' | xargs -I % wpctl set-default %"))
-hl.bind(mainMod .. " + SHIFT + bracketright",
-    hl.dsp.exec_cmd("wpctl status | grep -A10 'Sinks:' | grep -m1 'HDMI/DP' | tr -d '[:punct:][:alpha:]' | awk '{print $2}' | xargs -I % wpctl set-default %"))
-
 -- Media keys
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
--- Move focus with mainMod + hjkl
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+-- Focus with Super + arrows
+hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
-hl.bind("ALT + down", hl.dsp.focus({ workspace = "-1" }))
-hl.bind("ALT + up", hl.dsp.focus({ workspace = "+1" }))
-hl.bind("ALT + left", hl.dsp.window.move({ workspace = "-1" }))
-hl.bind("ALT + right", hl.dsp.window.move({ workspace = "+1" }))
+-- Move windows with Super + Shift + arrows
+hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + up",    hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.window.swap({ direction = "down" }))
 
--- Move window across workspace
-hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "left" }))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "down" }))
-
--- Switch workspaces with mainMod + [0-9]
--- Move active window to a workspace with mainMod + SHIFT + [0-9]
+-- Workspaces: Super + [1-9,0]; move window with Super + Shift + number
 for i = 1, 10 do
-    local key = i % 10 -- 10 maps to key 0
+    local key = i % 10
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
 end
+hl.bind("CONTROL + ALT + right", hl.dsp.focus({ workspace = "+1" }))
+hl.bind("CONTROL + ALT + left",  hl.dsp.focus({ workspace = "-1" }))
 
--- Special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic", follow = false }))
+-- Super + scroll cycles workspaces
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
--- mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.layout("move -col"))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.layout("move +col"))
-
--- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+-- Move/resize windows with Super + left/right mouse drag
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
-
--- hl.bind(mainMod .. " + Equal", hl.dsp.window.resize(...)) -- exact 1280 1080
 
 
 -------------------
@@ -206,14 +261,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("waybar")
     hl.exec_cmd("dunst")
-    hl.exec_cmd("wl-paste --type text --watch cliphist store")  -- text clipboard history
-    hl.exec_cmd("wl-paste --type image --watch cliphist store") -- image clipboard history
-    -- improve volume so it doesn't need high gain
-    hl.exec_cmd("sleep 15 && wpctl status | grep -A10 'Sources:' | grep -m1 'Volt' | tr -d '[:punct:][:alpha:]' | awk '{print $2}' | xargs -I % wpctl set-volume % 2")
-    -- Pick a random wallpaper on startup and apply full theme
-    hl.exec_cmd("sleep 15 && ~/.config/hypr/scripts/random-wallpaper.sh")
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    -- Restore the last wallpaper (or pick one if none is saved) and theme everything
+    hl.exec_cmd("sleep 3 && ~/.config/hypr/scripts/restore-wallpaper.sh")
 end)
-
--- NOTE: openwhispr-binds.conf (hyprlang, managed by OpenWhispr) is no longer
--- sourced — it currently contains no binds. If OpenWhispr writes binds there,
--- they need to be mirrored here manually.

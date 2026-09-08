@@ -1,3 +1,0 @@
-#!/bin/sh
-export T3CODE_DISABLE_AUTO_UPDATE=1
-exec '/home/felipe/.local/opt/t3-vi/vi-current.AppImage' "$@"

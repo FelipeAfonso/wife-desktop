@@ -68,4 +68,4 @@ foreground = "{{foreground}}"
 
 [play_sound]
     summary = "*"
-    script = /home/felipe/.config/dunst/notification.sh
+    script = ~/.config/dunst/notification.sh

@@ -31,9 +31,9 @@ cp -rf ./systemd/user/* "$HOME/.config/systemd/user/"
 # The first two are copies of personal-desktop's agents/*.md; sync by hand.
 # Edit agents/*.md and re-run; never edit the generated files in place.
 mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.config/opencode"
-{ cat ./agents/claude-global.md; echo; cat ./agents/models.md; echo; cat ./agents/kingsport-agents.md; } > "$HOME/.claude/CLAUDE.md"
-{ cat ./agents/codex-global.md; echo; cat ./agents/models.md; echo; cat ./agents/kingsport-agents.md; } > "$HOME/.codex/AGENTS.md"
-{ cat ./agents/opencode-global.md; echo; cat ./agents/models.md; echo; cat ./agents/kingsport-agents.md; } > "$HOME/.config/opencode/AGENTS.md"
+{ cat ./agents/claude-global.md; echo; cat ./agents/models.md; echo; cat ./agents/ulthar-agents.md; } > "$HOME/.claude/CLAUDE.md"
+{ cat ./agents/codex-global.md; echo; cat ./agents/models.md; echo; cat ./agents/ulthar-agents.md; } > "$HOME/.codex/AGENTS.md"
+{ cat ./agents/opencode-global.md; echo; cat ./agents/models.md; echo; cat ./agents/ulthar-agents.md; } > "$HOME/.config/opencode/AGENTS.md"
 
 # Skills vendored in the repo so a fresh install has them. Claude Code reads
 # ~/.claude/skills; codex and opencode both read ~/.agents/skills.

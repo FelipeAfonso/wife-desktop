@@ -1,9 +1,10 @@
 -- Hyprland Lua config (Hyprland >= 0.55)
 -- https://wiki.hypr.land/Configuring/Start/
 --
--- kingsport: a browser-and-WoW box for a Windows user. The point of a tiling
--- WM here is not tiling; it's that fullscreen games get a real fullscreen and
--- nothing (no panel, no compositor effect) fights them. Keep the keybinds few
+-- ulthar: a browser-and-WoW box for a Windows user. Named for the town where
+-- no one may kill a cat. The point of a tiling WM here is not tiling; it's
+-- that fullscreen games get a real fullscreen and nothing (no panel, no
+-- compositor effect) fights them. Keep the keybinds few
 -- and mouse-first: waybar has a start button, Super alone opens the launcher.
 
 ------------------
@@ -51,9 +52,10 @@ hl.env("GDK_CORE_DEVICE_EVENTS", "1")
 
 hl.config({
     input = {
-        -- TODO: her layout. "us" with intl variant, or "br" for ABNT2.
+        -- US keyboard, Brazilian Portuguese typing: the intl variant adds dead
+        -- keys for ~ ^ ´ ` and ç via ' + c.
         kb_layout  = "us",
-        kb_variant = "",
+        kb_variant = "intl",
         kb_options = "",
 
         follow_mouse = 1,

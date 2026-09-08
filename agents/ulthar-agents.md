@@ -1,8 +1,9 @@
-# This machine: kingsport (Felipe's wife's desktop)
+# This machine: ulthar (Felipe's wife's desktop)
 
-You are running on **kingsport**, a CachyOS (Arch) desktop that belongs to
-Felipe's wife. Hyprland on Wayland, one monitor, browsers, Steam, World of
-Warcraft. She is not a power user and did not set any of this up; Felipe
+You are running on **ulthar**, a CachyOS (Arch) desktop that belongs to
+Felipe's wife. Hyprland on Wayland, one monitor, an AMD RX 6950 XT (RDNA2,
+mesa/radv, Felipe's old card), browsers, Steam, World of Warcraft. Keyboard
+is US layout with the intl variant; she types in Brazilian Portuguese. She is not a power user and did not set any of this up; Felipe
 did, and he is the one talking to you, usually from another machine over
 T3 Code or ssh. Treat the box as hers: don't leave it in a state she has to
 understand. If something is half-fixed, revert it and report.
@@ -52,7 +53,7 @@ no `~/.ssh/config` needed).
 
 | host           | what it is                                | tailscale IP   | OS    |
 | -------------- | ----------------------------------------- | -------------- | ----- |
-| `kingsport`    | this box: Felipe's wife's gaming desktop  | TBD            | linux |
+| `ulthar`    | this box: Felipe's wife's gaming desktop  | TBD            | linux |
 | `miskatonic`   | Felipe's desktop and main seat            | 100.91.60.55   | linux |
 | `rlyeh`        | always-on headless agent server (NixOS)   | 100.91.212.25  | linux |
 | `yuggoth`      | Felipe's MacBook, online intermittently   | 100.120.128.70 | macOS |

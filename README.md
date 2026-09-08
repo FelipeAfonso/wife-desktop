@@ -17,7 +17,7 @@ services.txt                      enabled systemd units, system + user (regenera
 setup-storage.sh                  fstab entry + ~/media symlink for the 4 TB NTFS drive
 etc/                              hand-edits under /etc: sddm autologin+theme, swappiness, paru
 bin/                              ~/.local/bin: review, unreview, secrets-pull, t3code launchers
-agents/                           global agent prompts (one per CLI + miskatonic notes; export
+agents/                           global agent prompts (one per CLI + shared model table + miskatonic notes; export
                                   generates ~/.claude/CLAUDE.md, ~/.codex/AGENTS.md,
                                   ~/.config/opencode/AGENTS.md), vendored skills, unslop hooks
 systemd/user/                     custom user units: t3code server (+ its .service.d drop-ins), appimagekit entry hider
@@ -45,8 +45,9 @@ MangoHud/ xkb/                    custom XKB layout "cust"
   reloads everything. The generated color files are committed on purpose:
   current wallpaper state is part of the machine.
 - **Agent config is generated, shared with the fleet.** `export_current`
-  concatenates `agents/<cli>-global.md` (the section shared with rlyeh — kept
-  in sync by hand with personal-server's `home/felipe/agents/*.md`) with
+  concatenates `agents/<cli>-global.md` and `agents/models.md` (the sections
+  shared with rlyeh and yuggoth, kept in sync by hand with personal-server's
+  `home/felipe/agents/*.md` and personal-laptop's `agents/*.md`) with
   `agents/miskatonic-agents.md` (this machine, the tailnet, how to operate
   the fleet) into each CLI's global prompt file. Edit the repo files and
   re-export; never the generated ones. Skills (`agents/skills/`) and the

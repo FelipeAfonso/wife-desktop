@@ -26,14 +26,15 @@ mkdir -p "$HOME/.config/systemd/user"
 # -r: unit drop-in dirs (*.service.d) ship alongside the flat unit files
 cp -rf ./systemd/user/* "$HOME/.config/systemd/user/"
 
-# Global agent prompts, one generated file per CLI: the shared section
-# (kept in sync by hand with personal-server's home/felipe/agents/*.md)
-# plus the miskatonic operating notes. Edit agents/*.md and re-run; never
+# Global agent prompts, one generated file per CLI: the per-CLI section,
+# the shared model table (models.md), then the miskatonic operating notes.
+# The first two are kept in sync by hand with personal-server's
+# home/felipe/agents/*.md and personal-laptop's agents/*.md. Edit agents/*.md and re-run; never
 # edit the generated files in place.
 mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.config/opencode"
-{ cat ./agents/claude-global.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.claude/CLAUDE.md"
-{ cat ./agents/codex-global.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.codex/AGENTS.md"
-{ cat ./agents/opencode-global.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.config/opencode/AGENTS.md"
+{ cat ./agents/claude-global.md; echo; cat ./agents/models.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.claude/CLAUDE.md"
+{ cat ./agents/codex-global.md; echo; cat ./agents/models.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.codex/AGENTS.md"
+{ cat ./agents/opencode-global.md; echo; cat ./agents/models.md; echo; cat ./agents/miskatonic-agents.md; } > "$HOME/.config/opencode/AGENTS.md"
 
 # Skills vendored in the repo so a fresh install has them. Claude Code reads
 # ~/.claude/skills; codex and opencode both read ~/.agents/skills. Other

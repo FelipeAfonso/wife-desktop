@@ -12,10 +12,14 @@ hl.config({
         accel_profile = "flat",
         -- sensitivity = -0.25,
     },
-    -- Uncomment the section below to enable software cursors; this can help with cursor display or behavior issues
-    -- cursor = {
-    --     no_hardware_cursors = 1,
-    -- },
+    cursor = {
+        -- Don't teleport the mouse to the newly focused window (Super+n,
+        -- Alt+Tab, clicks on the taskbar). Felipe's request; the default is
+        -- disorienting on two monitors.
+        no_warps = true,
+        -- Uncomment to enable software cursors; this can help with cursor display or behavior issues
+        -- no_hardware_cursors = 1,
+    },
 })
 
 hl.gesture({ fingers = 4, direction = "horizontal", action = "workspace" })

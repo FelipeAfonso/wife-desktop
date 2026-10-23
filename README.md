@@ -46,8 +46,9 @@ MangoHud/                         FPS-drop diagnostic overlay (Shift_L+F12 in ga
 Each change is a few commented lines in `hypr/config/*.lua` or
 `noctalia/config.toml`, so `skel-diff` stays readable.
 
-- **Keybinds like miskatonic.** Super+number goes to workspace 1-6
-  (1-3 on the left monitor, 4-6 on the right), Super+Shift+number sends the
+- **Keybinds like miskatonic.** Super+number goes to workspace 1-4
+  (1-2 on the left monitor, 3-4 on the right), Super+Shift+number sends the
+  window there. Super+G goes to the gaming workspace, Super+Shift+G sends a
   window there. CachyOS's monitor focus moved to Super+Alt+number. Super
   alone opens the Noctalia launcher (release bind, like the Windows start
   menu); Super+Space still does too. Alt+F4 closes, Super+Q too.
@@ -176,5 +177,5 @@ classes.
 After an export: `zsh -ic exit` (shell loads), `hyprctl reload` (no config
 errors in `hyprctl configerrors`), `noctalia config validate`. The smoke
 test is a login: greetd → Hyprland → Noctalia bar up on both monitors,
-Super opens the launcher, Super+2 lands on the left monitor and Super+4 on
+Super opens the launcher, Super+2 lands on the left monitor and Super+3 on
 the right, WoW goes fullscreen with no bar visible.

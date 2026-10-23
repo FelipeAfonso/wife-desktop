@@ -15,5 +15,6 @@ MONITOR2 = "DP-3"
 MONITOR3 = ""
 PRIMARY_MONITOR = MONITOR1
 
--- Workspaces per monitor (max 10). 1-3 live on MONITOR1, 4-6 on MONITOR2.
-NUM_WPM = 3
+-- Workspaces per monitor (max 5). 1-2 live on MONITOR1, 3-4 on MONITOR2.
+-- The gaming workspace is separate (Super+G, windowrules.lua).
+NUM_WPM = 2

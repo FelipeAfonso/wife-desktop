@@ -42,7 +42,7 @@ hl.bind(mainMod .. " + CONTROL + SHIFT + Right",      hl.dsp.window.move({ works
 hl.bind(mainMod .. " + CONTROL + SHIFT + Left",       hl.dsp.window.move({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + mouse_up",   hl.dsp.window.move({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + mouse_down", hl.dsp.window.move({ workspace = "m+1" }))
--- Super+Shift+<n>: send the window to workspace n (1-3 left monitor, 4-6 right)
+-- Super+Shift+<n>: send the window to workspace n (1-2 left monitor, 3-4 right)
 for i = 1, NUM_WPM * 2 do
     hl.bind(mainMod .. " + SHIFT + " .. digitCode(i % 10), hl.dsp.window.move({ workspace = i }))
 end
@@ -137,7 +137,7 @@ hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(noctCall .. "panel-toggle control-cen
 ---- WORKSPACES & MONITORS ----
 -------------------------------
 
--- Super+<n>: go to workspace n (1-3 left monitor, 4-6 right), like miskatonic
+-- Super+<n>: go to workspace n (1-2 left monitor, 3-4 right), like miskatonic
 for i = 1, NUM_WPM * 2 do
     hl.bind(mainMod .. " + " .. digitCode(i % 10), hl.dsp.focus({ workspace = i }))
 end
@@ -162,6 +162,10 @@ hl.bind(mainMod .. " + mouse_down",           hl.dsp.focus({ workspace = "m-1" }
 hl.bind(mainMod .. " + mouse_up",             hl.dsp.focus({ workspace = "m+1" }))
 hl.bind(mainMod .. " + CONTROL + mouse_up",   hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CONTROL + mouse_down", hl.dsp.focus({ workspace = "m+1" }))
+
+-- Gaming workspace (name:gaming, primary monitor; games land there by rule)
+hl.bind(mainMod .. " + G",         hl.dsp.focus({ workspace = "name:gaming" }))
+hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "name:gaming" }))
 
 -- Special workspace (scratchpad)
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special" }))

@@ -1,6 +1,7 @@
 -- Workspace rules wiki https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- NUM_WPM workspaces per monitor, numbered straight through: 1-3 on MONITOR1,
--- 4-6 on MONITOR2. Super+<n> jumps to workspace n wherever it lives.
+-- NUM_WPM workspaces per monitor, numbered straight through: 1-2 on MONITOR1,
+-- 3-4 on MONITOR2. Super+<n> jumps to workspace n wherever it lives. The
+-- gaming workspace lives on the primary and has its own key (Super+G).
 
 hl.workspace_rule({ workspace = "name:gaming", monitor = PRIMARY_MONITOR, default = true })
 

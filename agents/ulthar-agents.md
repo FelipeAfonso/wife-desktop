@@ -31,8 +31,9 @@ understand. If something is half-fixed, revert it and report.
   validate`), apps launched through `uwsm app --`, login via greetd +
   noctalia-greeter. Compare with `/etc/skel/.config` (`skel-diff`) before
   inventing a fix; upstream changes land there, never in the home dir. The
-  keybinds were changed to match miskatonic (Super+n = workspace n, Super
-  alone = launcher, Alt+F4 closes). Both machines should run the same
+  keybinds were changed to match miskatonic (Super+1-4 = workspace n, two per
+  monitor, Super+G = gaming workspace, Super alone = launcher, Alt+F4
+  closes). Both machines should run the same
   Hyprland version; if one was upgraded and the other wasn't, that is the
   first suspect.
 - sudo asks for a password Felipe knows. Surface the sudo step so he can run

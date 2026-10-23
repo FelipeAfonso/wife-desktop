@@ -1,5 +1,0 @@
-raiderio-client
-rose-pine-hyprcursor
-spotify
-wallust
-wowup-cf-bin

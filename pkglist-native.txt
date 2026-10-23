@@ -113,7 +113,6 @@ networkmanager-openvpn
 nfs-utils
 nilfs-utils
 noctalia-greeter
-nodejs
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -176,3 +175,5 @@ xdg-user-dirs
 xf86-video-amdgpu
 xfsprogs
 xl2tpd
+yay
+yazi

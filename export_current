@@ -3,7 +3,7 @@
 # touched; see README for those steps. Copy-based: every file stays a file.
 set -eu
 
-dirs="hypr noctalia uwsm ghostty zsh btop MangoHud gtk-3.0 gtk-4.0 qt6ct xsettingsd"
+dirs="hypr noctalia uwsm ghostty rofi zsh btop MangoHud gtk-3.0 gtk-4.0 qt6ct xsettingsd"
 files="mimeapps.list user-dirs.dirs kdeglobals"
 
 for d in $dirs; do
@@ -15,6 +15,7 @@ for f in $files; do
 done
 
 cp -f ./zsh/.zshenv "$HOME/.zshenv"
+chmod +x "$HOME"/.config/hypr/scripts/*
 
 # CachyOS autostarts its welcome app for every new user. Not on her desktop.
 rm -f "$HOME/.config/autostart/cachyos-hello.desktop"

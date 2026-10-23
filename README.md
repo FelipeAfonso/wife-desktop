@@ -35,6 +35,7 @@ hypr/                             Hyprland: hyprland.lua requires config/*.lua (
 noctalia/                         Noctalia shell: bar, launcher, notifications, lock, wallpaper,
                                   theming. One config.toml.
 uwsm/                             session env (TERM, cursor, Qt platform theme)
+rofi/                             only the wallpaper picker grid (hypr/scripts/wallpaper-picker.sh)
 ghostty/ zsh/                     a terminal and a plain shell, for the agents more than for her
 gtk-3.0/ gtk-4.0/ qt6ct/          toolkit theming; the noctalia.css / colors files are generated
 xsettingsd/ btop/ kdeglobals      the long tail, incl. mimeapps.list, user-dirs.dirs
@@ -71,6 +72,11 @@ Each change is a few commented lines in `hypr/config/*.lua` or
   shell is zsh, a few lines with a built-in prompt, not fish.
 - **Bar.** Noctalia's Taskbar widget sits in the bar center so open windows
   are clickable, like a Windows taskbar.
+- **Wallpaper picker.** Super+Shift+W opens miskatonic's rofi image grid
+  over `~/Imagens/wallpapers` (Felipe's collection, copied over, not in the
+  repo). The pick goes to `noctalia msg wallpaper-set`, so Noctalia still
+  owns transitions, palette and templates; rofi just borrows the current
+  palette for its own colors. Noctalia's own panel is on Super+Alt+W.
 - **No cachyos-hello.** `export_current` removes its autostart entry.
 
 ## Design decisions (short version)
@@ -156,8 +162,8 @@ Each change is a few commented lines in `hypr/config/*.lua` or
 
 5. Monitors: `hyprctl monitors` shows the names; `hypr/config/variables.lua`
    expects DP-1 on the left and DP-3 on the right.
-6. Wallpaper: Super+Shift+W opens Noctalia's picker; the default folder is
-   `~/Pictures/Wallpapers`.
+6. Wallpapers: copy a collection into `~/Imagens/wallpapers` (miskatonic's
+   is at `~/media/wallpapers`). Super+Shift+W picks one.
 7. Sign-ins: `sudo tailscale up --ssh`, `gh auth login`, `claude`, `codex`,
    Steam, Battle.net. Device-code flows all work the same way: run, open
    URL, approve. Then `systemctl --user enable --now t3code.service` and

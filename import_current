@@ -2,7 +2,7 @@
 # Pull the live state of ulthar into this repo. Run from the repo root.
 set -eu
 
-dirs="hypr noctalia uwsm ghostty zsh btop MangoHud gtk-3.0 gtk-4.0 qt6ct xsettingsd"
+dirs="hypr noctalia uwsm ghostty rofi zsh btop MangoHud gtk-3.0 gtk-4.0 qt6ct xsettingsd"
 files="mimeapps.list user-dirs.dirs kdeglobals"
 scripts="t3-rebuild-node-pty.sh skel-diff"
 

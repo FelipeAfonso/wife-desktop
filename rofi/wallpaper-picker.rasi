@@ -1,0 +1,83 @@
+/* rofi theme for the wallpaper picker: a 3x3 image grid.
+   The four colors below are defaults; wallpaper-picker.sh overrides them at
+   launch with Noctalia's current palette via -theme-str. */
+
+* {
+    background:         #191826;
+    foreground:         #f2f2f3;
+    accent:             #7a67e4;
+    accent2:            #c9a0ff;
+}
+
+window {
+    width:              900px;
+    border:             3px;
+    border-color:       @accent;
+    border-radius:      12px;
+    background-color:   @background;
+    padding:            0;
+}
+
+mainbox {
+    background-color:   transparent;
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    background-color:   transparent;
+    padding:            12px;
+    spacing:            8px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @accent;
+    font:               "MesloLGM Nerd Font Bold 18";
+}
+
+entry {
+    background-color:   transparent;
+    text-color:         @foreground;
+    placeholder:        "Escolha um papel de parede...";
+    placeholder-color:  @accent2;
+    font:               "MesloLGM Nerd Font 18";
+}
+
+listview {
+    background-color:   transparent;
+    columns:            3;
+    lines:              3;
+    spacing:            8px;
+    padding:            8px;
+    fixed-height:       false;
+    scrollbar:          false;
+}
+
+element {
+    orientation:        vertical;
+    background-color:   transparent;
+    text-color:         @foreground;
+    padding:            8px;
+    border-radius:      8px;
+}
+
+element selected {
+    background-color:   @accent;
+    text-color:         @background;
+}
+
+element-icon {
+    size:               240px;
+    border-radius:      6px;
+    background-color:   transparent;
+    horizontal-align:   0.5;
+}
+
+element-text {
+    horizontal-align:   0.5;
+    font:               "MesloLGM Nerd Font 11";
+    background-color:   transparent;
+    text-color:         inherit;
+    padding:            4px 0 0 0;
+}

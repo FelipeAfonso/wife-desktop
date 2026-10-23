@@ -89,6 +89,11 @@ wallpaper_scheme = "m3-tonal-spot"
     [theme.templates]
     builtin_ids = [ "btop", "ghostty", "gtk3", "gtk4", "hyprland", "kcolorscheme", "qt" ]
 
+[wallpaper]
+# Felipe's collection, copied from miskatonic. Both the Noctalia panel and
+# the rofi picker (Super+Shift+W) browse this folder.
+directory = "/home/jacque/Imagens/wallpapers"
+
 [widget.clock]
 color = "secondary"
 format = "{:%H:%M %A %m/%d/%y}"

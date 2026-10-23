@@ -3,7 +3,7 @@
 
 # --- Environment ---
 export EDITOR=vim
-export BROWSER=zen-browser
+export BROWSER=firefox
 export PAGER=less
 export BUN_INSTALL="$HOME/.bun"
 
@@ -28,9 +28,6 @@ setopt HIST_IGNORE_SPACE
 for p in zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search; do
   [[ -f "/usr/share/zsh/plugins/$p/$p.zsh" ]] && source "/usr/share/zsh/plugins/$p/$p.zsh"
 done
-
-# --- Wallust colors (dynamic theming) ---
-[[ -f "$ZDOTDIR/zsh-colors.sh" ]] && source "$ZDOTDIR/zsh-colors.sh"
 
 # --- Prompt ---
 autoload -Uz vcs_info

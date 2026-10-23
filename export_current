@@ -1,10 +1,10 @@
 #!/bin/sh
 # Apply this repo's configs to the machine. /etc files and services are not
-# touched; see README for those steps.
+# touched; see README for those steps. Copy-based: every file stays a file.
 set -eu
 
-dirs="ghostty dunst hypr rofi waybar wallust zsh btop MangoHud gtk-3.0 gtk-4.0"
-files="mimeapps.list user-dirs.dirs"
+dirs="hypr noctalia uwsm ghostty zsh btop MangoHud gtk-3.0 gtk-4.0 qt6ct xsettingsd"
+files="mimeapps.list user-dirs.dirs kdeglobals"
 
 for d in $dirs; do
   cp -rf "./$d" "$HOME/.config/"
@@ -15,6 +15,9 @@ for f in $files; do
 done
 
 cp -f ./zsh/.zshenv "$HOME/.zshenv"
+
+# CachyOS autostarts its welcome app for every new user. Not on her desktop.
+rm -f "$HOME/.config/autostart/cachyos-hello.desktop"
 
 mkdir -p "$HOME/.local/bin"
 cp -f ./bin/* "$HOME/.local/bin/"
@@ -50,3 +53,11 @@ cp -f ./agents/hooks/* "$HOME/.claude/hooks/"
 for s in ./agents/hooks/*; do
   chmod +x "$HOME/.claude/hooks/$(basename "$s")"
 done
+
+# Pick up the new config in the running session, if there is one.
+if [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
+  hyprctl reload >/dev/null && echo "hyprland reloaded"
+  noctalia msg config-reload >/dev/null 2>&1 && echo "noctalia reloaded" || true
+else
+  echo "not inside a Hyprland session: log out and back in, or run 'hyprctl reload' from one"
+fi

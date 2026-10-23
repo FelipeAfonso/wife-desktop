@@ -2,9 +2,9 @@
 # Pull the live state of ulthar into this repo. Run from the repo root.
 set -eu
 
-dirs="ghostty dunst hypr rofi waybar wallust zsh btop MangoHud gtk-3.0 gtk-4.0"
-files="mimeapps.list user-dirs.dirs"
-scripts="t3-rebuild-node-pty.sh"
+dirs="hypr noctalia uwsm ghostty zsh btop MangoHud gtk-3.0 gtk-4.0 qt6ct xsettingsd"
+files="mimeapps.list user-dirs.dirs kdeglobals"
+scripts="t3-rebuild-node-pty.sh skel-diff"
 
 for d in $dirs; do
   rm -rf "./$d"
@@ -16,7 +16,7 @@ for f in $files; do
 done
 
 # Strip machine state that must never be committed
-rm -f ./zsh/.zsh_history ./zsh/.zcompdump* ./dunst/notification.log
+rm -f ./zsh/.zsh_history ./zsh/.zcompdump*
 rm -f ./gtk-3.0/bookmarks ./hypr/*.mkv
 
 mkdir -p ./bin

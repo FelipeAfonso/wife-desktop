@@ -9,10 +9,15 @@ says yes, and run `./export_current` on ulthar after merging when the
 change touches anything the machine consumes (configs, `bin/`, systemd
 units, `agents/`). The hotfix exception from the global rules still applies.
 
-## Two repos, one lineage
+## Two lineages: CachyOS's preset and miskatonic's habits
 
-This repo was forked from personal-desktop (miskatonic) on 2026-09-08 and
-trimmed to a browser-and-WoW box. Shared pieces (wallust templates, waybar
-style, rofi, dunst, `agents/*-global.md`, `agents/models.md`, skills,
-hooks) are copies, not links. When fixing one of them, check whether the
+The desktop is CachyOS's `cachyos-hypr-noctalia` preset (Hyprland Lua
+config split under `hypr/config/`, Noctalia shell, uwsm, greetd), copied
+from `/etc/skel` on 2026-10-23 and bent toward miskatonic's keybinds and
+monitor layout. pacman updates `/etc/skel` but never a home directory, so
+upstream fixes are merged by hand: `bin/skel-diff` shows them. Keep local
+edits small and commented so that diff stays readable.
+
+`agents/*-global.md`, `agents/models.md`, skills and hooks are copies of
+personal-desktop's, not links. When fixing one of them, check whether the
 fix belongs in personal-desktop too and say so.

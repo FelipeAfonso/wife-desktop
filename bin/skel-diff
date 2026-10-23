@@ -1,0 +1,15 @@
+#!/bin/sh
+# Show what CachyOS changed in its Hyprland + Noctalia preset since we copied
+# it. pacman updates /etc/skel (owned by cachyos-hypr-noctalia) but never
+# touches a home directory, so upstream fixes have to be merged by hand.
+# Run after `pacman -Syu` touches that package; an empty diff means nothing
+# to merge.
+set -eu
+for d in hypr noctalia uwsm gtk-3.0 gtk-4.0 qt6ct xsettingsd btop; do
+  [ -e "/etc/skel/.config/$d" ] || continue
+  diff -ru --exclude=noctalia.lua --exclude='noctalia*' "$HOME/.config/$d" "/etc/skel/.config/$d" || true
+done
+for f in mimeapps.list kdeglobals; do
+  [ -e "/etc/skel/.config/$f" ] || continue
+  diff -u "$HOME/.config/$f" "/etc/skel/.config/$f" || true
+done

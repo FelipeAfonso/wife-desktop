@@ -53,7 +53,8 @@ Each change is a few commented lines in `hypr/config/*.lua` or
   window there. CachyOS's monitor focus moved to Super+Alt+number. Super
   alone opens the Noctalia launcher (release bind, like the Windows start
   menu); Super+Space still does too. Alt+F4 closes, Super+Q too.
-  Super+Escape (`hyprctl kill`) is gone. Everything else is the preset's:
+  Super+Escape (`hyprctl kill`) is gone. Super+N opens the browser (the
+  preset had it on Super+W). Everything else is the preset's:
   Alt+Tab cycles windows, Super+Tab is the window switcher, Super+V
   clipboard, Print screenshots, Super+L locks, Super+Return a terminal.
 - **Monitors pinned.** `variables.lua` names DP-1 (Dell) as `MONITOR1`, the
@@ -72,11 +73,12 @@ Each change is a few commented lines in `hypr/config/*.lua` or
   shell is zsh, a few lines with a built-in prompt, not fish.
 - **Bar.** Noctalia's Taskbar widget sits in the bar center so open windows
   are clickable, like a Windows taskbar.
-- **Wallpaper picker.** Super+Shift+W opens miskatonic's rofi image grid
+- **Wallpaper picker.** Super+W opens miskatonic's rofi image grid
   over `~/Imagens/wallpapers` (Felipe's collection, copied over, not in the
   repo). The pick goes to `noctalia msg wallpaper-set`, so Noctalia still
   owns transitions, palette and templates; rofi just borrows the current
-  palette for its own colors. Noctalia's own panel is on Super+Alt+W.
+  palette for its own colors. The preset's Super+Shift+W (Noctalia's own
+  wallpaper panel) is unbound; the panel still opens from the bar.
 - **No cachyos-hello.** `export_current` removes its autostart entry.
 
 ## Design decisions (short version)
@@ -91,7 +93,7 @@ Each change is a few commented lines in `hypr/config/*.lua` or
 - **The lists are generated, not curated.** pkglists and services.txt are
   dumps refreshed by `import_current`. If a package matters, install it; the
   next import records it.
-- **Theming is Noctalia's.** Pick a wallpaper (Super+Shift+W) → Noctalia
+- **Theming is Noctalia's.** Pick a wallpaper (Super+W) → Noctalia
   derives a Material palette → its templates write `hypr/noctalia.lua`,
   `ghostty/themes/noctalia`, gtk/qt/btop colors. Those generated files are
   committed on purpose, so a fresh export looks right before the first
@@ -163,7 +165,7 @@ Each change is a few commented lines in `hypr/config/*.lua` or
 5. Monitors: `hyprctl monitors` shows the names; `hypr/config/variables.lua`
    expects DP-1 on the left and DP-3 on the right.
 6. Wallpapers: copy a collection into `~/Imagens/wallpapers` (miskatonic's
-   is at `~/media/wallpapers`). Super+Shift+W picks one.
+   is at `~/media/wallpapers`). Super+W picks one.
 7. Sign-ins: `sudo tailscale up --ssh`, `gh auth login`, `claude`, `codex`,
    Steam, Battle.net. Device-code flows all work the same way: run, open
    URL, approve. Then `systemctl --user enable --now t3code.service` and

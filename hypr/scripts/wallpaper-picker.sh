@@ -39,7 +39,7 @@ if [ -r "$palette" ]; then
 fi
 
 # rofi input: random first, then every image with itself as the icon
-input="${RANDOM_LABEL}\0icon\x1fdice\n"
+input="${RANDOM_LABEL}\0icon\x1fpreferences-desktop-wallpaper\n"
 for img in "${images[@]}"; do
     input+="$(basename "$img")\0icon\x1f${img}\n"
 done

@@ -10,8 +10,8 @@ runs World of Warcraft without a desktop panel fighting it, looks cozy, and
 that Felipe can debug from another room with agents over T3 Code.
 
 The name is from "The Cats of Ulthar": the town where no one may kill a
-cat. Hardware is Felipe's old AMD RX 6950 XT and two 4K monitors (LG on the
-left, Dell on the right); keyboard is a US layout with the `alt-intl`
+cat. Hardware is Felipe's old AMD RX 6950 XT and two 4K monitors (Dell on the
+left, LG on the right); keyboard is a US layout with the `alt-intl`
 variant because she types in Brazilian Portuguese.
 
 Fleet canon: `rlyeh` (server, [personal-server](https://github.com/FelipeAfonso/personal-server)) ·
@@ -54,8 +54,8 @@ Each change is a few commented lines in `hypr/config/*.lua` or
   Super+Escape (`hyprctl kill`) is gone. Everything else is the preset's:
   Alt+Tab cycles windows, Super+Tab is the window switcher, Super+V
   clipboard, Print screenshots, Super+L locks, Super+Return a terminal.
-- **Monitors pinned.** `variables.lua` names DP-3 (LG) as `MONITOR1`, the
-  primary at 0x0, and DP-1 (Dell) as `MONITOR2` at 2560x0; both 4K at 60 Hz,
+- **Monitors pinned.** `variables.lua` names DP-1 (Dell) as `MONITOR1`, the
+  primary at 0x0, and DP-3 (LG) as `MONITOR2` at 2560x0; both 4K at 60 Hz,
   scale 1.5. If the mouse crosses the wrong edge, swap the two names there.
 - **Keyboard.** `us` + `alt-intl` in `inputs.lua`, matching what the
   installer set for the console.
@@ -148,7 +148,7 @@ Each change is a few commented lines in `hypr/config/*.lua` or
    (snippet above).
 
 5. Monitors: `hyprctl monitors` shows the names; `hypr/config/variables.lua`
-   expects DP-3 on the left and DP-1 on the right.
+   expects DP-1 on the left and DP-3 on the right.
 6. Wallpaper: Super+Shift+W opens Noctalia's picker; the default folder is
    `~/Pictures/Wallpapers`.
 7. Sign-ins: `sudo tailscale up --ssh`, `gh auth login`, `claude`, `codex`,

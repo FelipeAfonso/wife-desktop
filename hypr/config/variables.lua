@@ -8,10 +8,10 @@ CALCULATOR   = "gnome-calculator"
 
 -- Monitors (names from `hyprctl monitors`). Both are 4K at 60 Hz, scale 1.5.
 -- MONITOR1 is the primary: workspace 1, the gaming workspace and launchers
--- land there. DP-3 is the LG on the left, DP-1 the Dell on the right. If the
+-- land there. DP-1 is the Dell on the left, DP-3 the LG on the right. If the
 -- mouse crosses the wrong edge, swap the two names here and nothing else.
-MONITOR1 = "DP-3"
-MONITOR2 = "DP-1"
+MONITOR1 = "DP-1"
+MONITOR2 = "DP-3"
 MONITOR3 = ""
 PRIMARY_MONITOR = MONITOR1
 

@@ -2,7 +2,7 @@
 
 You are running on **ulthar**, a CachyOS (Arch) desktop that belongs to
 Felipe's wife (user `jacque`). Hyprland on Wayland with the CachyOS
-Noctalia preset, two 4K monitors (DP-3 LG on the left is primary, DP-1 Dell
+Noctalia preset, two 4K monitors (DP-1 Dell on the left is primary, DP-3 LG
 on the right), an AMD RX 6950 XT (RDNA2, mesa/radv, Felipe's old card),
 browsers, Steam, World of Warcraft. Keyboard is US layout with the
 `alt-intl` variant; she types in Brazilian Portuguese and the locale is

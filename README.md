@@ -73,7 +73,8 @@ Each change is a few commented lines in `hypr/config/*.lua` or
   shell is zsh, a few lines with a built-in prompt, not fish.
 - **Bar.** Noctalia's Taskbar widget sits in the bar center so open windows
   are clickable, like a Windows taskbar.
-- **Wallpaper picker.** Super+W opens miskatonic's rofi image grid
+- **Wallpaper picker.** Super+W opens miskatonic's rofi image grid (first
+  tiles: random, then the previous wallpaper)
   over `~/Imagens/wallpapers` (Felipe's collection, copied over, not in the
   repo). The pick goes to `noctalia msg wallpaper-set`, so Noctalia still
   owns transitions, palette and templates; rofi just borrows the current

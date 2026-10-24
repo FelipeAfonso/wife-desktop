@@ -8,6 +8,9 @@ set -u
 WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Imagens/wallpapers}"
 THEME="$HOME/.config/rofi/wallpaper-picker.rasi"
 RANDOM_LABEL="Aleatório"
+PREVIOUS_LABEL="Anterior"
+# The wallpaper that was active before the last pick, so one key gets it back.
+PREVIOUS_FILE="$HOME/.cache/wallpaper-previous"
 
 # Seed RANDOM from /dev/urandom
 RANDOM=$(od -An -tu4 -N4 /dev/urandom | tr -d ' ')
@@ -38,8 +41,19 @@ if [ -r "$palette" ]; then
     fi
 fi
 
-# rofi input: random first, then every image with itself as the icon
+current=$(noctalia msg wallpaper-get 2>/dev/null | head -1)
+previous=""
+if [ -r "$PREVIOUS_FILE" ]; then
+    previous=$(head -1 "$PREVIOUS_FILE")
+    [ -f "$previous" ] && [ "$previous" != "$current" ] || previous=""
+fi
+
+# rofi input: random, then the previous wallpaper, then every image with
+# itself as the icon
 input="${RANDOM_LABEL}\0icon\x1fpreferences-desktop-wallpaper\n"
+if [ -n "$previous" ]; then
+    input+="${PREVIOUS_LABEL}\0icon\x1f${previous}\n"
+fi
 for img in "${images[@]}"; do
     input+="$(basename "$img")\0icon\x1f${img}\n"
 done
@@ -55,6 +69,8 @@ chosen=$(echo -en "$input" | rofi -dmenu \
 
 if [ "$chosen" = "$RANDOM_LABEL" ]; then
     selected="${images[RANDOM % ${#images[@]}]}"
+elif [ -n "$previous" ] && [ "$chosen" = "$PREVIOUS_LABEL" ]; then
+    selected="$previous"
 else
     selected="$WALLPAPER_DIR/$chosen"
 fi
@@ -67,6 +83,10 @@ fi
 # Noctalia applies it to every monitor, persists it, regenerates the theme
 # templates and (with greeter sync on) the login screen.
 if noctalia msg wallpaper-set "$selected" >/dev/null; then
+    if [ -n "$current" ] && [ "$current" != "$selected" ]; then
+        mkdir -p "$(dirname "$PREVIOUS_FILE")"
+        printf '%s\n' "$current" > "$PREVIOUS_FILE"
+    fi
     notify-send "Papel de parede" "$(basename "$selected")" -t 3000
 else
     notify-send "Papel de parede" "Noctalia não aceitou $(basename "$selected")" -u critical
